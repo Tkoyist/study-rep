@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        需求：
+            将class属性值相同，但标签种类不同的标签同时设置为相同的样式框架，但是存在细微的不同
+
+            即将body中的两个元素设置成为相同的颜色，不同的字号
+
+            -交集选择器：
+                ·作用：选中同时复合多个条件的元素  只有同时满足交集选择器中所有交集的元素才会被选中
+                ·语法：选择器1.选择器2.选择器3.·············{}
+                ·注意：交集中存在元素选择器，则必须使用元素选择器开头
+            */
+        div.red{
+            font-size: 30px;
+        }
+        .red{
+            color: rgb(255, 0, 191);
+        }
+
+        /* 
+        需求:
+            给出一组条件,将满足其中任意一个条件的所有元素设置成同一样式
+
+            即将h1，h2设置为相同的样式
+
+                -并集选择器
+                    ·作用：同时选择多个不同选择器所对应的所有元素
+                    ·格式：将所需要选择到的选择器之间使用 ，连接起来，其中被连接的选择器可以是任何选择器（包括并集选择器）
+        */
+        h1,h2{
+            color: crimson;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class='red'>一个div元素</div>
+    <p class='red'>一个p元素</p>
+
+    <h1>这是一个h1</h1>
+    <h2>这是一个h2</h2>
+</body>
+</html>

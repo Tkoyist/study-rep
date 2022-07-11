@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        功能需求：
+            设置一个div，要求其随时跟着鼠标移动
+        - 获取鼠标位置
+        - 改变div位置
+     -->
+     <style>
+         #box1{
+             width: 50px;
+             height: 50px;
+             background-color: #bfa;
+             position:relative;
+         }
+     </style>
+     <script>
+         window.onload = function(){
+            var box1 = document.getElementById("box1")
+
+            document.onmousemove = function(){
+                //获取鼠标位置
+                var mouseX = event.clientX-document.body.scrollLeft;
+                var mouseY = event.clientY+document.body.scrollTop;
+                // clientX / Y 是相对于网页在浏览器中可见的坐标
+                // var mouseX = event.pageX;
+                // var mouseY = event.pageY;
+                // pageX / Y 获取鼠标相对于网页的位置
+
+                // 设置box1的位置
+                // box1.style.left = mouseX;
+                // box1.style.top = mouseY;
+                // 错误，直接传入数值进去是无法读取的，还需要传入'px'才可被读取为像素
+                box1.style.left = mouseX+'px';
+                box1.style.top = mouseY+'px';
+                // 直接写入会发现没有变化，因为 left 和 top偏移量都是针对开启了定位的元素而言的
+
+                
+            }
+
+         }
+     </script>
+</head>
+<body style="height:10000px">
+    <div id="box1"></div>
+</body>
+</html>

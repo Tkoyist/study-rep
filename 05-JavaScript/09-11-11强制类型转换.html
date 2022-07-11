@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        强制数据转换
+            -将一个数据类型强制转换为其他的数据类型
+            -主要是将其他的数据类型转换为String Number Boolean
+     -->
+     <script>
+        //  将其他数据转换为String数据类型
+        //      方法1：
+        //          让需要改变数据类型的数据调用toString()方法
+        //          该方法会产生一个新的值，其值与原数据相等，但其数据类型会改变成String类型
+        //          null和undefined无法调用该方法,会报错
+        //      方法2:
+        //          调用String()函数,并将需要转换数据类型的变量作为参数传入
+        //          它与方法1的区别是，他可以对null和undefined产生作用
+        //              String()方法遇到null或undefined类型的数据，会将其改变为String类型的变量，并且分别为他们赋值为"null"和"undefined"
+        // 
+        
+
+
+
+        var a=123;
+        alert(typeof a)
+        a=String(a);
+        alert(typeof a)
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

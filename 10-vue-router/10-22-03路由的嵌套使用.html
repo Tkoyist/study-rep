@@ -1,0 +1,33 @@
+<!-- 
+    路由嵌套
+    - 编写路由组件文件
+
+    - 导入路由文件到router-index.js
+
+    - 在router-index.js 中定义路径 
+        这些子路由是定义在哪个路由之下，就将其定义在它的路由对象之下
+        在其chilren 属性中定义（该属性是一个数组，因为可能存在多个子路由）
+            {
+            path:'/home',
+            component:home,
+            children:[
+            {
+                path:'news',
+                component:news
+            },
+            {
+                path:'msg',
+                component:msg
+            }
+            ]
+        }
+
+    - 在父路由中使用子路由
+        <router-link to="/home/msg">msg</router-link>
+        <router-link to="/home/news">news</router-link>
+        <router-view></router-view>
+
+    * 子路由定义时路径无需加 / ，但在其使用的时候to 属性需要完整url
+
+
+ -->

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        定位练习（轮播图）
+            功能需求：
+                在页面中创建一个轮播图，经过我们的控制可以切换到不同的图片
+        
+            将整个轮播图放入一个ul中，每个不同的图片是单独的li 
+
+            通过::hover选择器，将鼠标选中的图片的层级变高，以达到我们的目的
+         */
+         #picture{
+
+             display: inline-block;
+         }
+
+         img{
+             position: absolute;
+             top: 10px;
+             left: 30px;
+             
+         }
+         /* #picture:hover{
+             position: absolute;
+             top: 10px;
+             z-index: 2;
+         } */
+    </style>
+</head>
+<body>
+<ul class="cpicture">
+    <li id="picture"><img id="1" src="../source/picture/8ab1d71b91b327328da33de91a9afd46.jpg" alt="" width="300px"></li>
+    <li id="picture"><img id="2" src="../source/picture/4130a79770d1e89f14b0bb3e01264980.jpg" alt="" width="300px"></li>
+    <li id="picture"><img id="3" src="../source/picture/50e412cf4b1b704f44ab8aa9297ed1dc.jpg" alt="" width="300px"></li>
+</ul>
+</body>
+</html>

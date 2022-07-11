@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script>
+        const box = document.getElementById('box')
+        box.addEventListener('mouseover',function(){
+            const xhr = new XMLHttpRequest()
+
+            xhr.open('POST','http://127.0.0.1:8000/server')
+
+            xhr.send('a:100&b:200&c:30000')//在send 中填写参数，想想也是，参数应该可以自由设置，而不是固定写死的
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status<=300){
+                        box.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

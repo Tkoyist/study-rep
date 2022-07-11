@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div id='box'>
+     <!-- 
+        v-model 修饰符
+        - .lazy     绑定该修饰符之后，我们修改元素中的值不会实时修改数据值，而会在我们按下回车或将焦点移出元素的时候修改数据
+     -->
+        <input type="text" v-model.lazy="msg">
+
+        <!-- 
+            - .number   绑定该修饰符,当我们输入number类型数据的时候，会阻止input将其转化为String类型数据（input会将接受到的数据转化为string类型）
+            一般配和number类型的input元素使用（限制input的类型为number将只能输入数字，但在内部还是会被转化为string）
+         -->
+         <input type="number" v-model.number="msg">
+
+         <!-- 
+             - .trim 去除元素value两边的空格再传入数据给绑定的数据
+          -->
+          <input type="text" v-model.trim="msg">
+        <div>{{msg}} {{typeof msg}}</div>
+    </div>
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    
+    }
+    })
+    </script>
+</body>
+</html>

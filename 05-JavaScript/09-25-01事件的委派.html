@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        本质是事件的冒泡的应用
+     -->
+     <script>
+        //  想要给所有的超链接绑定单击响应函数，按照以前的做法只能一个一个添加
+        window.onload = function(){
+        // var allA = document.getElementsByTagName("a")
+        // for(var i = 0;i<allA.length;i++){
+        //     allA[i].onclick = function(){
+        //         alert("响应成功");
+        //     }
+
+        // 我们发现这样做的实质其实是写了三个方法，效率较低
+        // 而且他只对已存在的标签生效，如果我们后续在页面中通过用户操作加入新的标签，会发现无法适用于该方法
+        // 所以现在提供一个新的思路
+        //  我们知道我们对子元素的操作会冒泡到祖先元素中（即便中间没有其他元素能响应该操作）
+        //  我们可以利用该机制，将共同的方法写入祖先元素，对子元素进行操作的时候通过事件的冒泡将操作统一由祖先元素响应
+
+            // document.getElementById("box1").onclick=function(){
+            //     alert("成功响应")
+            // }
+
+            // 成功实现，而且在这种情况下，页面中后续加入的标签也能使用
+            document.getElementById("btn01").onclick= function(){
+                var newdiv = document.createElement("div")
+                newdiv.innerHTML = "<a herf='javascript:;' class='jkl'>新建超链接</a>"
+                document.getElementById("box1").appendChild(newdiv)
+            }
+                // 这种功能的实现称之事件的委派
+                // -事件的委派是指将元素的功能统一绑定到某个祖先元素，当后代元素触发该事件的时候，由祖先元素的响应函数进行响应
+                // -事件的委派利用了事件的冒泡特性提高了代码的效率
+                
+                // 现在又出现一个问题，我们新添加的元素被我们放在了div之中，而我们使用事件的委派，被委派的祖先元素的所有的子元素触发该事件都会执行被委派的响应函数
+                // 即，我们点击div也会触发，但我们只需要a被点击的时候触发
+                // 为了实现这个功能，我们需要知道是哪一个元素的事件被触发了
+                //      -事件对象中存在一个元素target可以返回是哪一个元素触发了事件
+                document.getElementById("box1").onclick = function(event){
+                    if(event.target.className == "jkl"){
+                        alert("成功响应")
+                    }
+                }
+        }
+     </script>
+</head>
+<body>
+    <div id="box1">
+        <a href="" herf="javascript:;">1</a>
+        <a href="" herf="javascript:;">2</a>
+        <a href="" herf="javascript:;">3</a>
+    </div>
+    <button id="btn01">添加新超链接</button>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=p, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            css中样式的继承：
+                为一个元素设置样式的同时，该元素的后代元素（不只是子元素，后代元素都会继承）也会被设置成相同的样式
+            利用继承，我们可以将通用样式统一设计到共同的祖先元素当中，只需一次设定便可实现大量工作
+            注意：并不是所有样式都不会被继承，例如背景，布局
+         */
+        p{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        pyuansu
+        <span>p元素中的span元素
+        </span>
+    </p>
+</body>
+</html>

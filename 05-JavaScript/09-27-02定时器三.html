@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        在上一个文件的结果上
+        我们添加一个新的元素 box2 ，并添加一个新的按钮 btn03 控制 box2 向右运动
+        
+        我们发现，两个元素无法同时移动
+
+        这是因为
+            我们为了避免匿名定时器的大量出现，每次运行 move 函数时都会将定时器的通用载体 timer 清除
+            而在上一个定时器运行过程中运行新的 move 会清除 timer 之前move中的定时器会被清除而停止运行
+            
+        解决方案：
+            为每一个元素的移动设置一个单独的定时器载体
+            我们获取 html 元素的时候，获取到的是一个DOM对象
+            既然是对象，就可以添加属性
+            我们将定时器载体作为对象的属性放入定时器中，这便是该元素专属的timer
+        clear。
+        * 定时器的使用最好都使用该方法存储，以免出现问题
+
+        功能更新：
+            增加一个参数 attr 
+                用于决定对元素做何种动画
+                可选
+                    左右移动
+                    上下移动
+                    左右变长变短
+                    上下变长变短
+        
+        功能又更新：
+             动画执行完毕后按照我们想要的需求执行一些操作
+                增加一个参数
+                    该参数是一个回调函数
+                    在move执行完毕之后执行
+                    我们可以在该回调函数中写入需要的操作
+        
+     -->
+     <script src="../05-JavaScript/09-27-03tools.js"></script>
+     <script>
+        window.onload = function(){
+            
+
+            var testFun = function(){
+                alert("testFun")
+            }
+
+            var box1 = document.getElementById("box1")
+            var box2 = document.getElementById("box2")
+            var test = document.getElementById("test")
+            var btn01 = document.getElementById("btn01")
+            var btn02 = document.getElementById("btn02")
+
+            btn01.onclick = function(){
+                move(box1,"left",1,500,testFun)
+            }
+            btn02.onclick = function(){
+                move(box1,"left",-1,100)
+            }
+            btn03.onclick = function(){
+                move(box2,"left",2,500)
+            }
+            test.onclick = function(){
+                // move(box1,"width",1,1000,move(box1,"top",1,500,function(){}))
+                // 这种写法是错误的，这里我们将 move() 作为实参传入,即形参 callback 等于 move(),注意这时move()是有括号的,在运行的时候我们是使用 callback() ，而浏览器读取到的就是 move()() ,当然是无法运行的
+                // 我们将一个函数作为参数传入，只能直接写一个回调函数
+
+                // 函数名() 代表直接调用该函数 ， 而我们要传入带参数的函数，目前只能通过 函数名（参数） 的方式，所以带参数的函数不能直接通过函数名将其作为参数传入，只能写一个回调函数，在回调函数中写入带参数的函数的调用
+                move(box1,"width",1,1000,function(){move(box1,"height",1,500,function(){})})
+
+                // 而不带参数的函数可以直接将函数名作为参数传入
+                // move(box1,"left",1,500,testFun)
+            }
+        }
+
+    </script>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            position:absolute;
+            top:60px;
+            left:0px;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background-color:cyan;
+            position:absolute;
+            top:200px;
+            left:0px;
+        }
+    </style>
+</head>
+<body>
+   <button id="btn01">点击向右移动</button>
+   <button id="btn02">点击向左移动</button>
+   <button id="btn03">box2向右移动</button>
+   <button id="test">测试按钮</button>
+   <br>
+   <br>
+
+   <div id="box1"></div>
+   <div id="box2"></div>
+</body>
+</html>

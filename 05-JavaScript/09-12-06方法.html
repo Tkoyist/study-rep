@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        函数也可以成为对象的属性
+        当函数成为的属性时，函数将该名为方法，这里只有名字上的区别，没有过多的本质区别
+
+     -->
+     <script>
+         var obj ={
+             name : "lzl",
+             getname1 : function(){alert(obj.name);}
+            //  根据下面的创建得知，为对象添加方法本质上是给对象创建一个成员变量，并将一个函数作为变量值传给该变量
+            //  所以在彤过对象字面量的方法创建对象的过程中，应当在 : 左边给定方法名，在 : 右边给定一个方法对象（多为现场建立的对象）
+            //      即  方法名 :  函数对象（   function(参数){方法体}   ）
+         }
+
+        //  为obj创建一个新属性名为 getname ，将一个方法传递给该属性，这个方法就成为了该对象的一个方法
+         obj.getname=function(){
+             alert(obj.name);
+            };
+
+         obj.getname1();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

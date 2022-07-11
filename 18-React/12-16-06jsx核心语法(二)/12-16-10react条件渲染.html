@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    条件渲染
+    对应 v-if,我们这里的这些方式都是对应v-if
+    在react中
+    - 直接使用js代码与jsx 的混用，适合于逻辑较多，一个元素涉及到多个dom渲染的情况
+ -->
+<body>
+    <div id="box"></div>
+    
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type='text/babel'>
+        class App extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    falg:false
+                }
+            }
+            render(){
+                // 直接使用js代码和jsx代码的混用进行判断渲染，适合与逻辑代码较多的情况
+                let welcome = null
+                let btnText = null
+                if(this.state.falg == true){
+                    welcome = '欢迎回来'
+                    btnText = '退出'
+                }else{
+                    welcome = '请先登录'
+                    btnText = '登录'
+                }
+                return(
+                    <div>
+                        {welcome}
+                        <button onClick={e=>{this.fun()}}>{btnText}</button>
+                        {/*
+                            第二种方式是使用三目运算符，好处是简洁清晰，但是结构和数据耦合度略高
+                            而且不方便处理逻辑代码较多的情况
+                        */}
+                        <button>{this.state.falg?'退出':'登录'}</button>
+                        {/*
+                            三元运算符是存在一定的问题的，首先就是有些时候我们只需要判断是否显示，如果使用三元运算符我们还得在 : 之后添加上 null
+                            这其实是没有必要的，很浪费程序员时间
+                            推荐使用条件与 && 符号进行操作
+                        */}
+                        {this.state.falg && '你好呀，用户'}
+                        {/*
+                            如上图所示，这种方式逻辑正确是因为
+                            - 逻辑与符号在判断时，如果前面的判断已经失败，那么就会直接忽略掉之后的判断
+                            - 如果最后一个表达式是一个非boolean 类型的数据(包括string，number)，那么该数据就会作为整个 && 语句的返回值
+                        */}
+                    </div>
+                )
+            }
+
+            fun(){
+                this.setState({
+                    falg:!this.state.falg
+                })
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>

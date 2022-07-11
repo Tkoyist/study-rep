@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        实现功能，鼠标滚轮向下滚动的时候，元素变长向上变短
+            - 获取到鼠标滚动即触发事件
+            - 获取是向上滚动还是向下滚动
+            - 元素作出相应的响应
+     -->
+    <script>
+        window.onload=function(){
+            var box1 = document.getElementById("box1")
+            // onmousewheel事件，会在鼠标滚轮滚动的时候触发
+            box1.onmousewheel = function(event){
+                // 事件对象中的 wheelDelta 可以获取滚动的方向，向上为正反之为负
+                // alert(event.wheelDelta)
+
+            if(event.wheelDelta > 0){
+                // 元素变短
+                box1.style.height=box1.clientHeight-1+'px'
+                //clientHeight 元素的内部高度，包含内边距和边框，是Number数据可以直接用于计算,不包含滚动条
+                //offsetHeight 与上述基本一致，但包含滚动条
+            }
+            else{
+                // 元素变长
+                box1.style.height= box1.clientHeight+10+'px'
+                alert(box1.offsetHeight)
+            }
+        }
+    }
+    </script>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+    </style>
+</head>
+<body>
+<div id="box1"></div>
+</body>
+</html>

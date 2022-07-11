@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-size: 50px;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+            float: left;
+        }
+        .box2{
+            width: 200px;
+            height: 400px;
+            background-color: #bfa;
+            float: right;
+        }
+        .box3{
+            height: 200px;
+            width: 200px;
+            background-color: orange;
+            clear: right;
+        }
+
+        /* 
+        clear 属性
+            -作用 可以清除其他元素因为浮动对本元素产生的影响
+            -可选值 
+                *left 清除左浮动元素对本元素的影响 
+                *right 清除右元素对本元素的影响
+                *both 清除两侧中影响最大的那侧
+
+            -原理 本质上是为元素增加了一个外边距，其外边距的长度与影响他位置的浮动元素的高度一致
+         */
+
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</body>
+</html>

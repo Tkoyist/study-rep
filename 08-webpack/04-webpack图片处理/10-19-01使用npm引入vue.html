@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const vue = Vue({
+            // 当前未引入vue文件的时候，是无法创建vue实例的
+            // 我们可以通过npm 在node_modules 中添加vue文件，并将其导出打包
+            // npm install vue --save
+            // 这里不添加-dev(开发时依赖)，因为我们在后续运行代码的时候也是需要用到vue的
+
+            // **为了更好的实现模块化，我们移步到main 文件中，在该文件中引入vue
+
+            // 总体分三步
+            // - 安装Vue 获取 vue文件到node_modules
+            // - 在main 中导入vue文件，并创建vue实例
+            //      可能会报错，因为vue分为两个版本，两个版本我们也都下载下来了，但是我们需要指定使用了哪个版本
+            //      - 直接在导入的时候指定，精确到vue文件中的指定版本vue文件
+            //          import Vue from 'vue/dist/vue.esm.js'
+            //      - 因为另外一个版本很少使用，所以我们在webpack中创建一个快捷别名，使得我们每次使用 vue 的时候，都是直接指向我们指定的文件
+            //          详情请见webpack.confi.js文件
+            // - 打包模块，导入HTML文件，在HTML文件中使用vue（当然需要挂载）
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<!-- 
+    resolve 接受各种类型参数，这些参数大多分为三个类型
+    - 普通数据，resolve方法接受普通数据作为参数之后，会直接将该参数作为promise 的状态值返回
+    - promise类型数据
+        原本调用resolve 之后就表示当前的promise 由等待态变为了成功态，但是当传入resolve 的参数是一个promise 对象的时候
+        当前的promise 的状态就不再是成功态，而是由传入的promise 对象的执行完成的状态来决定，其value和reason也都由
+ -->

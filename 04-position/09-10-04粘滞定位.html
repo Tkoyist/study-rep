@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body{
+    height: 20000px;
+}
+.nav{
+    height: 48PX;
+    width: 1205px;
+    background-color: #E8E7E3;
+    margin: 100px auto;
+    padding: 0px;
+    list-style-type: none;
+    line-height: 48px;
+
+
+    position: sticky;
+    top: 10px;
+    /* 
+    粘滞定位
+    - 当元素position值设置为sticky时开启元素的粘滞定位
+    - 元素粘滞定位与相对定位的特点大致相同，与相对定位不同的是
+        为元素的粘滞定位设置一个值
+        当元素与浏览器视口的距离大于该值的时候，粘滞定位与相对定位相同，而当元素与浏览器视口的距离小于该值的时候，无论怎么滑动滚条，都不会改变元素和浏览器视口的距离，他们的距离会固定为所设置的值
+
+     */
+}
+
+.nav>li{
+    float: left;
+    height: 48px;
+
+
+}
+
+.nav>li>a{
+    display: block;
+    height: 100%;
+    font-size: 18px;
+    color:#777777;
+
+    padding: 0px 39px;
+    /*  */
+
+    text-decoration: none;
+}
+
+.nav>li>a:hover{
+    background-color: #3f3f3f;
+    color: #E8E7E3;
+}
+
+</style>
+<body>
+    <ul class="nav">
+        <li><a href="#">HTML/CSS</a></li>
+        <li><a href="#">Browser Side</a></li>
+        <li><a href="#">Server Side</a></li>
+        <li><a href="#">Programming</a></li>
+        <li><a href="#">XMl</a></li>
+        <li><a href="#">Web Building</a></li>
+        <li><a href="#">Reference</a></li>
+    </ul>
+</body>
+</html>

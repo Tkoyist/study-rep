@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        原型链的属性问题
+            当我们查找一个属性的时候，浏览器无法在当前的对象中查找到，就会到它的原型链中查找
+            而当我们设置一个属性的时候，由于对象的默认操作，会在当前对象的属性中寻找该元素，找不到会直接在对象中添加元素，而不会去访问其原型链
+            所以设置原型对象的属性无法通过对象直接操作，只能通过对象的（prototype __proto__）原型属性访问设置
+
+            方法一般定义在原型中，这样每个该构造函数的对象都能使用该方法，但不用都去实现定义该方法，属性则一般储存在对象本身中
+     -->
+</head>
+<body>
+    
+</body>
+</html>

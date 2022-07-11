@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        Web Worker 是HTML5提供的一个多线程解决方案
+
+            - 使用
+            - 缺点
+                * 速度较慢
+                * 子线程无法操作DOM，不能对页面作出任何操作（不能更新UI）,因为分线程文件没有操作window的接口
+                * 很多浏览器不支持（最大问题）
+
+     -->
+     <script>
+         window.onclick = function(){
+            //  创建一个Worker对象
+             var worker = new Worker('10-11-07worker.js')
+            //  绑定接受事件的监听(为该对象创建一个事件响应函数，响应事件为收到分线程文件传来的消息)
+            worker.onmessage = function(event){
+                // 事件响应函数执行的时候会收到来自分线程文件的数据，所有数据均被封装在事件对象中
+                alert(event.data)
+            }
+
+            worker.postMessage("向分线程传输数啦")
+
+         }
+     </script>
+</head>
+<body>
+    
+</body>
+</html> 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <!-- 
+        迭代器是一种接口，为各种不同的数据结构提供统一的遍历机制
+        任何数据只要部署了Iterator 接口，就都可以完成遍历操作 在数据对象中添加 Symbol.Iterator属性(指向一个函数)就可以使用迭代器迭代
+        es6 提供了新的遍历命令 for...of.. Iterator 接口主要就是供其使用
+
+        for of 是遍历成员，而for in 是遍历索引
+        for of 和 for in 会创建一个指针对象，指向可迭代对象的初始位置
+        第一次调用next() 方法，指针会指向可迭代对象的第一个数据
+        之后会不断调用next() 方法，不断指向下一个数据，直至所有数据都被遍历完成
+        每次调用next() 方法都会返回value 和 done 分别是当前的数据，和遍历是否完成
+
+        本质是根据可迭代对象创建了链表，所以效率较低
+     -->
+ <body>
+     <script>
+        //  迭代器应用
+        //  我们现在有一个对象，对象内部存在data 属性（一个数组）用于存放数据，当然还有其他的属性
+        //  我们希望为该对象创建一个专属的迭代器，希望调用该迭代器时（对该对象进行迭代时）能遍历输出data中的数据
+        //  本质上就是自定义迭代器，让其做我们希望的事情
+
+        const obj = {
+            suibian:'suibian',
+            data:['a','b','c','d','e','f'],
+            // 实现专属迭代器
+            // 迭代器是一个方法，该方法返回一个对象，该对象指向被迭代数据中的第一位，并且该对象包含next()方法
+            [Symbol.iterator](){
+                // 用于指向第一个被遍历的对象
+                let index = 0
+
+                
+                // 返回一个对象
+                return {
+                    // 返回的对象中有next 方法
+                    next:()=>{
+                        // next 方法用于输出遍历到的数据，返回value 和 done ，并使迭代器指向下一个被遍历数据
+                        if(index<this.data.length){
+                            const res = {
+                                value:this.data[index],
+                                done:false
+                            }
+                        index++
+                        return res
+                        }else{
+                            const res = {
+                                value:undefined,
+                                done:true
+                            }
+                            return res
+                        }
+                    }
+                }
+
+            }
+        }
+
+        // 注意这样修改只能修改for of 遍历，不能修改 for in 遍历
+        for(let i of obj){
+            console.log(i);
+        }
+
+     </script>
+ </body>
+ </html>

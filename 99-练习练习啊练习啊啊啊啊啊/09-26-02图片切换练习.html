@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        使图片自动切换
+            - 使用定时器
+            - 修改图片的src属性切换图片
+     -->
+     <script>
+         window.onload = function(){
+             var timer;
+            //  获取所有图片名称,获取img
+             var imgName = ["1.jpg","2.jpg","3.jpg"]
+             var img = document.getElementById("img")
+
+            // 获取图片容器
+             var allImg = document.getElementById("box1")
+
+            // 创建图片索引
+            var index = 0 
+
+            //  创建定时器,
+            document.getElementById("start").onclick=function(){
+
+                // 我们发现多次点击按钮，图片切换速度会越来越快
+                //      原因:我们每次点击按钮都会创建新的定时器，因为 setInterval 方法是创建定时器，每点击一次创建一个新的定时器，每个定时器的功能都是相同的
+                //           且定时器与定时器之间并不冲突，各自执行，然而我们的赋值语句是将定时器赋值给一个变量，这也就意味着只有最后次执行赋值语句时，被赋值的定时器被赋值给了 timer 
+                //           而其他的定时器则变成了匿名定时器，无法获取到
+                //           解决这个问题的方法是在创建新的定时器之前将之前存在的定时器（肯定已经被赋值为 timer ）清除，即便之前不存在定时器，由于 clearInterval 方法的性质，也不会产生问题
+                timer = setInterval(
+                function(){
+                    if(index == 2 )
+                        index = 0
+                    else
+                        index++
+                    img.src = "../source\\picture\\"+imgName[index]
+                    }
+            ,2000)
+         }
+            // 这里我们发现一个问题，我们多次点击开始键，会加速
+            document.getElementById("end").onclick = function(){
+                // clearInterval可以接受任意参数,即使是空值或者underfined，也不会报错，所以可以直接放入一个未赋值变量
+                clearInterval(timer);
+                // 这里不生效，因为timer是在开始按钮的响应函数中定义的，这里访问不到，所以我们将其设置为全局变量
+            }
+        }
+        
+
+            
+     </script>
+     <style>
+         #box1{
+             margin: 100px auto;
+             text-align: center;
+         }
+     </style>
+</head>
+<body>
+    <div id="box1">
+        <img id="img" src="../source\picture\1.jpg" alt="" width="500px">
+    </div>
+    <button id = "start">开始</button>
+    <button id="end">结束</button>
+</body>
+</html>

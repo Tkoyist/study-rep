@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- template是一种设置，通过设置可以使得设置自定义简写代码 -->
+    <!-- 
+        文件-》首选项-》用户片段
+        需要在什么区域添加快捷代码就选择谁的JSON
+        例如：
+            html.JSON
+            javascript.JSON
+        再依照格式添加
+        prefix 是快捷短语
+        body 中写需要快捷加入的代码，每一行都需要用""括起来，且每一行间需要用 ，隔开
+        description 对代码段的简单描述，在输入的时候会显示
+     -->
+    
+    <div id='box'></div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    
+    }
+    })
+    </script>
+</body>
+</html>

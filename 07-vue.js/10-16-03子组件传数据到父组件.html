@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 子组件向父组件传递数据：当子组件发生某个事件，例如点击的时候，需要其他同级组件产生响应，这个过程的事件传递是无法直接进行的，需要通过父组件进行消息的转送
+         也可以理解为，子组件向父组件发送请求，父组件产生响应，这个请求就是子组件对父组件的必要通信 -->
+         <!-- 
+             确立关系：
+             首先是父组件需要获取数据，但是我们不知道子组件什么时候发送数据，所以我们需要监听子组件
+             父组件的监听已完成
+             现在需要想办法让子组件在需要的时候发送信息
+                子组件的事件响应函数，触发之后，通过特定方法向父组件发送消息
+
+          -->
+    <div id='box'>
+        <cpn @ccpnon="ccpnfun"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2 @click="conclick(testdata)">这是子元素模板</h2>
+        </div>
+    </template>
+    <script src='vue.js'></script>
+    <script>
+
+    const cpn ={
+        template:"#cpn",
+        data(){
+            return{
+                testdata:"子组件的测试数据传输出去啦"
+            }
+        },
+        methods:{
+            // 为子组件创建一个时间响应函数，在子组件事件触发的时候想办法向父组件传送消息
+            conclick(){
+            // 通过 $emit() 方法向父组件传送一个字符串，该字符串表明字符串中的自定义事件触发，父组件监听到该事件触发之后，给出响应 
+            // 也可以在后面加上其他的参数用于传输数据到父组件
+            this.$emit("ccpnon",this.testdata)
+            }
+        }
+    }
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    components:{
+        cpn
+    },
+    methods:{
+        ccpnfun(testdata){
+            alert("子模板事件被监听")
+            alert(testdata)
+        }
+    }
+    })
+    </script>
+</body>
+</html>

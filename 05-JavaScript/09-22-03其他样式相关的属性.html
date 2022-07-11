@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+
+     -->
+     <style>
+         #box1{
+             width: 100px;
+             height: 100px;
+             background-color: #bfa;
+             border: red 10px solid;
+         }
+         #box2{
+             height: 300px;
+             width: 300px;
+             background-color: yellow;
+             overflow: auto;
+         }
+         #box3{
+             width: 200px;
+             height: 600px;
+             background-color: red;
+         }
+     </style>
+     <script>
+         window.onload = function() {
+             var box1 = document.getElementById("box1")
+             var btn01 = document.getElementById("btn01")
+             var box2 = document.getElementById("box2")
+             var box3 = document.getElementById("box3")
+             
+             
+             btn01.onclick = function () {
+                //  clientWidth clientHeigght
+                //  - 返回元素的可见框的高度与宽度
+                //  - 可见框包含了内容区和内边距，
+                //  - 包含了两个属性，如果进行修改，是无法确认修改哪个属性的，所以这是个可读属性
+                //  - 该属性的返回值是一个number数值，可以直接用于各种计算
+                
+                // alert(box1.clientHeight);
+
+                // offsetWidth offsetHeight
+                // - 获取元素大小，包含内容区，内边距和边框
+                
+
+                // offsetParent
+                // - 获取元素的定位父元素
+                // - 距离当前元素最近的开启了定位的祖先元素（都没开启定位则返回body，最终父元素）
+
+                // offsetLeft offsetTop
+                // - 当前元素相对于其定位父元素的水平/垂直偏移量
+
+                // scroll 滚动
+                // - 当子元素大小大于父元素的时候，我们设置父元素的overflow为滚动条显示的情况，父元素的页面显示高度是不变的
+                //   但它内藏的（overflow）高度是未知的，由子元素决定，而这个内藏高度即是滚动(srcoll)高度
+
+                // scrollHeight scrollWidth 
+                // - 获取元素的滚动高度与滚动宽度
+                alert(box2.scrollHeight)
+
+                // srcollTop srcollLeft
+                // - 获取元素当前可视框顶部和左部距离元素滚动的顶部和左部的距离
+                // - 即元素滚动条滚动的距离
+                alert(box2.scrollTop)
+
+                alert(box2.clientWidth)//283
+                // 滚动条会占据位置，所以可见框会缩小
+
+                // 当scrollHeight - srcollTop == clientHeight 的时候
+                // 说明滚动条拉到了最低处，水平方向类比
+
+             }
+         }
+     </script>
+</head>
+<body>
+    <div id="box1"></div>
+    <br>
+    <div id="box2">
+        <div id="box3"></div>
+    </div>
+
+    <button id="btn01">onclick</bytton>
+</body>
+</html> 

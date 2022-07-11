@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        mustache （胡子）语法
+            即{{}}语法
+            一个胡子语法中不止能写简单的变量输出，也可以写一些简单的表达书
+            例如
+            一个元素内也可以同时存在多个胡子语法
+     -->
+    <div id='box'>
+        <h2>{{msg+' '+name}}</h2>
+        <h2>{{num * 2}}</h2>
+        <h2>{{msg}}+' '+{{name}}</h2>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+        msg:'hello',
+        name:'tkoyist',
+        num:'100'
+    }
+    })
+    </script>
+</body>
+</html>

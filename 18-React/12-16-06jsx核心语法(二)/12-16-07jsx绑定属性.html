@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    jsx 中的元素属性绑定可以直接进行，而如果需要绑定属性为某个数据，也可以直接使用{} 将被绑定的数据括起来即可
+
+    - 在jsx 中绑定元素类不推荐使用class 因为我们说过jsx 本质也是js 是js 的一种语法糖，是可以与js代码混用的，如果我们在jsx 中使用js 关键字，就可能出现二义性、
+     所以在jsx中绑定类使用className 关键字
+
+    - 在react 中不能像vue 一样直接使用一个对象动态的为一个元素绑定多个类，我们只能通过js 代码的方式来绑定
+      将类名们用一个 {} 包裹表示其为表达式，再在表达式中通过该js 代码的动态绑定leim
+
+    - jsx中也是可以直接为元素设置内联属性的
+      但是其存在其专有语法，style 的值需要指向一个对象，这也就要求属性列表会变成 style = {{ key : value}} 的形式，外部的大括号表示当前数据是可变数据，内部大括号表示可变数据的类型为Object
+
+    * 还要注意一点，jsx 中使用驼峰表示代替 - 分割符，例如font-size 在jsx 中就要写为 fontSize
+ -->
+<body>
+    <!-- 创建元素挂载点 -->
+    <div id="box"></div>
+    <div>13131332</div>
+
+    <!-- 安装react所需的依赖 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- 书写jsx代码的sc标签需要添加特殊属性使其可以识别jsx代码 -->
+    <script type='text/babel'>
+        // 创建组件类
+        class App extends React.Component{
+            constructor(props){
+                super(props)
+
+                this.state = {
+                    istitle:true,
+                    isname:false
+                }
+            }
+
+            render(){
+                // 在render函数中将state中的数据进行解构，但是这样是否能响应式改变，感觉应该可以，每次响应式改变应该都会重新调用render函数
+                const{istitle,isname} = this.state
+                return(
+                   <div>
+                    <div className="title name"></div>
+                    {/*在react中为元素绑定动态属性需要使用js代码暴力实现，没有语法糖*/}
+                    <div className={(this.state.isname?'name':'')+(this.state.istitle?' title':'')}>name title</div>
+                    {/*直接使用常规访问访问数据是比较麻烦的，我们可以在render函数中将state 中的数据使用es6 的语法糖进行解构，便可以直接通过变量名进行访问*/}
+                    <div className={(isname?'name':'')+(istitle?' title':'')}>name title</div>
+                    {/*可以看到能正常访问*/}
+
+                    {/*
+                        在jsx 中尝试为一个元素绑定内联样式
+                        - 其存在其专有语法，style 的值需要指向一个对象，这也就要求属性列表会变成 style = {{ key : value}} 的形式，外部的大括号表示当前数据是可变数据，内部大括号表示可变数据的类型为Object
+                        - jsx中使用驼峰表示代替 - 作为分隔符
+                        - 属性值需要是字符串，否则就会被当做变量名
+                    */}
+                    <div style={{color:'red',fontSize:'20px'}}>在jsx中绑定内联样式</div>
+                   </div>
+                )
+            }
+        }
+
+        // 渲染组件
+        ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+
+            
+            /* outline: 10px red solid ; */
+            /* 
+            outline 用于设置元素的轮廓，其使用方法和边框一样
+                轮廓和边框的不同之处在于， 轮廓不影响可见框的大小
+             */
+
+
+             box-shadow: 10px 10px 10px rgba(0, 0, 0, .4);
+             /*
+             box-shadow 用于设置元素阴影，阴影和轮廓一样，能显示但是无法影响页面的布局
+                        元素的阴影默认情况下是与元素重合且被元素遮挡，是无法被观察到的
+                -它的属性
+                    *第一个值 水平偏移量，正值即元素阴影想右移动的位置，负值即向左移动的位置
+                    *第二个值 垂直偏移量，正值向下向下移动
+                    *第三个值 阴影的模糊程度，值为多少，模糊的范围就有多大
+                    *第四个值 阴影的颜色，可以是半透明颜色
+                    
+              */
+
+              /* border-radius: 10px 20px 30px 40px; */
+              /* 
+              border-radius指的是盒子模型的角 
+              分别分为上左 上右 下右 下左 四个角
+              当我们直接设置时 
+              border-radius： 10px 20px 30px 40px；
+              就指的分别设置盒子模型的 上左 上右 下右 下左 角
+
+              当我们只设置三个或者两个值的时候，没有被设置的值会默认与它对角的值相等
+               */
+
+               /* border-radius: 20px/50px; */
+               /* 
+               将边角变成1/4个椭圆，而非1/4个圆
+               注意 xpx/ypx ypx始终是指的垂直方向的“半径”
+                */
+
+                border-radius: 50%;
+                /* 将盒子模型设置为椭圆形 如果盒子本身长宽相等，则设置为圆形（特殊的椭圆形）*/
+                
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+    <span>10000001</span>
+</body>
+</html>

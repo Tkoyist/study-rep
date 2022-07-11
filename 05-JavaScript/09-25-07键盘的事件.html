@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        键盘事件分为两个
+            - onkeydown 
+                按键被按下
+                - 对于 onkeydown 按着一个键不放，该事件会连续触发
+                - onkeydown 连续触发的时候，第一次和第二次之间的间隔比较长，之后间隔会很短（可以防止误操作）
+                - 获取键盘的输入
+                    event.keycode 可以获取按键值的ascii值
+                    event.key     获取按键值
+                    ctrlkey       
+                    altkey
+                    shiftkey
+                        均为事件对象的属性值，会返回事件触发的时候，这几个键有没有被按下,注意原话，在事件发生的时候，这几个键有没有被按下，所以先按其他键触发事件之后再按这几个键，是没有用的，因为事件触发的时候（其他键被按下的时候）Ctrl键是没有被按下的
+                        按下即为true 否则false
+            - onkeyup
+                按键被松开
+
+            
+            *键盘事件一般绑定给可以获取焦点的对象或者 document
+                . 焦点，当我们点击一个文本框的时候，会出现闪动的竖线，这是便是获取到了焦点，点击其他地方，闪动小时，便是失去焦点，焦点即是我们正在操作的文本的文位置
+
+     -->
+     <script>
+         window.onload = function(event){
+            
+            document.onkeydown = function(event){
+            //  如我所料，按键的值放在了事件对象之中 
+            //  event.keycode 可以获取按键值的ascii值
+            //  event.key     获取按键值
+                
+                // 判断输入的值是不是y
+                // 判断y和ctrl是否被同时按下
+                // if(event.keyCode === 89 && event.keyCode===17){错误代码，keyCode只会有一个值，不可能同时等于两个不同的值
+                if(event.keyCode === 89 && event.ctrlKey){
+                    alert("R")
+                }
+
+            }
+
+            // 使文本框只能输入数字
+            // 原理：文本框会获取键盘的输入值，这是它的默认行为，既然是默认行为，我们即可返回false取消该行为
+            document.getElementById("text1").onkeydown=function(event){
+                if(event.keyCode<48 || event.keyCode>57){
+                    return false
+                }
+                
+                
+            }
+         }  
+     </script>
+</head>
+<body>
+    <div id="box1" style="width: 100px;height: 100px;background-color: #bfa;"></div>
+    <input type="text" id="text1">
+</body>
+</html>

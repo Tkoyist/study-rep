@@ -1,0 +1,16 @@
+{
+  "name": "meetwebpack",
+  "version": "1.0.0",
+  "description": "在终端输入 npm init 创建，目前除name属性之外，其余属性无需我们设置，直接使用默认即可，我们在config中导入的 path 数据就是来自于这里, script 属性中是一个映射，当我们使用npm去运行映射的 key 的时候，npm就会到这里寻找该 key 所对应的代码，并运行该代码，且这是我们可以自定义的+ ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.4.0",
+    "webpack": "^5.58.2"
+  }
+}

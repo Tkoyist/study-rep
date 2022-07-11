@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- v-bind 当我们的元素属性也是动态的，需要在data中请求的时候，直接使用mustache语法是不行的，mustache语法只能用于元素内部 -->
+    <!-- 我们将我们需要动态变化的元素属性绑定上v-bind指令，解析器就会解析其内部的变量值指代的数据，而不是直接当做字符串 -->
+    <!-- 语法糖   : -->
+    <div id='box'>
+        <img v-bind:src="imgurl" alt="">
+        <!-- 语法糖写法 -->
+        <img :src="imgurl" alt="">
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    imgurl: 'http://img1.tiantianyuedu.cn/2021-09-25/23/5l0lmtdour0.jpg'
+    
+    }
+    })
+    
+    </script>
+</body>
+</html>

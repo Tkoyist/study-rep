@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        当我们直接打印一个对象的时候
+            会调用该对象的toString()方法
+            并将该方法的返回值返回
+            - toString()方法来自于对象的原型对象的原型对象，即一切对象都有该方法
+            - 我们可以为对象或者对象的原型对象添加该方法，使其不在调用原型对象的原型对象的该方法，让我们直接打印对象时返回我们想要的信息
+     -->
+     <script>
+         var per = {
+             name : "lzl",
+             age : 21
+         }
+
+         alert(per.toString());
+         alert(per);
+        //  两个输出值相同，本质上也是调用了同一个方法，
+
+         per.__proto__.toString = function () {
+             return "这是一个per对象";
+         }
+
+         alert(per.toString());
+         alert(per);
+        //  为per对象添加了toString()方法，使打印对象时，输出对象的基本信息
+
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

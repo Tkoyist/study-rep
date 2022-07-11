@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        轮播图功能更新：
+            要求轮播图过渡性切换图片，均向左移动
+            要求轮播图中光点显示是哪张图
+            其他功能与上版本相同
+
+            思路：
+            在图片容器中放入一整排宽度很长的图片内部容器，使得该容器在div中移动，超出div的部分不予显示
+            内部容器随时间循环移动
+            每次移动固定的距离，就切换光点
+
+     -->
+     <script src="../05-JavaScript/09-27-03tools.js"></script>
+     <script>
+         window.onload = function(){
+            //  imglist 的宽度应该是根据图片的多少发生改变的
+            var imgList = document.getElementById("imgList")
+            var allImg = document.getElementsByTagName("img")
+            var allA = document.getElementsByTagName("a")
+            imgList.style.width = allImg.length*520 + 'px'
+            // 获取页面中所有的img元素，获取到的元素个数有多少，imgList长度就相应的为多少
+            // 使用move函数，使imgList向左移动，在到达目的地之后往回移动，不断往复（循环）
+            
+            // move(imgList,"left",-1,520-parseInt(imgList.style.width),moveBack())   
+            moveOn();
+            
+            function moveOn(){
+                move(imgList,"left",-1,520-parseInt(imgList.style.width),function(){
+                    moveBack()
+                })
+            }
+            function moveBack(){
+                move(imgList,"left",1,0,function(){moveOn()})
+            }
+
+
+            for(var i = 0 ; i<allA.length;i++){
+                // this.num = i 这样写是错误的，此时的this是window
+                allA[i].num = i
+                allA[i].onclick = function(){
+                    imgList.style.left = this.num*-520+'px'
+                    setA(this.num)
+                }
+            }
+            
+
+            function setA(index){
+                // 我们将点击按钮即改变a的颜色的功能封装成一个函数，因为每次改变颜色（转换光点）都意味着其他的 a 变回原本的颜色（原本的光点变回普通颜色）
+                for(var i = 0 ; i<allA.length ; i++){
+
+                    // allA[i].style.backgroundColor = "lightblue"
+                    // 我们会发现一个问题，当setA运行过一次之后 :hover便不会生效
+                    // 这是因为我们在 setA 函数中改变了所有元素的背景颜色，且是通过改变内联样式的方法改变的，而内联样式的优先级是高于样式表的，所以:hover在内联样式的压制下不会生效
+                    // 我们可以在 setA 中将修改内联样式的背景颜色，改变为清空元素的内联样式，清空内联样式之后，它的样式表样式会得到显示，也是我们希望的颜色，同时 :hover 也不会被覆盖
+                    allA[i].style.backgroundColor = ""
+
+                }
+
+                allA[index].style.backgroundColor = "red"
+            }
+         }
+     </script>
+
+     <style>
+         *{
+             margin: 0;
+             padding: 0;
+         }
+         /* box1 居中，与可视窗上部分有边距显示，且内容居中 */
+         #box1{
+            margin: 200px auto;
+            text-align: center;
+            width: 520px;
+            height: 281px;
+            position: relative;
+
+            /* background-color: cyan; */
+            border: paleturquoise 10px solid;
+            /* 超出部分隐藏 */
+            overflow: hidden;
+         }
+
+         /* li 行内元素显示，使其水平排列 */
+         li{
+             float: left;
+             margin: 0px 10px;
+         }
+         #imgList{
+             list-style: none;
+             width: 1560px;
+             margin: auto; 
+             position: absolute;
+             left: 0px;
+         }
+         #box2 a{
+             /* a是行内元素，直接设置宽高不起作用 */
+             display: inline-block;
+             width: 10px;
+             height: 10px;
+             margin: 0px 3px;
+             background-color: lightblue;
+             position: relative;
+             /* 元素开启定位即脱离文档流，开启相对定位，定位参照物是元素原本的位置，所以在元素不设置偏移量的时候，位置不会产生变化 */
+             top:240px
+         }
+         #box2 a:hover{
+             background-color:lightcoral;
+         }
+     </style>
+</head>
+<body>
+    <!-- 图片容器 -->
+    <div id="box1">
+        <!-- 图片内部img容器 -->
+        <ul id="imgList">
+            <li><img src="../source/picture/1.jpg" alt="" width="500px"></li>
+            <li><img src="../source/picture/2.jpg" alt="" width="500px"></li>
+            <li><img src="../source/picture/3.jpg" alt="" width="500px"></li>
+            
+        </ul>
+        <div id="box2">
+            <a id="a1" href="javascript:;"></a>
+            <a id="a2" href="javascript:;"></a>
+            <a id="a3" href="javascript:;"></a>
+            
+            <!-- 将 a 写到图片容器的后面，a 会默认在图片容器上方 -->
+        </div>    
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script>
+        // 可以写入script标签中
+        alert('why u bit me')
+    </script> -->
+
+    <!-- 
+        也可以写在其他页面（.js页面）并通过script标签引入
+        这种方法可以使相同的代码在多个不同的页面中运行，且有利于代码的运行
+    -->
+    <!-- 当script标签从外部引入js代码时，再在内部写js代码将不会再运行而会被忽略，换言之，一个script标签只能运行一个来源的代码，要想在一个页面中同时运行来自内部和外部的js代码可以将题目分别放入不同的script标签中 -->
+    <script src="09-11-03JS代码编写位置.js">
+        alert("text code")
+    </script>
+</head>
+<body>
+    <!-- 
+        js代码除了可以写到JavaScript标签中
+        还可以写入 
+            onclick 属性中
+            a 标签中
+    
+     -->
+
+    <button onclick="alert('why u bit me')">click me</button>
+
+    <a href="javascript:alert('why u bit me?');">click me too</a>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <!-- 
+        es6 引入了class 类的概念，更加接近于传统语言的写法
+
+        - 基本上这只是一个语法糖，class 中的功能基本都能通过es5 实现，新的class 写法只是让原本的写法更加清晰
+     -->
+<body>
+<script>
+//  定义一个类(写法类似c++)
+class p{
+    // 构造方法，也与c++中类似，在创建对象时会自动调用该方法，不同之处在于js 中的所有类的构造方法都使用constructer 作为方法名
+    constructor(name,age){
+        this.name = name
+        this.age = age
+    }
+
+    // 定义类的方法
+    get(){
+        console.log(name,age);
+    }
+    // 注意类中定义方法不能使用js中的对象完整形式
+    // 即
+    // get:function(){
+
+    // }
+    // 的写法是错误的
+}
+</script>    
+</body>
+</html>

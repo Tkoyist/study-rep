@@ -1,0 +1,13 @@
+有三种方式查看和修改vurcli配置文件
+- vue ui
+    在文件中输入指令 vue ui 会打开一个Gui网页
+    这是一个脚手架自带的管理文件的界面
+    我们可以用它管理文件插件，文件依赖
+
+- node_modules -> @vue -> cli-service -> webpack.config.js
+    但是我们发现里面并没有多少东西，而是引用了当前文件夹下的lib文件夹中的service 文件
+    node_modules -> @vue -> cli-service -> lib -> service
+    lib 文件夹下的其他文件夹中也存在很多配置，存放着具体配置，所以并不是没有配置文件，而是配置文件都被隐藏到了其他地方
+
+- 在当前文件夹中创建 vue.config.js 文件
+    我们可以在其中添加配置

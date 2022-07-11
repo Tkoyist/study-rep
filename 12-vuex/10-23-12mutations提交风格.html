@@ -1,0 +1,30 @@
+<!-- 
+    - 在外部使用mutations 中的方法有一种不同的方式
+        msgchange(){
+        this.$store.commit("umsg",参数)
+        }, 
+
+    可以转换为
+        msgchange(){
+        this.$store.commit({
+            type:'  ',
+            参数：参数
+        })
+        }, 
+
+        我们可以看到出现了一个type属性，该属性指向我们在index 中定义的事件类型
+        我们在index中
+            umsg(state){
+                state.msg="vuex 的数据被mutations修改啦"
+            },
+        本质是
+            umsg:function(state){
+
+            }
+
+        是创建了一个事件类型和与之对应的时间响应函数
+        我们在上面使用 commit 的 type 提交一个事件
+        是告诉引擎该事件触发了，可以执行对应事件响应函数了
+        
+        * 注意使用这种新方式触发事件，传入的参数是一个对象，而不再是一个变量
+ -->

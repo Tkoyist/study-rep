@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        浏览器加载页面是自上而下加载代码
+        如果将js标签写在页面上边
+        在代码执行的时候还没读取到页面的布局
+        所以我们将js代码写在页面下部，可以在页面加载完毕之后再执行js代码
+
+        onload事件会在整个页面加载完成之后触发
+        使用window绑定onload事件
+
+        该事件的响应函数会在页面加载完毕之后执行
+
+
+     -->
+     <script>
+         window.onload = function () {
+             alert("hello")
+         }
+        //  写在该事件响应函数中的代码会在页面加载完成之后再运行
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

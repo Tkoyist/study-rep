@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            /* 
+            长度单位：
+                像素
+                    -同样的像素在不同的设备下显示效果是不同的
+                百分比
+                    -百分比可以将属性值设置为相对其父元素属性的百分比
+                    -百分比的好处在于，可以使子元素跟随父元素的变化而变化
+            */
+
+            width: 200px;
+            height: 200px;
+            background-color: cyan;
+        }
+        .box2{
+            width: 50%;
+            height: 50%;
+            background-color:crimson;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="box1"><div class="box2"></div></div>
+<div id="a"></div>
+<p class="b"></p>
+<!-- 
+    快捷输入：.box1 + enter     <div class="box1"></div>
+             #a + enter          <div id="a"></div>
+    -如果在 . 或者 # 前面加上特定的标签名，则可以创建特定class值或者id值的特定标签
+             
+
+ -->
+
+</body>
+</html>

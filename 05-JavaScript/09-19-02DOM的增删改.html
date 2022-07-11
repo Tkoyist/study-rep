@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        //  document.createElement()
+        //  用于创建一个元素节点对象
+        //      将要创建的元素节点的类型作为参数传入
+        //      创建好的对象将会作为返回值返回
+        //  document.createTextNode()
+        //  创建一个文本节点对象
+        //      需要将文本内容作为参数传入，新的节点将会作为返回值返回
+        //  .appendChild()
+        //  为一个节点添加一个子节点
+        //      将需要添加的子节点对象作为参数传入即可
+        // *注意，以上的所有操作在未与页面元素联系起来之前，都是在内存中进行的，只有当选中某一个页面中的元素通过以上方法将其联系起来之后才能在页面中产生效果
+
+            .inserBefore()
+            在指定子节点前方加上一个新节点
+            注意该方法是父节点调用，但是对父节点的子节点生效
+
+            .replaceChid()
+            替换子节点
+            也是使用父节点调用，将新旧节点依次传入
+
+            .removeChild()
+            删除子节点
+            父节点调用，将指定子节点删除，将子节点作为参数传入
+
+            .innerHTML
+            读取元素内部的HTML代码，并可以使用该方法修改HTML代码
+            对于网页来说，我们之前添加的内容其实也是HTML代码，所以我们其实可以直接使用innerHTML向网页中添加元素
+                document.getElementById("city").innerHTML += "<div>重庆</div>"
+                这样便轻松的向网页中添加了一个带内部文本的新元素标签，而省去了那些麻烦的步骤
+                *但是这个方法会将所有参与的元素均替换，如果存在绑定事件的元素，则绑定事件会失效，应当和之前的方法结合使用，各有使用场合
+     -->
+     <script>
+         window.onload = function() {
+         
+        
+
+
+
+        // 例：在city中添加一个div元素，并在div元素内部添加文本
+        
+        var newLi = document.createElement("li")
+        //      创建一个新li节点
+        var newText = document.createTextNode("重庆")
+        //      创建一个新文本节点
+        newLi.appendChild(newText)
+        //      将创建的文本节点放到创建的li节点内部
+        var city = document.getElementById("city")
+        city.appendChild(newLi)
+        //      将在内存中创建完成的li节点添加到网页内部
+        
+            var index = document.getElementById("index")
+        //      获取我们要添加元素的位置的节点
+            // document.getElementById("city").insertBefore(newLi,index)
+
+        //       将index子节点更换为newLi 
+            // document.getElementById("city").replaceChild(newLi,index)
+        //      将index子节点删除
+            // document.getElementById("city").removeChild(index)
+            // index.parentNode.removeChild(index)  直接使用节点自己的方法找到父节点再用父节点删除节点，更加方便省时，常用
+
+        
+         }
+     </script>
+</head>
+<body>
+    <div id="city">
+        <div id="index">city</div>
+    </div>
+</body>
+</html>

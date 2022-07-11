@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--  -->
+
+    <div id='box'>
+        <h2>{{msg}}</h2>
+        <!-- v-once指令表示该元素只会渲染一次，后续的数据变动不会引起改变 -->
+        <h2 v-once>{{msg}}</h2>
+        <!-- v-html 指令，该指令表示将传入的字符串作为HTML代码解析，而不是单纯的字符串 -->
+        <h2 v-html>{{url}}</h2>
+        <!-- v-text 指令，表示在指令所在的标签中添加文本，但会覆盖原有文本 -->
+        <h2 v-text="msg">不是msg</h2>
+        <!-- v-pre 表示当前元素的内容无序解析，类似转义字符 -->
+        <h2 v-pre>{{msg}}</h2>
+        <!-- v-cloak 指令，存在于元素中，是一个属性，但当vue生成之后，会将元素的该属性删除，所以我们可以在style中设置它，使得在vue未加载出来之前，元素显示出我们想要的样式 -->
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    url: '<h2>{{msg}} by v-html</h2>'
+    
+    }
+    })
+    </script>
+</body>
+</html>

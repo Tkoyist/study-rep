@@ -1,0 +1,10 @@
+ * 在redux 当中使用 immutableJs
+ * 
+ * - 安装包 yarn add immutable
+ * - 导入需要的接口
+ * - 使用接口处理初始数据
+ * - 更改获取数据接口和修改数据接口，修改为immutable 提供的接口
+    修改数据的接口，即reducer 中数据修改，而获取数据的接口，即useSelector 当中的数据获取接口  
+
+ 
+ * 首先，初始数据当然就是 defaultState 我们当然需要使用 immutableJs 对 defaultState 进行处理，将其转化为 immutableJs 的数据结构，然后对数据的获取和修改都使用 immutableJs 的API 进行

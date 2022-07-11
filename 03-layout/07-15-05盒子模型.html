@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            /* 
+            width height 设置的是内容区的大小
+             */
+            background-color:cyan;
+            width: 100px;
+            height: 100px;
+
+            /* 
+            边框的设置必须要设置三个元素
+                        ·边框的宽度 border-width
+                        ·边框的颜色 border-color
+                        ·边框的样式 border-style
+             */
+            border-width: 100px;
+            border-color: darkred;
+            border-style:solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        盒模型（框模型）（box model）
+            -css将页面中的所有元素都设置为了矩形的盒子
+            -将元素设置为矩形盒子之后，对页面的布局就变成了将不同的盒子摆放到不同的位置即可
+            -每个盒子都由以下几个部分组成：
+                ·内容区（content）
+                    元素中所有的子元素和文本内容都在内容区中排列，内容区大小由width和height决定
+                ·内边距（padding）
+
+                ·边框（border）
+                    ·边框的大小会影响整个盒子的大小
+                    ·属于盒子边缘，边框里属于盒子内部，边框外属于盒子外部
+                     设置边框需要至少设置三个样式：
+                        ·边框的宽度 border-width
+                        ·边框的颜色 border-color
+                        ·边框的样式 border-style
+
+                ·外边距（margin）
+
+     -->
+     <div class="box1"></div>
+</body>
+</html>

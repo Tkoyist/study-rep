@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='box'>
+        <!-- 
+            label标签的好处：
+                我们将label标签的 for 属性绑定一个表单元素的时候，我们可以通过点击label元素内部如何位置，使被绑定的元素被选中，而不用必须点击表单元素焦点
+         -->
+         <!-- checkbox 单选框使用，是否同意协议 -->
+        <label for="sure">
+            <input type="checkbox" name="sure" id="" v-model="isSure">我同意
+            {{isSure}}
+            <!-- 为了表示属性可变需加上v-on  : -->
+            <button :disabled="!isSure">next</button>
+        </label>
+        <!-- 
+            v-model与多选框一起使用，将多选框绑定到同一个数据（数组）
+            vue内部会给v-model一种新的解决方案：
+                当一个多选框被选中的时候，会将它的value值放入数组中，而当它不在被选中时，会将其从数组中取出
+         -->
+         <input type="checkbox" name="" id="" value="1" v-model="hobbies">1
+         <input type="checkbox" name="" id="" value="2" v-model="hobbies">2
+         <input type="checkbox" name="" id="" value="3" v-model="hobbies">3
+         <input type="checkbox" name="" id="" value="4" v-model="hobbies">4
+         {{hobbies}}
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    isSure:false,
+    hobbies:[]
+    }
+    })
+    </script>
+</body>
+</html>

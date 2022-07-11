@@ -1,0 +1,10 @@
+<!-- 
+  在node当中，每一个js文件都是一个cmj规范下的模块，而node为为一个模块都准备了一个全局对象（或者叫伪全局对象）module
+  moudule 可以理解为将模块需要的一些变量与函数进行封装后产生的一个模块工具类，其中包含了一个函数exports
+  也就是我们所说的moudule.exports，在本质上，它与exports没有区别，因为在底层就是使得moudule.exports = exports
+  这样进行的模块导出，这也就意味着module.exports 与exports 指向了同一个堆内存当中的对象
+
+  module 对象当中保存了很多与模块化相关的数据
+  例如 loaded ： 当前模块是否被加载
+       chilren ： 当前模块中存在哪些子模块
+ -->

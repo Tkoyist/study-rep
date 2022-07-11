@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    await 关键字要放在
+    async 函数内部
+    await 关键字放在promise 实例之前，当promise 内部异步任务执行完成之后，如果状态为resolve ，那么await 关键字就会返回value ，如果promise 的状态为reject ，那么await 关键字就会抛出错误
+    所以推荐与try catch 语句一起使用
+ -->
+<body>
+    <script>
+        async function fun(){
+            try{
+                let res = await new Promise((resolve,reject)=>{
+                    // resolve('1231313232')
+                    reject('222222222')
+                })
+                console.log(res)
+            }catch(e){
+                console.log(e);
+            }
+        }
+        async function fun1(){
+            await new Promise((resolve,reject)=>{
+                    reject('222222222')
+                })
+            // 如果不使用catch 语句捕获错误，await 语句就会直接抛出错误
+        }
+        fun()
+        fun1()
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 创建挂载点 -->
+    <div id="box"></div>
+
+    <!-- 导入react依赖 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- 编写react代码，注意更改sc标签的type  -->
+    <script type='text/babel'>
+    // 创建react模板
+    class App extends React.Component{
+        // 构造函数初始化数据
+        constructor(){
+            // 调用父类构造函数
+            super()
+            // 创建响应式数据，响应式数据要放到state属性中，该属性指向一个对象，对象中存放数据
+            this.state = {
+                movies:['大话西游','了不起的盖茨比','图解http']
+            }
+        }
+        // 创建模板
+        // render(){
+        //     // 模板必须作为render 方法的返回值
+        //     return(
+        //         <div>
+        //             {/*所有模板必须写在一个元素下*/}
+
+        //             {/*注意react中dom的数据访问和vue的胡子语法是不同的，后者只需要指定数据名，框架会自行寻找数据，但前者必须指明数据位置*/}
+        //             <ul>
+        //                 <h2>电影列表</h2>
+        //                 <li>{this.state.movies[0]}</li>
+        //                 <li>{this.state.movies[1]}</li>
+        //                 <li>{this.state.movies[2]}</li>
+        //             </ul>
+        //         </div>
+        //     )
+        // }
+
+        // 创建模板优化版本
+        render(){
+            // 在vue中是存在v-for来遍历创建元素的，react当然也是可以进行相同操作的，但是方法有所不同
+            // 首先，我们现在的模板编写是在sc标签中进行的，所有代码都是js代码（jsx本质也是js），那么我们可以将jsx作为一个数据直接进行一些操作（例如遍历）
+            // 在之后这些jsx代码也是会被编译为js代码的，我们可以在这里将其当做普通数据随意进行操作
+
+            // 创建一个数组用于存储jsx 代码
+            let moiveArr = []
+            // 根据movies 数据中的值遍历创建对应的jsx代码
+            for(let movie of this.state.movies){
+                moiveArr.push(<li>{movie}</li>)
+            }
+
+            // 最后字需要将jsx代码返回即可
+            // 前面的操作也说明了render的妙用，可以直接在渲染dom前进行数据处理
+            return (
+            <div>
+                <ul>
+                电影列表
+                {moiveArr}
+                </ul>
+                {/*还有一种方式可以更简单的进行这种操作，但是其底层原理和上面相同*/}
+                <ul>
+                <h2>电影列表</h2>
+                    {this.state.movies.map(value => <li>{value}</li>)}
+                </ul>
+            </div>
+            )
+            
+        }
+    }
+
+    // 在react中，jsx 就像是一个数据类型，可以进行数据操作，可以赋值，可以修改，但是只有在ReactDOM.render中进行渲染之后才会将其转义为html 代码
+    // 在解析转义的过程中会将 {} 中的数据解析，否则会将标签内部数据作为字符串处理
+    // jsx 可以直接作为js 数据进行操作也大大加强了react 的灵活性+
+    
+
+    // 使用ReactDOM中的render方法渲染dom,第一个参数是react模板，第二个参数是被挂载的dom元素
+    ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>

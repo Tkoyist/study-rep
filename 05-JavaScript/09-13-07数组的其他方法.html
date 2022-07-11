@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+
+     -->
+     <script>
+         var arr = [1,2,3,4,5]
+         var arr2=[6,7,8,9]
+
+         alert(arr.concat(arr2));
+        //  concat() 方法，会将调用它的数组以及参数中的数组连接起来，并合成新的数组作为返回值返回，
+        // 不会对原数组产生任何影响
+
+        var str = arr.join(" and ");
+        alert(str)
+        // join() 方法将调用它的数组转化为一个字符串并将该字符串作为返回值返回
+        // 可以传入一个字符串作为参数，该字符串会作为数组中元素与元素之间的连接符,不传入参数会默认使用 , 
+        alert(arr.join(""))
+        // 可以传入一个空串使数组中各元素无缝连接
+
+
+        // reverse() 方法将数组的数据顺序颠倒，会直接修改原数组
+        arr.reverse();
+        alert(arr);
+
+        // sort() 排序方法，对数组中元素排序，会影响原数组，直接修改原数组
+        arr.sort();
+        alert(arr);
+        // 排序是根据元素的Unicode码进行的
+        // sort() 方法可以使用一个回调函数作为参数
+        // 在回调函数中，传入两个实参，其中第一个实参对应两个数据在数组中位置靠前的那个，第二个实参对应靠后的那个
+        // 回调函数执行后，如果返回值大于0，则两个实参在数组中的位置会交换，小于0不会交换，等于0则会认为两个数据优先级相同
+        // 可以理解为，返回值为true就确认要交换，为false就说明是无需交换
+        arr.sort(
+            function (a,b) {
+                // if(a>b){
+                //     return -1;
+                // }
+                // else{
+                //     return 1;
+                // }
+
+                // 简写
+                return b-a;
+
+            }
+        )
+
+        alert(arr);
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

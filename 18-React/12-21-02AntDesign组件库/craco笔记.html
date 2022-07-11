@@ -1,0 +1,49 @@
+<!-- 
+  我们使用antd 时，如果想要修改主题颜色，是需要修改 cra 的配置的，也就是要修改webpack 的配置
+  但是官方并不推荐我们手动修改配置
+  所以craco 出现了，帮助我们修改配置
+
+  - 安装craco
+   yarn add @craco/craco
+
+  - 安装完成之后
+    我们知道原本我们使用yarn start 运行项目时，本质上是运行了package.json 中的脚本
+    安装craco 之后yarn start 运行的脚本就更改为基于craco 脚本的代码，会在执行原本脚本的前提下，读取根目录下的一个配置文件 craco.config.js
+    我们再使用yarn start 运行项目时，会先运行该配置文件中的配置
+
+  - 安装完成之后，将package.json 文件中的script 代码都改成以craco 开头的代码
+    这样我们在使用一些脚本代码的时候就会先执行craco 配置文件中的配置再执行原本的代码
+
+  - 我们还要将pack.json 中的脚本代码都改成craco 开头的代码
+    
+  - 创建craco.config.js 在文件中进行配置
+
+  - 还要修改对css 文件的导入
+
+  * 如果我们希望修改组件的主题颜色，需要通过 less-loader 进行配置，但是这种配置需要涉及到webpack 的设置，不推荐
+  推荐使用 craco-less 插件实现配置
+
+  - 安装 craco-less 插件
+    yarn add craco-less
+  
+  - 在craco 配置文件中导入craco-less 插件
+    const CracoLessPlugin = require('craco-less');
+  
+  - 配置文件
+    可以在antd 官网copy
+    module.exports = {
+    plugins: [
+      {
+        plugin: CracoLessPlugin,
+        options: {
+          lessLoaderOptions: {
+            lessOptions: {
+              modifyVars: { '@primary-color': '#1DA57A' },
+              javascriptEnabled: true,
+            },
+          },
+        },
+      },
+    ],
+  };
+ -->

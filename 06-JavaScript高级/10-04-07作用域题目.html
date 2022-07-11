@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+
+     -->
+     <script>
+         var x = 10;
+         function fn(){
+             alert(" ")
+         }
+         function fn1(){
+             var x = 20
+             fn()
+         }
+         fn()// 10
+        //  前面说过，作用域是静态的，是不会发生变化的，也就是说它不会因为函数间的调用产生任何变化，我们在一个函数中调用另外一个函数不会影响他们的作用域，只会影响他们的执行上下文
+        //  函数作用域的嵌套（作用域链）也只存在于函数在函数中定义的情况
+        //  我们在一个函数中调用另外一个函数的时候，被调用函数在自己的函数作用域中找不到需要的变量，它会转到自己的定义，查看自己的定义处的上一个作用域是否存在该变量，再找不到再依次向上寻找
+
+
+        
+         var obj = {
+             fn01 : function(){
+                 alert(fn01)
+             }
+         }
+         obj.fn01()//会报错
+        //  我们说，在js ES6之前是不存在块级作用域的，只存在函数作用域和全局作用域
+        //  所以在fn01 运行的时候，需要输出 fn01 ,js引擎会在当前作用域（fn01函数作用域）中寻找，当然是找不到的，然后会在上一级作用域中寻找，而上一级作用域并非是obj的定义处，因为obj对象的定义不是一个函数，所以上一级作用域应当是全局作用域，而在全局作用域中，是不存在fn01这个变量的声明的，所以是找不到的，会报错
+
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

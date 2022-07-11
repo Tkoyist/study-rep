@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        js中数组的本质也是一个对象
+        但是它的储存性能好于一般的对象
+
+     -->
+     <script>
+         var arr = new Array();
+        //  创建一个数组对象
+        
+        arr[0]=0;
+        arr[1]=1;
+        arr[20]=20;
+        // 通过 数组名[索引值] 来选中数组中的元素，以进行读取修改等操作
+
+        alert(arr.length);
+        // 获取数组的长度 数组名.length ,即读取数组的length属性，注意是属性而非方法
+        // 注意这里获取的数组的长度，即最后一个元素的的索引值加一，而非数组的个数
+        // 当我们创建不连续的数组时，那些没有赋值的元素会被默认赋空值
+        
+        // 我们也可以通过数组的length属性修改数组的长度，修改长度后
+        //      修改的长度大于原长度，则会为新增的元素赋值为空
+        //      修改的长度小于原长度，则会删除多余的元素
+
+        // 我们也可以通过length属性，确定数组的末尾，方便随时进行操作
+        // 例如: 在数组末尾添加元素
+        arr[length] = "添加的新元素";
+
+        // 也可以通过length属性加上循环语句实现对数组的遍历
+        
+
+
+     </script>
+
+</head>
+<body>
+    
+</body>
+</html>

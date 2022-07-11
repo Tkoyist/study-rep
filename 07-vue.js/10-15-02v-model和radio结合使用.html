@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        radio:单选框
+            将多个单选框的 name 属性设置为一样则可设置为互斥
+
+        - v-model 总是直接双向绑定元素的value值
+
+        - 在radio中存在特殊情况，当v-model绑定的属性值与某个单选框的value值相等的时候，该单选框会被选定
+     -->
+     <div id='box'>
+         <label for="male">
+             <input type="radio" id="male" value="male1" v-model="sex">male
+         </label>
+         <label for="female">
+             <input type="radio" id="female" value="female1" v-model="sex">female
+         </label>
+         {{sex}}
+         <!-- 测试单选框的绑定是v-model的机制还是radio的机制 -->
+         <label for="male">
+            <input type="radio" id="male" :value="sex" >male
+            <!-- 经过证实，没有v-model不存在该机制 -->
+        </label>
+        <label for="female">
+            <input type="radio" id="female" value="female1" v-model="sex">female
+        </label>
+        {{sex}}
+     </div>
+     
+     <script src='vue.js'></script>
+     <script>
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     sex:'male'
+     
+     }
+     })
+     </script>
+</body>
+</html>

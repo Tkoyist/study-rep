@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        BOM 
+            - 浏览器对象模型
+            - BOM库使我们通过js操作浏览器
+            - BOM提供了一组对象，来完成对浏览器的操作
+            - BOM对象
+                Window
+                    * 代表整个浏览器的窗口，同时window也是网页中的全局对象
+                Navigator
+                    * （航海家）代表当前浏览器信息，可以用于识别当前的浏览器
+                    * 由于历史原因（网景公司倒闭），其中大部分属性已经不能帮助我们识别浏览器
+                    * 一般我们只会使用到 userAgent （用户代理）（本质就是浏览器）来判断浏览器信息
+                        是一个字符串，包含描述浏览器的内容
+                        不同浏览器userAgent不同
+                Location
+                    * 浏览器地址栏信息，可以获取地址栏信息，也可以操作浏览器地址栏，跳转页面
+                History
+                    * 代表浏览器的历史记录，可以通过该对象操作浏览器历史记录
+                      由于隐私问题，该对象不能获取具体历史记录，但可以操作浏览器向前向后
+                      而且该操作只在当次访问时有效
+                Screen
+                    * 用户屏幕信息，可以获取到用户显示器相关信息
+
+                    这些信息在网页中是储存在 window 当中的，作为 window 的属性储存，所以我们可以使用 window. 来访问
+                    又因为window是全局对象，所以直接使用也是可以的
+
+     -->
+     <script>
+         window.onload = function(){
+             alert(window.navigator.appName)
+         }
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

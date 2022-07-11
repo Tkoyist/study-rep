@@ -1,0 +1,10 @@
+{
+  "name": "use-redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
+}

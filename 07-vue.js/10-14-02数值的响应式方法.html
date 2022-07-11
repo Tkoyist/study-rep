@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        响应式：数据是响应式的，则数据发生改变的时候，vue会重新渲染一个虚拟DOM，再根据虚拟DOM修改真实DOM，即页面会重新渲染
+        那些方式修改数组的方法是响应式
+        - push() 末尾添加数据,可以同时添加多个
+        - pop() 删除最后一个元素
+        - shift() 删除第一个元素
+        - unshift() 在数组前方添加多个数据
+        - splice() 切片，三个参数，可以删除和插入和替换元素，
+            三个参数 start number data
+            第二个参数是指对几个元素进行操作，1则是对start之后第一个元素进行操作，即start本身
+            原本是替换数据，但当我们不传入需要替换的数据，即替换数据为空，就会将被替换的数据替换为空，即删除了该位置的数据
+            用于替换的数据也可以是多个数据(...item)
+            想要确定的选中某一个元素进行修改需要(index,1,修改的数据)
+        - reverse( ) 翻转函数，将数组中的数据翻转
+
+        * 通过索引直接修改数据是非响应式的
+
+        * 当我们定义一个函数，但还不确定它需要多少参数的时候，可以使用（...参数名），表示不确定参数，解析器会将传进来的参数全部放入一个数组并将该数组命名为参数名
+
+     -->
+    <div id='box'>
+        <ul>
+            <li v-for="item in letters" :key="item">{{item}}</li>
+        </ul>
+        <button @click="fun">btn</button>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    letters:['a','b','c','d','e']
+
+    },
+    methods:{
+        fun(){
+            // this.letters.push('aaa') 响应式
+            // this.letters.pop() 响应式
+            // this.letters.shift() 响应式
+            // this.letters.unshift('aaaa','bbb') 响应式
+            // this.letters.reverse() 响应式
+
+            // this.letters[0]='aaaaa' 通过数组索引修改数组数据非响应式
+        }
+    }
+    })
+    </script>
+</body>
+</html>

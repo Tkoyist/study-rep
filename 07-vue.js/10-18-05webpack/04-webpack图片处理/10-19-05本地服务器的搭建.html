@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        需求产生
+            当我们开发中对文件进行修改的时候，每次修改，都要重新打包上传服务器再运行，效率太低，我们需要一个本地的服务器能够在
+            不上传数据的前提下直接运行代码，供我们纠错
+
+        - 这个服务器是基于nodejs 搭建的
+        - 我们指定该服务器指定一个文件夹，它会实时监听该文件的数据改变，但不会将其上传，也不会将其放入硬盘，也不会上村，而是将其返入缓存(cache) 读取速度很快
+
+        - 安装
+            npm install --save-dev webpack-dev-server@2.9.1
+        - 配置
+            在config 文件中进行配置，添加
+                devServer:{
+                contentBase:'./dist',
+                inline:true,
+                }
+        - 使用
+            不再通过 npm run build 运行
+            而是webpack-dev-server
+            但是我们的安装是在局部的，直接这样调用是调用全局命令，无法运行
+            我们可以直接指定 node_modules 中的该指令具体执行
+            但是过于麻烦，我们可以想之前一样，在package.json中定义一个快捷命令用于快速执行
+
+            ***而前面讲过，通过这种方式寻找文件，会优先寻找本地文件
+
+            我们在定义的时候在命令后面加上 --open,它就会自动打开网页
+            即     "dev":"webpack-dev-server --open"
+
+
+             cmd 中会返回一个网页连接，打开该连接，即可跳转到自动刷新的页面了
+
+            - 此时文件是伪打包的，只是在本地内存中运行，我们在测试修改完毕之后，直接在 ctrl+c 退出服务，再打包即可
+            - 我们在开发的时候才需要，开发完成之后可以消除雕
+     -->
+</body>
+</html>

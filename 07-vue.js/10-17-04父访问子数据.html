@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        父子间获取子组件数据的简单方法
+            -refs
+                子组件本质是一个对象，获取数据，本质就是获取一个对象的属性
+                - 我们给需要被访问的组件定义一个属性 ref ，给该属性一个string类型的值
+                - 访问该子组件的数据，只需要 $refs.子组件name值. 就可以直接获取子组件的数据或方法
+     -->
+    <div id='box'>
+    <cpn ref="abc"></cpn>
+    <cpn ref="bbb"></cpn>
+    <button @click="test">12313</button>
+    </div>
+
+    <template id = 'cpn'>
+    <div>
+    写点东西
+    </div>
+    </template>
+    
+
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    components:{
+        cpn:{
+            template:"#cpn",
+            data(){
+                return{
+                    cmsg:1
+                }
+            }
+        }
+    },
+    methods:{
+        test(){
+         alert(this.$refs.abc.cmsg);
+        }
+    }
+    })
+    </script>
+</body>
+</html>

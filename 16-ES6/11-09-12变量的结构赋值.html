@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        es6 允许按照一定模式从数组和对象中快速提取值，对变量进行赋值
+        被称之为解构赋值
+     -->
+     <script>
+        //  数组结构的使用
+        //  定义数组
+        const f4 = [1,2,3,4]
+        //  数组结构快速获取值
+        let [a,b,c,d] = f4
+
+        // 这样就定义了四个let 变量，分别指向数组中的四个值
+
+        // 对象的结构
+        const lzl = {
+            name:'tkoyist',
+            age:21,
+            fun:function(){
+                console.log('wow');
+            }
+        }
+        // 对象结构快速赋值
+
+        // 注意对象的结构赋值是不能自定义变量名的，变量名需要与原本的属性名相同，才能获取到
+        // 因为是变量名与属性名相同，所以我们可以打乱顺序进行访问，也可以只访问对象的某个数据
+        // 对象的结构需要使用大括号将被赋值的变量名括起来，而不能使用[]
+        let {name,age} = lzl
+        console.log(name,age);
+        // 主要用于直接获取对象中的方法赋值直接使用（注意不要重复定义)
+        let {fun} = lzl
+        // 直接获取对象中的方法直接使用
+        fun()
+        
+     </script>
+</body>
+</html>

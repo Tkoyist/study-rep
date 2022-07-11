@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+         闭包的作用：
+            - 使得可以在函数作用域外部访问到函数内部定义的隐藏数据
+            - 使得外部函数执行完毕之后，指定的变量可以继续存在于内存之中
+     -->
+     <script>
+         function outter(){
+             var a = 0 
+             function inner(){
+                 a++
+                 alert(a)
+             }
+             return inner;
+         }
+         var fun = outter()
+
+        //  当外部函数执行完毕之后，内存释放，原本，inner  指向的函数对象在外部函数执行完毕之后会自行消失（因为栈中的 inner 变量被释放，该函数对象无引用会变成垃圾对象在某时刻释放），但是由于在函数执行完毕后将它赋值给了 f 函数，即为它找到了一个新的引用 f 所以它不再是垃圾对象，而是继续存在
+        //  所以当函数执行完毕之后，局部变量可能 inner 已经消失（取决于是否对该函数赋值）
+        
+        // 外部无法直接访问到函数内部数据，但是可以通过闭包间接访问
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var search = function(nums, target) {
+    let min = 0,max=nums.length-1,half=min+((max-min)>>1)
+    // 使用上 min+((max-min)>>2)(>> 是针对机器二进制码的位运算，效率极高) 或者说 Math.floor(min+(max-min)/2) 与 Math. floor(((max+min)/2) 是一样的，但是后者相加会产生一个极大数，可能会出现整数溢出范围的情况，为了防止这一情况所以使用前面一种方法
+
+    if(target>nums[max] || target<nums[min])
+        return -1
+    while(1){
+        
+        if(max<min)return -1
+        if(nums[half] == target){
+            return half
+        }else if(nums[half] > target){
+            max = half-1
+        }else{
+            min = half+1
+        }
+        half = min+((max-min)>>1)
+        // 注意 >> 优先级很低，比加减还低
+    }
+
+    };
+    nums = [-1,0,3,5,9,12]
+    console.log(search(nums,9));
+    </script>
+</body>
+</html>

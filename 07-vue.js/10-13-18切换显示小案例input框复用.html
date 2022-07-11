@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        
+     -->
+</head>
+<body>
+    <div id='box'>
+            <label v-if="isnum">用户账号：</label>
+            <label v-if='isemail'>用户邮箱：</label>
+
+            <input type="text" :placeholder=placeholder>
+
+        <button @click='change'>change</button>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    isnum:true,
+    isemail:false
+    },
+    methods:{
+        change(){
+            this.isnum=!this.isnum
+            this.isemail=!this.isemail
+        }
+    },
+    computed:{
+        placeholder(){
+            return this.isnum==true?"用户账号":"用户邮箱"
+        }
+    }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*  
+        为某元素的子元素设置样式
+        
+        例子：为div的子元素设置字体颜色
+
+            子元素选择器：
+                ·选中指定父元素的指定子元素
+                ·父元素 > 子元素（ > 子元素的子元素 > ~~~~）
+        */
+        div>span{
+            color: crimson;
+        }
+
+
+        /* 
+        后代元素选择器：
+            ·选中指定元素的指定后代元素
+            ·祖先元素 后代元素
+        */
+        div span{
+            color: cyan;
+        }
+
+
+        /* 
+        兄弟元素选择器：
+            · 选择元素的下一个兄弟元素，找不到则无反应
+            ·本元素 + 下一个元素类型
+
+            ·本元素 ~ 下一个元素类型：选择本元素之后所有下一个元素类型的元素（本元素之前的元素不会选中）
+        */
+        p+span{
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        父元素
+            -直接包含子元素的元素
+        子元素
+            -直接被父元素包含的元素
+        祖先元素
+            -直接或间接包含后代元素的元素
+            -一个元素的父元素也是其祖先元素
+        后代元素
+            -直接或间接被祖先元素包含的元素
+            -一个元素的子元素也是后代元素
+        兄弟元素
+            -拥有同一个父元素的元素互为兄弟元素
+     -->
+
+<div>
+    我是一个div
+
+    <p>
+        我是div中的p元素
+    <span>我是p中的span元素</span>
+    </p>
+    <span>我是div中的span元素</span>
+</div>
+
+<div>
+
+    <span>
+        这是另外一个div中的span
+    </span>
+</div>
+</body>
+</html>

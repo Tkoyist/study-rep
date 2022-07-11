@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            font-size: 20px;
+        }
+        /* 
+        伪元素 表示页面中一些特殊的不真实存在的元素（特殊的位置）
+            伪元素使用  ::开头
+
+                -::first-letter 表示第一个元素
+                -::first-line   表示第一行
+                -::selection    表示选中的内容，被鼠标或键盘选中的内容会被设置为单独的样式
+                -::before       表示元素的起始位置
+                -::after        表示元素的结尾位置
+                    -before 与 after 必须结合content使用
+                        可以在原有内容的开头与结尾加上内容，加入的内容是无法选中的，且无法在网页直接检查到
+                        可以用于书名号，引号等的添加等
+         */
+         p::first-letter{
+             font-size: 44px;
+         }
+         p::first-line{
+             color:thistle;
+             background-color:tomato;
+         }
+         p::selection{
+             color: violet;
+             background-color:turquoise;
+         }
+         div::before{
+             content: "abccc《";
+             color: violet;
+         }
+         div::after{
+             content:"》def";
+             color: yellow;
+         }
+    </style>
+</head>
+<body>
+    <div>
+        shit
+    </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, est magni corrupti nam obcaecati possimus harum? Ex sapiente, repudiandae minus impedit in dignissimos provident fugit, dolores, cupiditate minima dolorem quaerat.</p>
+</body>
+</html>

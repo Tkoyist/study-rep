@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        slice()方法即为js中的切片方法
+            - 参数 start end 
+                截取开始的位置
+                截取结束的位置（省略不写则表示从start元素到末尾的所有元素）
+                * 如果是负数则表示倒数的位置，例如-1表示最后一个元素
+
+            - 返回值 
+                将截取出来的元素封装成为一个数组并返回
+
+        splice()方法为js中的选中删除方法
+            - 参数 
+                start 删除开始的位置
+                number 需要删除的元素的个数
+                nValue1,nValue2..... 添加的新元素，这里的数据会依次添加到start及start之后的位置
+            - 返回值
+                被删除的元素组成的数组
+            * start那个位置的元素也会被选中
+            * 注意这里说，第三个参数以及之后的参数会添加到被第一个参数（start）的位置，依次向后叠加，是先进行删除操作之后再进行添加操作
+    -->
+
+     <script>
+         var arr = [1,2,3,4,5,6,7,8,9,10]
+
+        //  var arr1 = arr.slice(1,-1);
+
+        //  alert(arr1);
+        //  alert(arr);
+        //   slice方法不会对原数组产生任何影响
+
+
+        // 使用splice方法删除多个元素而不添加新元素
+        // alert(arr.splice(1,3))
+
+        // 使用splice方法删除元素并添加同样多的元素(此时splice变成了替换元素的方法)
+        // arr.splice(1,3,-2,-3,-4)
+
+        // 使用splice方法删除少量元素并添加大量元素
+        // arr.splice(1,1,1.1,1.2,1.3)
+
+        // 使用splice方法选中一个元素但不删除，并添加元素
+        // arr.splice(1,0,1.1,1.2,1.3,1.4)
+        // 会在选中元素的后面依次加上输入的数据，此时成为了向数组任意位置添加元素的方法
+
+
+        alert(arr)
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

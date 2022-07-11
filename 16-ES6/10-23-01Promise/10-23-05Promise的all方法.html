@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    需求：
+        同时需要两个请求才能继续进行代码运行
+
+    实现:
+        Promise 的all方法
+        使用Promise.all() 
+        该方法传入一个可迭代对象（例如数组）
+        对象中包含多个请求，只有当这些请求全都实现的情况下，才会调用all().then()
+        我们可以在then中通过数组的方式访问请求中传输的数据
+ -->
+<body>
+    <script>
+        Promise.all([
+            new Promise(
+                (resolve,rejected)=>{
+                    resolve("第一个请求")
+                }
+            ),
+            new Promise(
+                (resolve,rejected)=>{
+                    resolve("第二个请求")
+                }
+            )
+        ]).then((result)=>{
+            console.log(result[0]);
+            console.log(result[1]);
+            // 通过数组的访问方式访问在不同Promise 中传入的数据
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        float 设置元素是否浮动
+        -left 向左浮动
+        -right 向右浮动
+
+        浮动的特点
+            -设置元素浮动之后，水平方向的布局等式便会失效
+            -设置元素浮动之后，元素便会脱离文档流，不再占用文档流的位置
+            -设置元素向左或向右浮动时，元素会移动到父元素内容区的左侧或右侧
+            -浮动元素会与非浮动元素出现重合，但是浮动元素之间不会重合
+            -浮动元素默认不会从父元素中脱离
+            -浮动元素上方存在块元素的情况下，浮动元素不会进入块元素的那一行，因为浮动元素是水平布局元素，不会进入上一行很正常
+            -浮动元素不会出现在其前一个浮动元素位置的上方，最多与前一个浮动元素高度持平
+            
+
+        -浮动元素用于页面的水平布局
+         */
+        .box1{
+            height: 200px;
+            width: 200px;
+            background-color: skyblue;
+            /* float: left; */
+            
+        }
+        .box2{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            float: left;
+            
+        }
+        .box3{
+            height: 200px;
+            width: 200px;
+            background-color: yellow;
+            float: left;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

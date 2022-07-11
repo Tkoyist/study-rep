@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-model 
+            用于实现表单和数据的双向绑定
+            使用：
+                在元素中添加一个属性v-model并为其绑定一个data中的变量值，便完成了数据和元素的双向绑定
+                双向绑定，在数据中修改和在元素中修改都会导致另外一方的数据改变
+
+            浅显本质:
+                使用v-on和v-bind实现
+                将value值设置为v-bind，msg发生改变的时候value也发生改变
+                使用v-on绑定input属性，当input事件发生（value值改变）的时候，修改msg值（使用事件对象中的 target.value 可以获取到input当前的value值）
+     -->
+    <div id='box'>
+        <input type="text" v-model="msg">
+        <!-- 此处使用v-model将表单value与msg数据双向绑定之后，修改元素value会引起data中的msg的改变 -->
+        <input type="text" :value="msg" @input="msg = $event.target.value">
+        {{msg}}
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    }
+    })
+    </script>
+</body>
+</html>

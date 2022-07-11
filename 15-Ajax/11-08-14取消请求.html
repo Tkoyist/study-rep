@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightskyblue;
+        }
+    </style>
+</head>
+<!-- 
+    IE 缓存问题
+    IE 浏览器在接受到服务器返回信息之后会将返回信息保存起来，如果我们再次请求数据，IE 浏览器会
+ -->
+<body>
+    <button>点击发送请求</button>
+    <button>点击取消请求</button>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById('box')
+        const btn0 = document.getElementsByTagName('button')[0]
+        const btn1 = document.getElementsByTagName('button')[1]
+
+        let xhr = null
+
+        btn1.onclick = function(){
+            xhr.abort()
+            // 调用xhr 的abort 方法可以取消request请求
+        }
+
+        btn0.addEventListener('click',function(){
+            xhr = new XMLHttpRequest()
+            
+            // 增加超时设置,设置xhr 的timeout 属性，为其赋值（多少秒后无返回则取消请求）
+            xhr.timeout = 4000
+            // 添加超时回调，决定超时时进行什么操作
+            xhr.ontimeout = function(){
+                console.log("网络请求超时！");
+            }
+            // 添加网络出错回调，当网络不通，网络出错时调用
+            xhr.onerror = function(){
+                alert('网络出错啦！')
+            }
+
+            xhr.open('GET','http://127.0.0.1:8000/timeout')
+        
+            xhr.send()
+
+            // xhr.onreadystatechange = function(){
+            //     if(xhr.readyState === 4){
+            //         if(xhr.status === 200){
+            //             box.innerHTML = xhr.response
+            //         }
+            //     }
+            // }
+        })
+
+       
+    </script>
+</body>
+</html>

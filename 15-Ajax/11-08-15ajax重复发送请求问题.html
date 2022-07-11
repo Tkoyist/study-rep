@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复请求问题</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightskyblue;
+        }
+    </style>
+</head>
+<!-- 
+    重复发送请求问题，当我们连续多次向服务器发送同一个请求时，会对服务器造成压力，所以推荐在发送新请求之前，将前一个相同请求清除，降低服务器压力
+ -->
+<body>
+    <button>点击发送请求</button>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById('box')
+        const btn0 = document.getElementsByTagName('button')[0]
+
+        let xhr = null
+
+        // 自定义一个标识，用于记录当前请求状态
+        let isSending = false
+
+        btn0.addEventListener('click',function(){
+            // xhr = new XMLHttpRequest()
+            // 注意，我们是要将上一次的请求停止，所以停止请求的操作肯定要在创建新请求操作之前
+            // 否则每次新请求刚创建就会被停止
+            
+            if(isSending) 
+            {
+                console.log('test');
+                xhr.abort()
+            }
+            // 如果上一个的请求还处于发送状态，则将其取消
+            // 每次发送请求前都先判断是否当前请求之前被发送还未结束，如果是，则将之前的请求取消，如果不是，则不做操作
+            
+            xhr = new XMLHttpRequest()
+
+            isSending = true
+            // 取消请求后，isSending 为true 表示下一个请求处于发送状态
+            
+            xhr.open('GET','http://127.0.0.1:8000/timeout')
+        
+            xhr.send()
+
+            xhr.onreadystatechange = ()=>{
+                if(xhr.readyState === 4){
+                    // 当ajax 状态等于4 的时候，说明请求数据已经到位，这个时候就可以结束当前ajax 请求了
+                    // 这里不再加入响应状态码判断，因为需要多次重复发送请求已经说明请求可能存在问题，这个时候，很大概率响应状态是不正确的
+                    // 如果我们加上 xhr.status === 200 的判断，可能很长一段时间内请求都无法停止
+                    isSending = false
+                }
+            }
+        })
+
+       
+    </script>
+</body>
+</html>

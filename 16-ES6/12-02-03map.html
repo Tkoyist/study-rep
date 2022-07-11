@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    map 也是es6新增的数据结构，
+    - 本质也是一个对象
+    - 实现了迭代器接口
+    - key 值可以是各种类型，包括对象
+
+    与其说是键值对，不如说是将两个数据绑定到了一起，可以互相访问到
+ -->
+<body>
+    <script>
+        // 声明一个map
+        let m = new Map()
+
+        // 添加数据
+        m.set('name','lzl')
+        let key = {
+            name:'lzlz',
+            age:'18'
+        }
+        m.set(key,'asd')
+        // 可以使用对象作为key 值
+
+        // size 属性获取有多少个数据
+        console.log(m.size);
+
+        // get 方法用于获取指定key 的 value 值
+        console.log(m.get(key));
+
+        // clear 方法清空数据
+        m.clear()
+    </script>
+</body>
+</html>

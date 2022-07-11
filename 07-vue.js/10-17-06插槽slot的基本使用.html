@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        插槽的基本使用 
+            - 定义 在模板中使用slot标签定义插槽，插槽标签所在的位置可以被之后的外来数据替换
+            - 使用 在父组件中使用子组件的时候，在父组件中加上一个标签，用于替换solt标签所在的位置
+            * 当只有一个插槽而存在很多的输入标签的时候，会将输入标签全部插入插槽所在的位置
+            * 在定义插槽的时候就在slot标签内部写入模板，该模板会成为插槽的默认模板，无传入数据的时候显示该模板
+     -->
+    <div id='box'>
+    <cpn>
+        <div>这是我插入的替换插口的组件</div>
+    </cpn>
+    <cpn></cpn>
+    </div>
+
+    <template id = 'cpn'>
+    <div>
+    子组件
+    <slot>
+        <div>这是默认的插槽内部数据，不传入数据给插槽的时候会显示这个</div>
+    </slot>
+    </div>
+    </template>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    components:{
+        cpn:{
+            template:"#cpn"
+        }
+    }
+    
+    })
+    </script>
+</body>
+</html>

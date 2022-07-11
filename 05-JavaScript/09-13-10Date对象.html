@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 
+        js 中使用date对象获取时间
+
+            -方法：
+                * getDate() 获取当前对象的日期返回
+                  getDay()  获取当前对象的日期是周几
+                        0  - 6 
+                        日 - 六
+                * getMonth() 获取月份
+                        0代表一月依此类推
+
+                * getFullYear() 获取年份
+                     Hours()
+                     Minutes()
+                     Seconds()
+                
+                * getTime()
+                    获取当前对象的时间戳
+                    时间戳：从格林威治标准时间1970年1月1日 0时0分0秒 一直到对象所表示的时间所经历的毫秒数（1秒 = 1000毫秒）
+                    计算机底层保存时间都是使用时间戳
+
+                    使用 1970年1月1日 0时0分0秒 取时间戳会发现是个负数，这是因为我们所创建的时间是北京标准时间而非格林威治标准时间，存在8个小时时差
+
+                *now()方法
+                    获取这个方法运行时的时间戳
+
+     -->
+     <script>
+         var d = new Date();
+         alert(d);
+        //  使用构造函数创建 Date 对象的时候，该对象表示的时间是 Date 对象创建时的时间点，是一个固定的值
+
+
+        // 创建一个指定时间的 Date 对象
+        var d1 = new Date("09/13/2019 21:11:01");
+        alert(d1)
+        // 想要创建一个指定时间点的 Date 对象，需要一个字符串作为参数传入
+        // 字符串的内容 "月份/日期/年份 小时:分钟:秒数" 可以只创建日期不创建时间
+
+
+     </script>
+     
+</head>
+<body>
+    
+</body>
+</html>

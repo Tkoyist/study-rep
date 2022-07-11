@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        当我们需要在一个组件的模板中加入另外一个组件的模板的时候
+        我们需要在该组件中注册被使用的组件
+        在外部组件的内部将内部组件注册之后，这两个组件之间便产生了父子关系，其中外部组件为父组件，内部组件为子组件
+
+        定义方式：
+            我们在创建一个组件构造器的时候，会传入一个对象给extend做参数
+            我们一般在该对象中创建一个 complate 属性用于存储模板
+            而该对象还可以有其他的属性，其中包括 component 属性，我们在非全局的模板声明中也是在vue中使用该属性声明组件
+            同理，我们给该对象添加这个属性声明的子组件，也可以在父组件中直接使用
+
+        - 组件只能读取在自己内部注册过的子组件，而子组件的子组件是无法读取的
+        - 即便在Vue实例中注册了父组件，也无法在实例中直接读取到其子组件，只有在子组件也被注册在实例中之后才能读取
+        
+        - 总之，不论如何，当前组件（或实例）都只能读取到在当前组件（或实例）中已注册的组件
+
+     -->
+    <div id='box'>
+        <ptn1></ptn1>
+    </div>
+    <script src='vue.js'></script>
+    <script>
+        const ptnC2 = Vue.extend({
+        template:`
+        <h2>子组件</h2>
+        `
+        })
+
+        const ptnC1 = Vue.extend({
+        template:`
+        <div>
+        <h2>父组件</h2>
+        <ptn2></ptn2>
+        </div>
+        `,
+        components: {
+            ptn2:ptnC2
+        }
+        })
+
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    components:{
+        ptn1:ptnC1
+    }
+    })
+    </script>
+</body>
+</html>

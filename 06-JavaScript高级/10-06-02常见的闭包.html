@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        
+     -->
+     <script>
+         function outter(){
+             var a = 0 
+             function inner(){
+                 a++
+                 alert(a)
+             }
+             return inner;
+         }
+         var inner = outter()
+        //  执行这句话的时候，调到外部函数，在外部函数中，代码准备阶段闭包便已经产生了，因为存在函数提升，在其他代码执行前函数已经定义成功，外部函数中的数据已经被调用  
+
+         inner() //1
+         inner() //2
+        //  第二次调用函数，发现输出的值发生了变化，这说明在第一次调用函数之后，本应该被清空的临时数据保留了下来，没有被清空
+        //  这就是闭包造成的，原本外部函数执行完毕之后，函数内部的数据就应当被清除，但是由于出现了闭包，该临时数据便变成了内部函数的数据保存了下来
+
+        var inner01 = outter()
+        inner01()//1
+        // 因为这里产生了一个新的闭包，且这个闭包与前面一个闭包之间的数据是相互独立的，所以再输出又是 1 
+        // 如何产生新闭包：再次调用外部函数
+        
+        inner()// 3 这也证明了闭包之前互不影响
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

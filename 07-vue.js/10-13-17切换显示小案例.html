@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        当我们在输入框中输入内容之后，切换输入方式
+        会发现内容框中的内容没有发生改变，直接沿用了
+        这是因为vue在进行DOM渲染的时候，处于性能考虑，会尽可能复用已经存在的元素，而不是花时间创建新的元素
+        这个案例中，之前的input不再使用，被调过来复用了
+
+        避免这种情况可以为不想被复用的元素添加一个属性key,且要保证key的值不同
+     -->
+</head>
+<body>
+    <div id='box'>
+        <div v-if="isnum">
+            <label >用户账号：</label>
+            <input type="text" placeholder="用户账号" key="2">
+        </div>
+        <div v-if='isemail'>
+            <label >用户邮箱：</label>
+            <input type="text" placeholder="用户邮箱" key="1">
+        </div>
+        <button @click='change'>change</button>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    isnum:true,
+    isemail:false
+    },
+    methods:{
+        change(){
+            this.isnum=!this.isnum
+            this.isemail=!this.isemail
+        }
+    }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        上文提到Vue实例不能跨过注册在本实例中的父组件访问到其子组件
+
+        这是因为在父组件通过extend方法创建的时候，Vue已经对其内部进行了解析，其内部的子组件已经不再是一个组件标签，而是被替换为了子组件内部的模板，已经完成了渲染
+        而其他组件或Vue实例获取到该父组件的时候，获取到的东西里面是不包含子组件构造器的任何信息的
+
+        实例在内部发现一个未识别标签，会去注册区寻找，如果找不到注册组件才会报错
+     -->
+
+     <!-- 
+
+      -->
+    <div id='box'>
+        <ptn></ptn>
+        <ptn1></ptn1>
+    </div>
+    <script src='vue.js'></script>
+    <script>
+    // 全局组件创建语法糖，可以省略extend方法不写，但本质还是调用了extend方法！！！！！
+    Vue.component('ptn1',
+    {
+    template:`
+        <div>
+            <h2>aaaaaaa</h2>
+            <h3>bbbbbbbbbbbb
+                <h4>cccccccccccccccccc</h4>
+            </h3>
+        </div>`
+    })
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    // 局部组件语法糖,本质和之前的组件创建注册步骤一样，只是语法糖
+    components:{
+        'ptn':{
+    template:`
+        <div>
+            <h2>aaaaaaa</h2>
+            <h3>bbbbbbbbbbbb
+                <h4>cccccccccccccccccc</h4>
+            </h3>
+        </div>`
+    }
+    }
+    })
+    </script>
+</body>
+</html>

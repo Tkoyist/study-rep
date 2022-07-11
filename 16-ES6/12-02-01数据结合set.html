@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    set 数据集合（本质是一个对象）
+    - 实现了symbol.iterator 接口
+    - 类似于数组
+    - 但是内部的数据只能是唯一的
+
+    下面讲讲set内部的属性和方法
+ -->
+<body>
+    <script>
+        // 创建一个集合
+        // let s = new Set()
+        // 创建集合时可以传入一个可迭代对象作为数据
+        let s = new Set(['a','b','c','d','f'])
+        // 注意S 大写
+
+        // 集合存在size 属性，存储了set 内部的数据数量
+        console.log(s.size);
+        // add 方法添加数据
+        s.add('e')
+        s.add('e')
+        // 添加重复数据不报错，但不会重复添加 
+
+        // delete 方法删除数据，set 的删除是直接传入需要删除的数据值进行删除，而不是传入索引值
+        s.delete('d')
+        // has 方法用于检测目标数据是否存在于当前集合中
+        console.log(s.has('a'));
+        console.log(s.has('d'));
+        // clear 方法清空集合
+        
+        s.clear()
+
+
+        console.log(s);
+    </script>
+</body>
+</html>

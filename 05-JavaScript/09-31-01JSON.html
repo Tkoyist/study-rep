@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        JSON
+         - JSON出现的前提：js中的对象是不被其他语言识别的，即其他语言无法读取js对象，也不认识js对象
+         - JSON是一个特殊格式的字符串，字符串是任何语言都可以识别的，JSON可以使得其他语言识别到js中的对象，也可以将其他语言的对象转换为js对象
+         - 用于实现数据交互
+         -
+         - JavaScript Object Notation JS对象表示法
+         - JSON 和js对象格式一致，但JSON字符串中的属性名需加双引号
+         - JSON中的数据分为两类：
+            * 对象 {}
+            * 字符串 []
+         - JSON 允许的值：
+            * 字符串
+            * 数值
+            * 布尔值
+            * null
+            * 对象
+            * 数组
+        
+         - js中为我们提供了一个工具类，就叫JSON
+         - 这个对象可以帮助我们实现JSON和js之间的相互转换
+
+     -->
+     <script>
+        //  将JSON对象转换为js对象（数组对象也是对象）
+        // JSON.parse()
+        //      将需要转换为js对象的JSON作为参数传入，会返回转换的js对象
+
+
+        // js对象转换为JSON
+        //  JSON.stringify()
+        //      将js对象作为参数传入，返回一个JSON字符串
+
+        var obj = {
+            name:"lzl",
+            age:21,
+            gender:"male"
+        }
+
+        var json1 = JSON.stringify(obj)
+
+        alert(json1)
+
+        var obj1 = JSON.parse(json1)
+        
+        alert(obj1)
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

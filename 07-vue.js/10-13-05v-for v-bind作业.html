@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 要求第一个显示红色，之后点击哪个哪个就变红 -->
+
+    <!-- 
+        提供新思路，创建一个数据index,index的值谁，谁就变红，index默认指向第一个数据，点击其他的元素就将该元素的值传入index
+     -->
+
+    <div id='box'>
+        <ul>
+            <!-- <li v-for='(m,index) in movies' :class='{red:sum[index]}' v-on:click='fun1(index)' >{{m}}</li> -->
+            <li v-for='(m,index) in movies' 
+                :class='{red:current == index}'
+                @click='fun1(index)'>{{m}}</li>
+        </ul>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    // sum:[true,false,false,false],
+    movies:['111','2222','33333','44444444'],
+    current: 0
+
+    },
+    methods:{
+        fun1(index){
+            // this.sum[index] = true 这种方式修改数据是非响应式的，不会刷新页面
+            // this.sum.splice(index,1,!this.sum[index])
+            // 也可以使用set方法修改(需要修改的对象，索引值，修改后的值)
+            // Vue.set(this.sum,index,!this.sum[index])
+            // console.log(this.sum)
+            this.current = index
+
+        }
+    }
+    })
+    </script>
+</body>
+</html>

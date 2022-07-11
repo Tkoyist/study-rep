@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        使得同种标签中存在某些属性的那部分被选中
+
+        （将body中含有title属性的p标签选中，更改为相同的样式）
+            -属性选择器：
+                ·选择含有指定属性的标签（含有该属性即可，无需有属性值）
+                    标签[属性名]
+                ·选择含有指定属性以及指定属性值的标签
+                    标签[属性名=属性值]
+                ·选择属性值以指定值开头的标签
+                    标签[属性名^=指定值]
+                ·选择属性值以指定值结尾的标签
+                    标签[属性名$=指定值]
+                ·属性值中含有指定指定值的标签
+                    标签[属性名*=指定值]
+
+            
+         */
+         p[title]{
+             color: aquamarine;
+         }
+         p[title = b]{
+             color: fuchsia;
+         }
+         p[title^=a]{
+             color: darkblue;
+         }
+         p[title$=c]{
+             color: firebrick;
+         }
+         p[title*=e]{
+             color: greenyellow;
+         }
+    </style>
+</head>
+<body>
+    <p>这是零号p，没有标题，用于对照</p>
+    <p title="ab">标题为ab</p> 
+    <p title="bc">标题为bc</p>
+    <p title="a">标题为a</p>
+    <p title="b">标题为b</p>
+    <p title="c">标题为c</p>
+    <p title="abcdef">标题为abcdef</p>
+</body>
+</html>

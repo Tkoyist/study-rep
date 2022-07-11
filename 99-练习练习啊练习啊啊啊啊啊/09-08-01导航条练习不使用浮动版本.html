@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>导航条</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+        }
+        .daohang{
+            background-color:lightsteelblue;
+        }
+        .daohang>li{
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+
+            display: inline-block;
+            /* 将文字设置为行内-快元素，使其可以设置宽高，但是不独占一行   因为块元素可以设置宽高但必须独占一行，而行内元素不独占一行但不能设置宽高，只由内容区撑开 */
+
+            align-items: center;
+            /* 设置文本在其父元素中水平居中 */
+            line-height: center;
+            /* 设置文本在其父元素中垂直居中 */
+
+            opacity: .4;
+            /* 设置文字透明度 0为完全透明，1为完全不透明*/
+        }
+    </style>
+</head>
+<body>
+    <ul class="daohang">
+        <li>HTML/CSS</li>
+        <li>Browser Side</li>
+        <li>Server Side</li>
+        <li>Programming</li>
+        <li>XMl</li>
+        <li>Web Building</li>
+        <li>Reference</li>
+    </ul>
+</body>
+</html>

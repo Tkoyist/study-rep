@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        将其他数据类型装换为Number
+            字符串--》数字
+                使用Number()函数
+                将数字类型字符串转换为Number，将会直接转换
+                如果字符串中存在非字符串内容，则转换为NaN
+                如果字符串是一个空串会转换为0
+            布尔--》Number
+                true 转换为 1 
+                false 转换为 0
+            Null--》Number
+                转换为 0
+            
+        在字符串中夹杂着非数字的情况下，如果只想要提取里面的数字
+            parseInt()函数，可以将一个字符串中的有效的整数提取出来
+                要求字符串的第一位必须是数字，否则无法提取返回NaN,如果数字与数字之前存在其他字符将数字隔开，那么该函数也识别不了其他字符之后的数字
+            parseFloat()函数，可以将一个字符串中有效的浮点数提取出来
+                可以读取浮点数，其他的性质和parseFloat()相同
+            *如果对其他类型的数据使用上面两个函数，函数会先将数据转换为String类型再将函数作用于它
+            *注意这里说道除了String类型之外的数据都会转换，当然也包含了Number数据本身，它也先会转换为String再作用于函数，所以可以对浮点数使用parseInt()实现粗略的取整
+     -->
+</head>
+<body>
+    
+</body>
+</html>

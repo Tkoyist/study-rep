@@ -1,0 +1,50 @@
+          - this.props.history.push('/lzl/join') 方法修改url 之后却无法修改当前的路由页面
+          - 有些route 无法识别（有部分原因来自外界）
+          首先，我们要明确一个观点NavLink 我们可以理解为其只用于修改当前页面的url，但是修改url 之后路由页面并不会变化似乎没有意义
+          当url 修改之后，继续执行代码，执行到Route 代码区，Route 就是一个个的v-if ，每一个Route 都会用当前的url 与Route 中的path 进行匹配，在不添加exact 关键字的前提下，只要url的前某部分与path相同，那么就匹配成功
+          更改路由界面为Route 中预先指定的界面，这中匹配是上下文无关的匹配，一个Route匹配成功并不影响其他的Route继续匹配
+          但是当我们使用Swtich 组件将一些Route 包裹起来之后，Switch 组件内部的Route 就只能有一个被匹配上，或者说，当一个Route被匹配上之后，其他的Route 不会再来进行匹配，即使后面有其他能匹配上的也一律不进行匹配
+          注意，这种唯一选择是指针对Swtich 当中的Route的，如果我们将一些Route写在Swtich外部，这些Route 是不会受Swtich 影响的，依然会进行匹配（能不能匹配上就是另外的事情了）
+          再来说exact（精确的）表示精确匹配，即只有当url 与Route 中的path 完全一致（不能是部分匹配了）的时候，当前路由才会生效，才能修改路由页面
+          注意到了吗，本质上两者是没有关系的
+
+          现在说道嵌套路由的问题
+          当路由出现嵌套的时候，其实并不像vue 当中一样是两个路由之间的完全独立的，或者说想像个组件之间一样完全的独立
+          我们在外层路由的一个路由界面中添加新的路由的时候是没有添加新的BrowserRouter 组件，即本质上内层路由与外层路由其实是身处于同一个路由系统的
+          处理完成之后，内部路由就像一个普通的身处于外部BrowserRouter 组件内部的一个 Link（修改url） 与Routes（判断url修改路由界面） 系统，是受外部路由系统统一管理的
+          这也就造成一个问题，当我们将外部路由组件设置为exact 精确模式的时候，以about 为例，只有url 为/about 的时候才能匹配上，而我们内部路由的Link 会将url修改为如 /about/us /about/number 等‘我们认为是外层路由的分路由的url’
+          但是！我们当前是exact 模式！我们虽然认为 /about/us 与 /about 是存在直接关系的，但是解释器只认为 /about/us 与 /about 不精确匹配，所以不予展示，那么就不会进入 About 组件内部，也就不会接触到 /about/us 的Route 
+          看到了吗！虽然在 About 组件内部存在一个与 /about/us 匹配的Route 但是由于 /about/us 与/about 无法精确匹配，根本就无法进入 About 组件内部，后面的Route 根本就没有任何意义，完全没有进行匹配，不是匹配不上，而是没有机会去匹配，因为所在的组件根本没有渲染
+
+          我们再说说正常情况下的组件嵌套
+          以 /about 为例
+          url 借由外部的Link 发生了改变，由于Link 借助了history 或者hash 所以没有发生页面跳转
+          进入了Route 区间，Route 们一个个与url 进行匹配，匹配上 /about 所在的路由（不是精确匹配哈），然后跳转进入Route 指向的组件内部，渲染
+          组件内部存在很多其他的Link 与 Route 但是没有关系，他们仍然属于外层的 BrowserRouter 系统管辖（当然也可以单独开辟路由，只是有些代码需要改变）
+          现在用户点击了一个内部 Link /about/us 然后BrowserRouter所管辖的路由相关组件需要更新了，对于Link来说是需要找到活跃的Link 添加上预定义的活跃属性
+          对于Route 来说是要重新开始匹配了，读取到了Swtich 组件，明白是唯一性匹配了，开始匹配，匹配到了 /about 渲染对应嘴组件不是精确匹配，但是是唯一性匹配，ok 退出当前Swtich ，继续对之后的Route 进行匹配
+          渲染完成了
+          我们点击了内部Link 修改了url 修改为 /about/user，BrowserRouter重新开始匹配操作匹配到了外层的/about 由于不是精确匹配，匹配成功！渲染，进入About 组件内部，继续寻找Route ，找到了一个 /route/user 匹配再成功，再渲染
+          然后渲染其他的
+          虽然我们称之为嵌套的路由，但是对于BrowserRouter 来说他们都是一样的Route 对他们是平等对待的，一开始以外是内外无关的匹配，但是其实内部修改的url 是会影响到外部路由界面的展示的
+
+          现在我们就把之前嵌套路由点击内部外部也不渲染的问题解决了
+          对了，当某个Link 发生变化的时候，离它最近的BrowserRouter 标签会响应，将内部的Route 开始进行匹配，而多层的BrowserRouter 也只有离改变url 的Link 最近的那个BrowserRouter的内部会生效
+
+          - this.props.history.push('/lzl/join') 方法修改url 之后却无法修改当前的路由页面
+          BrowserRouter 组件会决定一个路由系统的范围，也就是说处于同一个BrowserRouter 组件内部的路由相关组件是属于同一个路由系统的
+          我们在BrowserRouter 内部的任何组件（例如Route 指向的组件）的时候，并不是直接使用原本的组件，而是使用了经过处理的组件，以About 组件为例，看似我们使用的是About 组件，但是本质上使用的是经过高阶组件加工的About 组件
+          这就类似于前面用到的context 高阶组件
+          所以可以在 this.props 中访问到诸如 location history 这些对象，并能使用里面的方法，而里面的这些对象也不同于window 中的原对象
+          他们都是经过路由处理的，以history 为例，我们使用的经过处理的history 它不在是针对全局的，而是只针对当前BrowserRouter 内部的路由系统（当前BrowserRouter 内部的子BrowserRouter 也不算入系统） 
+          我们在外层路由中无法访问到该方法，是因为BrowserRouter 是在APP 组件内部将App 组件的所有内容包裹起来了，而不是将整个App 包裹起来了，BrowserRouter 组件在App 组件内部，是App 组件的子组件，当然无法对App 进行处理，无法为App 传递参数了
+          所以，为了使得App 组件能获得参数，我们需要使用BrowserRouter 组件将App 组件包裹起来，这样BrowserRouter 就有能力为App 传递数据了，但是app 作为一个普通组件只是物理上的进入了路由系统，本质上还是只是一个普通组件，是不会被BrowserRouter 当做路由系统的一部分进行处理的
+          所以我们还需要使用到一个高阶组件WithRouter 使用该高阶组件处理App 组件，然后将处理完成的组件导出，再其他地方使用BrowserRouter 将处理完成的App组件包裹，这样组件渲染的时候我们使用的App 本质上是被withRouter 处理过的，并不是原本的APP
+          渲染的过程中就会为处理过的App 添加上一些参数以供使用，而添加的history 也是会对包裹App 的BrowserRouter 组件内部的路由系统生效
+
+          所以问题就出在BrowserRouter 包裹的位置不正确
+
+          而内部的push 不生效，是因为之前我们在内部使用了单独的 BrowserRouter 将其作为了单独的路由系统，而我们通过props 获取到的push 函数是对外部的BrowserRouter 生效的，所以无法对内部的BrowserRouter 系统生效，想要使得内部能使用push 函数
+          那么我们就不再在内部添加BrowserRouter 组件，使内外的路由属于同一系统
+
+          外部的push 确实没必要对内部的路由生效，外部的改变能影响内部的只能是使整个内部路由都不显示，不会有其他的可能性，如果整个都不显示，那么内部路由的Route 的监听已经没有意义了

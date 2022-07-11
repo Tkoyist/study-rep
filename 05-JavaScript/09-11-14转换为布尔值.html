@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        将其他类型数据转换为布尔值
+            -使用Boolean()函数
+     -->
+     <script>
+         var a = 123;//true
+         a = -123;//true
+         a = 0;//false
+         a = NaN;//false
+
+        //  数字转换为布尔值除了等于0或者等于NaN时为false其它情况下都为true
+        //  字符串转换为布尔，除了空值都为true
+        //  字符串转换为Null和Undefined都为false
+
+        a = null;//false
+        a = undefined;//false
+         a = Boolean(a);//false 
+         alert(a);
+         alert(typeof a);
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

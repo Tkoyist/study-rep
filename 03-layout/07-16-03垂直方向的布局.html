@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer{
+            height: 200px;
+            background-color: aqua;
+            overflow: hidden;
+        }
+        .inner{
+            height: 500px;
+            width: 50px;
+            background-color: blue;
+        }
+        /* 
+        默认情况下，父元素的高度被内容撑开，由内容决定
+
+        垂直方向布局不存在过渡约束的情况
+
+        如果子元素高度大于了父元素，则会直接溢出，不会存在撑开的情况
+
+        使用 overflow 属性设置父元素如何处理子元素溢出情况
+            -默认 visible 直接溢出
+            -hidden 溢出内容被裁减，缺点，内容会被直接裁减，无法再看到被裁减的内容
+            -scroll 生成滚动条，使得可以通过滚动条看到被隐藏的内容，但是水平垂直都会生成，无论需不需要
+            -auto 根据实际情况生成滚动条
+        overflow-x 单独处理水平方向溢出
+        overflow-y 单独处理垂直方向溢出
+          */
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>

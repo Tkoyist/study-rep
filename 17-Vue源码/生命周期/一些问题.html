@@ -1,0 +1,56 @@
+<!-- 
+    vue实例到底做了什么事
+    vue实例本质上做了两件事
+    第一件事是将options 中的template 的内容编译解析
+    第二件事是将解析完成的结果（html代码）替换到el 指向的dom节点所在的位置
+
+    什么是vue 生命周期
+    是指vue实例从创建到死亡的整个过程
+
+    有哪些生命周期
+    creat 创建vue实例
+    判断是否有el 属性，如果没有，就等待mount(el) 被读取到之后进行下一步（我们除了可以使用el属性挂载标签，还可以调用vue实例的$mount()方法挂载标签）
+    等待上一步完成之后，判断options 是否存在template属性，如果存在，将其作为模板进行下一步，如果不存在，就读取el ，然后将其作为模板进入下一步
+    编译模板，将模板内部的数据（例如muscle语句，v-for，v-if，v-model，v-on，v-bind等）解析
+    mount 挂载编译之后的模板
+    挂载完成之后，如果数据发生了改变
+    update 更新数据，重新渲染（re-render），更新dom数（patch方法，diff算法）
+    当网页关闭或切换组件之后，进入vue 实例的销毁过程
+    destroy
+
+    有哪些生命周期函数
+    beforeCreate()
+    created()
+    beforeMount()
+    mounted()
+    beforeUpdate()
+    updated()
+    beforeDestroy()
+    destroyed()
+
+    beforeCreate() 与 created()
+    以下简称bc 和 c
+    在bc函数中是访问不到$data 的，此时的$data 是undefined ($data 是data属性的代理，是vue实例中的一个属性，该属性是一个对象，对象内的数据就是data中的数据)
+    但是在c 函数中是能访问到的
+    - 数据相关的操作最早只能放到c 函数中，放到bc 方法中是读取不到数据的
+    - 我们可以使用created 函数完成data中的数据的一些初始化操作
+    - create 生命周期，即bc函数和c函数之间完成的最重要的一件事就是完成了代理，即将options 中的各类数据挂载到了vue实例上，使得我们可以使用this. 的方式访问到这些数据
+
+
+    beforeMount() 与 mounted()
+    bm 中是无法进行dom 操作的，例如better-scroll 中的滑动监听和dom高度获取就不能在created() 中进行
+    但是mounted() 是可以访问到dom元素的
+    - 在mount 生命周期中，主要就是将编译完成的模板挂载到vue实例上
+    - 模板的编译是在created() 与 beforemount() 之间进行的
+    - 在mounted() 中可以进行对dom 的操作
+    - created() 中并不是进行不了模板操作，只是它所操作的dom 是el内部的dom，而el内部的dom 是会在mounted中被模板覆盖掉的
+
+    - 关于$mount()方法，我们在options中如果没有传入el 属性，那么在正常流程下是会卡在created()函数和beforeMount()函数之间，在模板编译完成之后卡住
+        可以尝试一下，如果不传入el 属性。bm方法和m方法都不会执行
+        但是我们可以通过$mount()方法手动挂载dom，即使用对应的vue实例调用$mount()方法，并将el作为参数传入，那么就会在执行该函数的之后才调用beforeMount()函数和mounted()函数
+        在我们不传入el参数创建vue实例之后，调用$mount()方法挂载dom之前，vue 实例是一直卡在beforeMount 阶段之前的
+        * 所以在创建vue 实例的时候不一定非要传入el参数
+
+    render() 函数
+    render()函数用于编译模板，会根据传入的模板数据通过调用h 函数生成对应的虚拟节点
+ -->

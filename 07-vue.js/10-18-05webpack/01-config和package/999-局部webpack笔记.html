@@ -1,0 +1,24 @@
+<!-- 
+    必要性：每个模块代码内部使用的webpack可能版本不同，全部使用全局webpack可能出错
+
+    我们通过在终端输入
+     npm install webpack@3.6.0 --save-dev 
+    指令可以在当前文件中安装指定版本的webpack
+    而后面的 --save-dev 表示安装的文件仅用于开发，不用于运行
+    安装完成之后   
+        - package.json文件发生了变化，它内部多了一个
+                        "devDependencies": {
+                "webpack": "^5.58.2"
+            }
+          属性，该属性表明文件开发时（dev）安装了一个 webpack 且版本为 5.58.2
+          这个属性就是开发时安装的各类插件
+        
+        - 项目文件内部多了一个 node_modules 文件夹，里面包含了 webpack文件夹
+
+        - 我们直接在终端中使用webpack访问到的一定是全局的webpack
+          我们只有在node_modules 文件中使用webpack 的时候才会使用本地webpack
+          而我们之前定义了脚本 可以直接使用npm run build 使用webpack ，此时由于我们定义脚本的时候，访问的是本地文件，所以也会使用本地的webpack
+          如果在本地找不到，才会去全局中寻找
+
+
+ -->

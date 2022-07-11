@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!-- 
+        在没有改变this指向的前提下，在延时器和定时器中的this都是指向window
+        但是我们可以在延时器和定时器之外使用其他变量获取当时的this ,再将定义的变量作为this 使用
+        
+        为什么：
+            （以下将延时器和定时器统称为定时函数）
+            首先，定时函数的this是指向window 的，因为它是window 的属性，它们的存在始终是作为全局函数存在的，我们对它的使用本质是 window.时间函数
+            所以在他们的this 是指向window 的
+
+            然后存在一种容易混淆的情况
+            我们将其他对象中的方法放到时间函数中进行操作的时候
+            本质上，时间函数需要一个函数类型的参数，我们将其他对象的方法作为参数传入的时候，不论我们通过什么方式获取到这个方法（函数）
+            对于事件函数来说，它只是获取了一个函数实参（来自堆空间）的引用，并为其赋了一个形参的值
+            而之后对函数的使用本质都是使用形参去访问函数（在堆空间访问，此时该函数在哪个对象中定义已经不重要了，编译器值负责找到这个函数按代码运行）
+            这时，函数内部不论输出什么this 都已经和定义它的参数没有关系了，而是指向了时间函数的this（即window）
+
+            setTimeout(this.method, minsec)
+            而这种情况下，this 不是指向window 的，因为这里还没涉及到时间函数的运行，传入参数的时候时间函数还未运行，此时this 还是当前执行上下文
+            只是在当前作用域下访问this（注意事件函数还未运行，还没有全局对象的调用）
+            只是在当前作用域下访问了一个变量然后作为参数传入
+            
+            但是倘若这个method 内部有对this 的操作，它操作的便是window ，为什么可以看上一个解析
+
+
+            匿名箭头函数作为时间函数的参数的时候
+            我们知道箭头函数的this 指向和其他函数不同，是特殊的存在，它只决定于它的声明
+            指向它声明处的最近作用域
+
+            * 而我们在时间函数中使用匿名箭头函数的时候，箭头函数是作为参数传入时间函数的
+              参数列表是不具有自己的作用域的，所以它身处的最近作用域就是函数所在作用域
+              时间函数的调用固然是强权改变this 但箭头函数不按套路出牌，天龙人自有一套准则
+            
+         -->
+</head>
+<body>
+    <script>
+        // 什么时候使用箭头函数
+        // 将一个函数作为参数传入另外的函数的时候，例如定时器中的回调函数
+
+        // 箭头函数的this如何查找
+        // 在定义函数的作用域中向外层一层一层查找,直到查找到某一层中存在this,即在函数定义的位置的作用域指向的对象,而不是使用时的作用域对象
+
+        const obj ={
+            fun : SetTimeout(() => {
+                console.log(this)
+            }, 1000)
+            // 这里的输出是window，箭头函数在定义处向外寻找，第一个找到的是settimeout 函数，而该函数的this 是归window 所有的，是指向window 的，所以延时器中套娃延时器也指向window
+        }
+
+        // 定时器和延时器都是挂载在window下的方法，使他们的回调函数输出this ，这时的this是指向window的
+
+        setTimeout(function(){
+          console.log(this); // window
+      }, 0);
+      setTimeout(() => {
+         console.log(this); // window
+      }, 0);
+
+      const obj ={
+        aaa :function(){
+            setTimeout(function(){
+          console.log(this); // window
+      }, 0)
+        },
+        bbb:function(){
+            setTimeout(() => {
+         console.log(this);  // obj
+      }, 0);
+        }
+      }
+
+      obj.aaa()
+      obj.bbb()
+    </script>
+</body>
+</html>

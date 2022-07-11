@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        select是可以下拉选择的单选框
+            默认情况下只能选择单个
+            在select中加入 multiple 属性，可以使得元素能选择多个
+
+
+     -->
+
+     <div id='box'>
+         <!-- name 是用于提交的属性 -->
+         <!-- 为select绑定v-model后，选中哪个option就会将绑定的数据的值修改为options的value值 -->
+         <select name="abc" id="" v-model="fruit">
+             <option value="香蕉">香蕉</option>
+             <option value="葡萄">葡萄</option>
+             <option value="苹果">苹果</option>
+             <option value="栗子">栗子</option>
+         </select>
+         <!-- 为多选select绑定v-model，选中哪几个options就会将数据（数组）的值修改为选中的哪几个options的value值 -->
+         <select name="abc" id="" v-model="fruits" multiple>
+            <option value="香蕉">香蕉</option>
+            <option value="葡萄">葡萄</option>
+            <option value="苹果">苹果</option>
+            <option value="栗子">栗子</option>
+        </select>
+     </div>
+     
+     <script src='vue.js'></script>
+     <script>
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     fruit:"香蕉",
+     fruits:[]
+     }
+     })
+     </script>
+</body>
+</html>

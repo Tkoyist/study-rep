@@ -1,0 +1,11 @@
+<!-- 
+    - 当一些数据需要单独抽离的时候，室友modules
+        我们可以在每个modules 中又单独创建state mutations getters 和 actions
+
+        modules 中定义的模块在编译之后会被返给state 所以我们对它的使用也需要在state中访问
+        modules内部
+        - state 定义无区别，使用 $store.state.模块名.状态名
+        - mutations 定义无区别,使用 也无区别
+        - getters 定义传入第三个参数 rootState ,可以直接访问到store 中的state 使用无区别 $store.getters.计算属性名
+        - action 定义无区别，使用上，它的参数context 并不指代store 实例，而是指向它所在的模块
+ -->

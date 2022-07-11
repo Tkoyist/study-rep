@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        方式一：先创建object空对象，再向其中添加方法和属性
+            适用于：起始对象数据不确定，动态数据对象
+            缺点：语句过多 
+     -->
+     <script>
+         var object = {}
+         object.name = "tom"
+         object.age = "18"
+     </script>
+    <!-- 
+        方式二：对象字面量方式，在创建对象的时候就向其中添加需要的属性和方法,可以极大减少语句量
+            适用于：起始时对象内部数据确定
+            问题：创建多个对象时代码重复
+     -->
+     <script>
+         var object = {
+             name:"tom",
+             age:"18"
+         }
+     </script>
+     <!-- 
+         方式三：通过工厂函数动态创建对象并返回（创建一个函数，在函数中创建对象并返回）
+            适用场景：创建多个结构类似的函数
+            问题：对象都是object类型，没有具体类型
+      -->
+      <script>
+
+      </script>
+      <!-- 
+          方式四：自定义构造函数，创建构造函数，通过构造函数创建对象
+            适用：多个类型确定的对象
+            问题：每个对象都必须有确定的方法，可能浪费内存
+       -->
+       <script>
+
+       </script>
+       <!-- 
+           方式五：构造函数+原型函数 将属性放在构造函数中，而将方法放在原型函数中
+             创建好构造函数，再在构造函数的原型函数中添加需要的方法
+        -->
+</head>
+<body>
+    
+</body>
+</html>

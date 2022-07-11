@@ -1,0 +1,22 @@
+.btn-enter, .btn-appear{
+  opacity: 0;
+}
+.btn-enter-active,.btn-appear-active{
+  opacity: 1;
+  transform: scale(.6);
+  transition: opacity 300ms,transform 300ms;
+}
+/* .btn-enter-done{
+
+} */
+.btn-exit{
+  /* 退出之后的动画 */
+  opacity: 1;
+}
+.btn-exit-active{
+  opacity: 0;
+  transition: opacity 300ms;
+}
+.btn-exit-done{
+  opacity: 0;
+}

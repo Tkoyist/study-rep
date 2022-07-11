@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>发送ajax请求</button>
+
+    <script>
+        const btn = document.getElementsByTagName('button')[0]
+
+        btn.onclick=()=>{
+            // 直接调用fetch 函数发送请求即可,第一个参数是url ，第二个参数是请求配置信息
+            // 可以直接使用? 后缀添加url 属性
+            fetch('http://127.0.0.1:8000/fetch?vip=10',{
+                method:'POST',
+                headers:{
+                    name:'tkoyist'
+                },
+            // 请求体不接收对象,而是接收字符串
+                body:'username=admin&password=admin'
+            }).then(res=>{
+                // fetch 函数的返回也是一个Promise 对象
+                // console.log(res.data);
+                // console.log(res);
+                // 直接使用.data 访问数据是访问不到的，要使用fetch 函数返回值（也是一个对象）的隐式原型中的text() 方法，该方法会返回一个promise 对象，在该对象中存储了需要的数据
+
+                return res.text()
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+    </script>
+</body>
+</html>

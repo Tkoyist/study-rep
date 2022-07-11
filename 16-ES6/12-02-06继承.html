@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    类的继承
+ -->
+<body>
+    <script>
+        // 使用类的方式完成继承
+        // 创建父类
+        class P{
+            constructor(name,age){
+                this.name = name
+                this.age = age
+            }
+            say(){
+                console.log('say');
+            }
+        }
+        // 创建继承自父类的子类
+        // 首先是在创建时使用extends 关键字表明当前类的父类
+        class s extends P{
+            // 创建子类的构造方法
+            constructor(name,age,id){
+                // 在子类的构造方法中可以调用super 方法,super 方法是将this 更改为当前创建的实例的情况下调用的父类构造方法
+                // 即类似于 p.call(this,arguments)
+                // 使用父类的构造方法为当前实例创建了成员属性
+                super(name,age)
+
+                // 再对当前子类需要添加的属性进行添加
+                this.id = id
+            }
+            getid(){
+                console.log(this.id);
+            }
+        }
+
+        // 创建子类实例
+        let s1 = new s('lzl',21,13212312321)
+        console.log(s1);
+        s1.say()
+        s1.getid()
+    </script>
+    j
+</body>
+</html>

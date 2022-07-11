@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-show 用于判断元素是否渲染，在使用上，两者都是判断是否控制元素，让其无法显示
+        但在原理上
+            v-if: 为false的时候，包含该指令的元素会在DOM中消失，而当我们重新修改为true的时候，本质上是对这个元素的重建
+                - 切换频率低的情况推荐使用
+            v-show: false和true的转换本质上是对display属性的改变,为flase的时候将display属性的值修改为none
+                - 性能很高，可以快速切换，适用于切换频率高的元素
+     -->
+</body>
+</html>

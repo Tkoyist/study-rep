@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        图片标签用于引入外部图片
+        使用img标签
+            -img是自结束标签
+            -属性：
+                ·src属性 指定外部图片路径（路径规则与超链接相同)
+                    如果想要引入网络图片，直接在网页中打开图片，右键点击可以选择复制图片地址，然后将复制的图片地址放入 src 属性之中即可
+
+                ·alt属性是对图片的描述，一般不显示，有些浏览器图片无法显示的时候会显示
+                 alt属性可以被搜索引擎获取，被搜索引擎搜索到，不写该属性则不会被搜索引擎发现
+
+                 ·width 图片宽度 （单位 像素）
+                 ·height 图片高度（单位 像素）
+                    如果只修改两者中的一个元素，那么图片会保持比例的修改另外一个元素
+                    直接通过该方式修改，小图调大可能导致模糊，大图调小浪费内存，条件允许不使用这种方式修改
+             -img属于替换元素（既不是快元素也不是行内元素，同时具有两种元素的特点）
+
+
+     -->
+     <!-- 引入本地图片 -->
+     <img src="Saved Pictures\61bpzx4jimgp09u9dv8qbx76f_LI.jpg" alt="拉克丝" height='700'>
+     <!-- 引入外部图片 -->
+     <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1956196945,2255804078&fm=26&gp=0.jpg" alt="拉克丝" height="200" width="200">
+</body>
+</html>

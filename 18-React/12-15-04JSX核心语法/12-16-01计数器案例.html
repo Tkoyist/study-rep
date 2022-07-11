@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 创建dom挂载点 -->
+    <div id="box"></div>
+
+    <!-- 导入react依赖 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- react 代码sc标签，标签需要特殊的type属性用于识别jsx代码 -->
+    <script type="text/babel">
+    // 创建组件（构造器），创建一个类使其继承自React.Component类
+    class App extends React.Component{
+        // 构造方法中初始化数据，保证每个组件的数据独立
+        constructor() {
+            // 在构造方法中需要调用父类构造方法，初始化父类
+            super()
+            // 将响应式数据放入state 属性（指向一个对象）中
+            this.state = {
+                count:0
+            }
+        }
+
+        // 使用render函数返回jsx代码作为模板
+        render(){
+            return (
+                <div>
+                    <h2>当前计数{this.state.count}</h2>
+                    {/*事件响应函数常规状态下载执行时是没有this的，所以我们需要在绑定的时候为其绑定一个this*/}
+                    {/*bind 是为函数绑定this并执行*/}
+                    <button onClick = {this.add.bind(this)}>+</button>
+                    <button onClick = {this.dec.bind(this)}>-</button>
+                </div>
+            )
+        }
+
+        add(){
+            this.setState({
+                count : this.state.count+1
+            })
+        }
+        dec(){
+            this.setState({
+                // 我们库在这里直接访问到state中的数据进行修改
+                count : this.state.count-1
+            })
+        }
+
+    }
+
+    // 将组件挂载到挂载点上
+    ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>

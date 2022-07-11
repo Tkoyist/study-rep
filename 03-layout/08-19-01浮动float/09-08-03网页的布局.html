@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<style>
+/* 
+网页的布局分为两大部分
+
+一 垂直布局
+    垂直方向的布局通过块元素的垂直方向性质直接进行布局
+
+二 水平布局
+    水平方向布局通过块元素的浮动，通过浮动块元素的性质进行布局
+
+ */
+
+/* 对三个部分相同的属性进行统一设置 */
+header,main,footer{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* 设置头部 */
+header{
+    height: 150px;
+    background-color: #bac;
+}
+
+/* 设置主体 */
+main{
+    height: 400px;
+    background-color: #bfa;
+    margin: 10px auto;
+}
+#nav,#artcle,#aside{
+    float: left;
+    height: 95%;
+    margin: 10px;
+}
+#nav{
+    background-color: turquoise;
+    width: 180px;
+}
+#artcle{
+    background-color: chocolate;
+    width: 600px;
+    margin:10px 0px ;
+}
+#aside{
+    background-color: cornflowerblue;
+    width: 180px;
+}
+
+/* 设置底部 */
+footer{
+    height: 120px;
+    background-color:tomato;
+}
+
+</style>
+<body>
+    <!-- 创建头部 -->
+    <header>
+
+    </header>
+
+    <!-- 创建网页的主体 -->
+    <main>
+        <div id="nav"></div>
+        <div id="artcle"></div>
+        <div id="aside"></div>
+    </main>
+
+    <!-- 网页的底部 -->
+    <footer>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+
+     -->
+     <script>
+         window.onload = function(){
+             var box  = document.getElementById("box")
+             var btn01  = document.getElementById("btn01")
+
+             btn01.onclick = function(){
+                //  修改页面中元素样式
+
+                //  box.style.width = "200px"
+                //  box.style.height = "200px"
+                //  style 修改
+                //  通过style修改元素样式，每次修改一个样式，浏览器都需要重新渲染一次画面，执行的性能差，而且代码量过大，修改效率低
+
+
+                // 需求：一行代码修改多个属性
+
+                // box.className = "box2"
+                // 通过修改元素的 className 修改元素的类，修改为我们已写好的类样式
+                // 多个样式的修改只需要一行代码
+                // 多个样式的修改只需要刷新一次页面，性能高
+                // 并且该方式可以使得表现和行为进一步分立，即js和css代码的耦合更低
+                
+
+                // 发现问题,当我们在新的样式类中没能将元素的所有属性都覆盖,则会出现某些样式的出错
+                // 例如未将 bgc 覆盖，则在修改后，由于新元素不存在背景颜色，元素会变成透明
+
+                // 解决：我们不将元素原本的类覆盖，我们为元素加一个新的类，加上的类是我们的样式类
+                //       原理：浏览器读取到样式表的时候是存在先后顺序的，先读取到 box1 再读取到 box2 
+                //             浏览器读取元素的内联样式的时候，读取到元素的 class 同时为 box1 box2 
+                //             浏览器去样式表中寻找 box1 box2 会先找到 box1 ,因为 box1 在样式表的位置靠前，然后为元素改变样式
+                //             改变后才又找到 box2 ， box2 中的样式再将原本的样式覆盖
+                // box.className += " box2"
+                // 样式类之间的覆盖关系的决定因素，是这两个类在样式表中的定义位置的先后，靠后的样式表总是覆盖靠前的样式表
+
+                addClass(box,"box2")
+             }
+
+
+            //  基于功能封装，我们应当将添加样式类写成一个函数
+            function addClass(obj,cn){
+                // 第一个参数是添加的对象，第二个参数是添加的类的名称
+                if(!hasClass(obj,cn)){
+                // 添加前先判断是否已经存在
+                    
+                obj.className += " "+cn
+                }
+            }
+            // 多次调用该函数，会不断的向元素的class中进行添加，虽然不影响样式，但是这种冗余应当避免
+            // 所以我们写一个函数判断某元素中是否存在某 class 值
+            // 我们需要检查的是 class 属性中是否存在某一个属性值，本质是在一个自字符串中寻找是否存在某个字符段，所以最好使用正则表达式
+            // 因为我们需要检查的字符段不是不变的，所以我们每次调用函数都要产生新的正则表达式，
+            function hasClass(obj,cn){
+                // 检查的元素对象，检查的类名
+
+                // 将传入的类名组合成正则表达式形式方便传入
+                var reg1 = /\bbox2\b/
+                var reg = new RegExp("\\b"+ cn +"\\b");
+                //  \ 在字符串中是转义字符（key），所以需要用转义字符 \ 进行转义
+                return reg.test(obj.className)
+            }
+            function removeClass(obj,cn){
+                // 将对线中指定的字符段换成空串
+                var reg = new RegExp("\\b"+ cn +"\\b");
+                obj.className = obj.className.repalce(reg,"")
+
+            }
+         }
+         
+     </script>
+     <style>
+         /* .box2{
+              width: 200px; 
+             height: 200px;
+             background-color: lightblue;
+             } */
+         .box1{
+             width: 100px;
+             height: 100px;
+             background-color: #bfa;
+         }
+         .box2{
+             /* width: 200px; */
+             height: 200px;
+             background-color: lightblue;
+             }
+     </style>
+</head>
+<body>
+    <div class="box1" id="box"></div>
+    <button id="btn01">点击修改box样式</button>
+</body>
+</html>

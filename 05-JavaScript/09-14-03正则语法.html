@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 
+        使用字面量创建正则表达式
+            var reg = /正则表达式/匹配模式
+        
+        - |     或者
+        - -     连接，包含-作用两字符之间的所有字符
+        - []    []内部的字符均含有或含义
+        - ^     非，不能是该符号之后的字符，可以在其后添加其他的正则表达式串表示非那些正则表达式串选中的字符串
+        -       并且，中间不写任何对象默认为与符号
+     -->
+<script>
+    var str = "acdefg"
+
+
+    var reg = /a/i;
+    // 正则表达式只能是字符串，不能是变量，所以其本质是没有使用构造函数创建灵活的
+    
+    // *** | 表示或，需要在字符串中确认是否存在多个字符中某一个的时候 例如 a或者b ,在正则表达式中将多个字符使用 | 连接即可
+    var reg1 = new RegExp("a|b","i");// /a|b/i
+    alert(reg1.test(str));
+
+    // *** [] 中的字符与字符之间也是或的关系
+    var reg2 = new RegExp("[ab]","i");//  /[a/b]/i
+    alert(reg2.test(str))
+
+    // *** [a-z] 可以选中Unicode码值在 a z 之间的那些字符，可以快速选中很多值并使他们被 | 连接
+    var reg3 = /[a-z]/i;
+
+    // 检查一个数据中是否含有 abc adc aec 
+    var regTest1 = /a[bde]c/;
+
+
+    // *** [^ ] 表示非，即被检测字符不能是 ^ 之后的字符，否则不满足正则表达式，或者说，必须存在除 ^ 之后字符以外的其他字符，存在其他字符即为true 不存在即为false
+    var reg4 = /[^ac]/;
+    console.log(reg4.test(str));
+
+
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

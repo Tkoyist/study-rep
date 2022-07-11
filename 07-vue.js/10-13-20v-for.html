@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        使用v-for可以遍历数组和元素创建对象
+            - 不论是数组还是对象，在只取一个值的遍历中，都会默认将数组和对象的value值赋值给形参
+            - 同样，不论是数组还是对象，使用(value,key)作为形参去取值，就能获取到值和索引
+            - 对象中还可以获取一个值(index),用于确定是对象中的第几个属性，很少使用
+     -->
+</head>
+<body>
+    <div id='box'></div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    tkoyist:{
+        age:18,
+        height:178,
+        gender:'male'
+    }
+    }
+    })
+    </script>
+</body>
+</html>

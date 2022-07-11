@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 参数问题
+        
+        // 放入两个参数
+        const sum = (num1,num2) => {
+            return num1+num2
+        }
+
+        // 放入一个参数，可以省略括号
+        const sqrt = num => { 
+            return num*num
+        }
+
+        // 当函数内部存在多行代码的时候，不需要特殊操作
+        const sum1 = (num1,num2) =>{
+            console.log("eeeee")
+            return num1+num2
+        }
+        // 当函数内部只有一个表达式一行代码的时候，我们可以省略大括号和return语句，函数会自动返回，无需return语句
+        const sum2 = (num1,num2) => sum1 + sum2
+        // 类似于lambda 表达式
+        // 也可以执行某行代码无需返回值
+        const re = () => console.log("Aaaaa")
+
+
+    </script>
+</body>
+</html>

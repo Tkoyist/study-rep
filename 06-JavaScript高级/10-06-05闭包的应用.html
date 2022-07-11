@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <!-- 
+        设计一个闭包，使得其可以返回两种不同的内部函数
+     -->
+     <script>
+        window.onload = function(){
+        function outter(){
+            var msg = "AbC"
+            function inner1(){
+                alert("inner1 up" + msg.toUpperCase())
+            }
+            function inner2(){
+                alert("inner2 lower" + msg.toLowerCase())
+            }
+            return {
+                inner1:inner1,
+                inner2:inner2
+            }
+
+        var up = outter().inner1
+        var lower = outter().inner2 
+        }
+       }
+    </script>
+    <!-- 在其他文件中写一个闭包JS模块实现相同功能并导入 -->
+    <script src="..\06-JavaScript高级\10-10-01自定义JS模块.html">
+
+    </script>
+    <script>
+        window.outputMsg.inner1()
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        父组件向子组件传递数据使用props方法
+            - 在父组件中声明需要传入子组件的数据
+            - 在子组件注册的时候，在参数对象中放入一个新属性 porps , 该属性好、可以是数组和对象
+                - 数组：在数组中传入字符串，该字符串是一个引用，我们之后会将请求来的数据放入该字符串中
+
+            - 在使用子组件的时候，以
+                <子组件名 :porps中的引用名="父组件中的数据名" >
+                的方式为引用赋值，使子组件可以通过该引用访问到父组件的相应数据
+     -->
+     <div id='box'>
+         <!-- 组件只是用这个属性，不关心它来自何处，这里则是直接对这个属性的值进行了修改（赋值），将当前组件中的这个值赋值为了我们需要的值 -->
+        <cpnc :datafromroot="dataforc"></cpnc>
+     </div>
+     <!-- template 中译：模板 -->
+     <template id="cpncmodel">
+    <div>
+        <h2>这是子组件中的原文</h2>
+        <!-- <datafromroot></datafromroot> -->
+        <!-- 子组件请求到的是数据而非组件（当然有可能是组件），所以对它的使用也应当和数据的使用一致（胡子语法） -->
+        {{datafromroot}}
+    </div>
+     </template>
+
+     
+     <script src='vue.js'></script>
+     <script>
+
+    const cpnc = {
+         template:"#cpncmodel",
+        //  props:["datafromroot"]
+        //  在组件中定义了这个对象属性，理所当然可以使用里面的数据，对于组件来说这就是一个数据，直接可以使用，但它来自哪里组件并不关心
+        props:{
+            // datafromroot:String        }
+            // 通过这种方式可以直接限定传入数据的类型
+            // 刚才我就在想，应当存在一个默认值
+
+            // 在对象中，我们可以将接受到数据设定一个默认值
+            datadromroot:{
+                // 在接受数据对象中设定默认类型
+                type:String,
+                // 设定默认值
+                default:'aaaaaaaaa',
+
+                required:true
+                // require 必须的，必需品 顾名思义，表示这个属性必须传入值             }
+     }
+
+    // vue实例可以看做一个组件（root根组件）
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     dataforc:'这是为子组件准备的数据'
+     },
+    //  component 就是组件的意思，这里相当于将组件作为属性声明在了vue实例内部
+     components:{
+        //  这里是个语法糖，vue会在js标签中寻找名为 cpnc 的数据，然后将其数据作为data，将 cpnc 作为 key ，整个作为属性放入当前对象
+        cpnc
+        // 相当于 cpnc : cpnc
+     }
+     })
+     </script>
+</body>
+</html>，

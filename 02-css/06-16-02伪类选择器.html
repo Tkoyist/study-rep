@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        将ul中的第一个li设置为红色
+
+        -伪类：
+            ·伪类用于描述一个元素的特殊状态（例如第一个子元素，被点击的元素，从鼠标移入的元素。。。。）
+            ·伪类一般情况下都使用 ：开头
+                ·：fris-child  选中一个元素，该元素是某个其他元素的第一个子元素
+                ·：last-child 选中一个元素，该元素是某个其他元素的最后一个子元素
+                ·：nth-child(x) 选中一个元素，该元素是某个其他元素的第x个子元素,注意从1开始取值，而不是从零开始
+                     x 不仅可以是某个指定值，而且可以是一些特殊值
+                        2n 或 even 表示选中所有序号为偶数的元素
+                        2n+1 或 odd 表示选中所有基数位的元素
+
+                        排序是针对元素的所有子元素进行排序，即在li中夹杂入其他类型的标签，
+                        使用这些方法不会对其进行选中，无法改变他们的样式，
+                        但是使用以上的方法进行标签选中时，依然会将其当做可以计数的标签，
+                        只是不会改变其样式
+
+                    ：frist-of-type
+                    ：last-of-type
+                    ：nth-of-type（）
+                        -以上几个伪类的功能和上述伪类相同，不同点在于他们是在同类型的元素中进行排序，
+                         也就是当多个 li 中夹杂着span 的情况中，如果使用的是 li：****-of-type
+                         span会直接被忽略，只会考虑其中的li子标签
+
+            -否定伪类（ ：not（） ）：
+                ·作用：将符合条件的元素从选择器中去除
+         */
+
+         /* ul >li:first-child{
+             color: lightyellow;
+             font-size: 60px;
+         } */
+
+         /* ul>li:last-child{
+             color: lime;
+         } */
+
+         /* ul>li:nth-child(3){
+             color: maroon;
+             font-size: 50px;
+         } */
+
+         /* ul>li:nth-child(odd){
+             color: magenta;
+         } */
+
+         /* ul>li:last-of-type{
+             color: midnightblue;
+         }
+         /* 
+         对上面一个选择器进行解析： 
+            · ul 选中了body中的所有ul
+            · > 选中了上一级选中的元素的子元素
+            · li 选中看上一级选中的元素中类型为li的元素
+            · ：对上一级选中的元素进行伪类选择
+            · last-of-type 选中该选择器中所有与此伪类选择器所在的元素的种类相同且满足该选择器条件的元素
+         */ 
+         
+         ul>li:not(:last-child){
+             font-size: 52px;
+         }
+    </style>
+</head>
+<body>
+    <ul>
+        <span>放入一个span</span>
+        <li>the zero</li>
+        <li class="frist">第一个·</li>
+        <li>第二个</li>
+        <li>第三个</li>
+        <li>第四个</li>
+        <li>第五个</li>
+    </ul>
+</body>
+</html>

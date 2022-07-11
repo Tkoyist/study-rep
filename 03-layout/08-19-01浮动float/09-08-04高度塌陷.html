@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        高度塌陷问题：
+            当我们需要一个父元素的大小不确定，由内容决定时，可以不给它设置高度，这样它的大小由它的内容决定，由其内容区撑开
+            在这种情况下，如果我们又需要在它内部进行水平布局，就需要将它内部的子元素设置浮动
+            但是如果将其子元素设置为浮动之后，其子元素便会从父元素中脱离，独立出来（浮动元素的特点）
+            这时我们会发现父元素的高度变成了0（高度丢失），因为内部没有“正常”的内容可以将其撑开，而浮动元素脱离了文档流，无法作为正常元素将其撑开
+            这便是高度塌陷问题
+
+            高度塌陷问题是浮动布局中的常见问题，需要我们进行处理
+         */
+
+         /* 
+         BFC（block formatting context）
+         块级格式化环境
+         -BFC是CSS的一个隐藏属性，可以为一个元素开启BFC属性
+         -元素开启BFC属性会使其变成一个独立的布局区域
+         -元素开启BFC的特点（无论使用什么方式开启BFC都会产生相同的效果）：
+            *开启BFC的元素不会被浮动元素覆盖
+            *开启BFC的元素的子元素和父元素的外边距不会重叠
+                ·通常情况下，子元素的外边距是会传递给父元素的，即给子元素设置外边距，并不会导致子元素和父元素被子元素的外边距隔开，
+                 而是子元素和父元素共同与其他元素隔开，而子元素和父元素的相对位置不会发生改变
+            *开启BFC的元素可以包含浮动的子元素
+
+         -元素开启BFC
+            *元素无法直接开启BFC,只能间接开启
+            *所有开启BFC的方式都会产生一定的副作用
+            1 使元素浮动可以开启元素的BFC但是可能出现元素覆盖其他元素的情况
+            2 将元素设置为行内块元素（display  online-clock）可以开启元素的BFC 
+            3 设置元素的 overflow 值设置为非 visible 的值
+                *常设置为 hidden 开启BFC
+          */
+
+          .box{
+              margin: 50px;
+              height: 100px;
+              width: 100px;
+              background-color: cyan;
+          }
+          .box1{
+              margin: 50px;
+              height: 50px;
+              width: 50px;
+              background-color: crimson;
+          }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"></div>
+    </div>
+</body>
+</html>

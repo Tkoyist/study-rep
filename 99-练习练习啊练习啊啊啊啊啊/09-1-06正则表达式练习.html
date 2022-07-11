@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        写一个正则表达式，用于确定一个字符串是不是手机号码
+
+        手机号码 十一位数字，并以 1 开头,后接3-9的任意数字
+     -->
+     <script>
+         var str1 = "12345678901"//错误
+         var str2 = "1234567890" //差一位
+         var str3 = "01234567891"//不以1开头
+         var strT = "17602319621"//T
+
+         var reg = /^1[3-9][0-9]{9}$/
+        //  必须写上结尾符号，否则出现一个正确手机号后面加上一堆无意义符号，正则表达式也不会报错
+
+         console.log(reg.test(str1))//0
+         console.log(reg.test(str2))//0
+         console.log(reg.test(str3))//0
+         console.log(reg.test(strT))//1
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- 
+  前面已经讲到，html 页面的hash 方式改变是不会刷新页面的，已经实现了路由的第一个要素
+  现在我们还需要监听url 的改变
+
+  - 兼容性较好
+  - 需要在路径中添加#显得不真实
+ -->
+<body>
+  <div id='box'>
+    <a href="#/home">首页</a>
+    <a href="#/about">关于</a>
+    <!-- 更改url时，在url之后加上一个#符，表示是hash方式修改，这样是不会刷新页面的 -->
+    <!-- 经证实，确实不会刷新页面 -->
+    <div id="routerview">more</div>
+  </div>
+    <script>
+      const routerview = document.getElementById('routerview')
+
+      //  监听url 改变 
+      window.addEventListener('hashchange',()=>{
+        console.log('url改变',window.location.hash);
+        // 成功监听,并且我们可以通过window.location.hash 获取到当前的url
+        
+        // 现在已经监听到hash 的改变并且截取到了，现在只需要在hash 值改变的时候，根据url在router-view处展示相应的页面即可
+        // 直接进入swtich 判断，判断当前的url 是什么，再根据url 直接修改router-view 的innerHTML
+        switch(location.hash){
+          case'#/home':
+            routerview.innerHTML ="首页"
+            
+          case'#/about':
+            routerview.innerHTML = '关于'
+          default:
+          routerview.innerHTML = ''
+        }
+      })
+
+    </script>
+</body>
+</html>

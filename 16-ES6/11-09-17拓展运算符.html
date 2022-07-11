@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    
+    <script>
+        // 拓展运算符 ... 能将一个数组转化逗号分割的参数序列
+        // 当我们将 ...数组名 传入一个函数时，函数会接收到数组中的所有元素，注意数据不是以数组的形式传入的，而是以独立参数的形式传入的
+        // 当我们直接使用 ...数组名 进行访问输出时，会逐个输出数组中的数据，中间以空格隔开
+        // 拓展运算符进行处理的数组会根据使用场景的不同而返回不同形式的数据
+        // 但大多数情况都是以逗号分割
+
+        // -- 拓展运算符应该是对数组和维数组进行一个遍历展示，将数组和维数组的内容进行遍历并返回
+
+        const test = [1,2,32,45,46,4,]
+        console.log(...test);
+
+        function fun(){
+            console.log(arguments);
+        }
+        fun(...test)
+
+        // 拓展运算符实际应用
+        // 1 数组拼接
+        let test2=['a','b','c','d']
+        // 使用拓展运算符快速拼接
+        let test3 = [...test,...test2]
+        console.log(test3);
+        
+
+        // 2 数组克隆，非完全深拷贝，当数组中存在对象时无法拷贝
+        let test4 = [...test3]
+        console.log(test4);
+
+        // 3 将维数组转化为真正的数组
+        const divbox = document.querySelectorAll('div')
+        // 遍历维数组的内容并将他们依次放入数组中，就将其转化为了真正的数组
+        const divbox2 = [...divbox]
+        console.log(divbox2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航条</title>
+    <style>
+        .daohang>li>div{
+            height: 50px;
+            width: 150px;
+            background-color: lightsteelblue;
+
+            opacity: .4;
+
+            font-size: 20px;
+            
+            /* float: left; */
+            /* 不能在这里进行浮动，因为浮动的元素不会超过其父元素之外，在这里进行浮动只会使得div元素在li内部进行浮动，而相互之间因为有li的阻拦，无法达到我们想要的样式 */
+
+            align-items: center;
+            /* 设置水平居中的时候li的点会消失 */
+            line-height: center;
+        }
+        .daohang>li{
+            float: left;
+            /* 对li进行浮动，每个li都是浮动元素，而他们之间不存在其他元素的阻拦，所以不会产生影响 */
+        }
+    </style>
+</head>
+<body>
+    <ul class="daohang">
+        <li>
+            <div>
+                HTML/CSS
+            </div>
+        </li>
+        <li>
+            <div>
+                Browser Side
+            </div>
+        </li>
+        <li>
+            <div>
+                Server Side
+            </div>
+        </li>
+        <li>
+            <div>
+                Programming
+            </div>
+        </li>
+        <li>
+            <div>
+                XMl
+            </div>
+        </li>
+        <li>
+            <div>
+                Web Building
+            </div>
+        </li>
+        <li>
+            <div>
+                Reference
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

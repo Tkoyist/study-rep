@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box1">
+        <h2>   当前计数：{{counter}}</h2>
+        <!-- v-on指令，on 表示监听，即给元素绑定了一个监听指令,我们可以直接给该指令赋值做一些简单操作-->
+        <!-- <button v-on:click='counter++'>+</button>
+        <button v-on:click='counter--'>-</button> -->
+        <!-- 但这仅限于简单的操作 -->
+
+        <!-- 我们也可以尝试在vue对象中绑定一个函数作为data的属性值，在html中使用相同方法引用 -->
+        <button v-on:click='add'>++</button>
+        <button @click='sub'>--</button>
+        <!-- @click是一个简写语法糖 -->
+    </div>    
+
+    <script src='vue.js'></script>
+    <script>
+        const app = new Vue({
+            el:'#box1',
+            data:{
+                counter : 0
+                // add : function(){
+                //     counter++
+                //     alert(counter)
+                // }
+                // data 只用于定义数据
+            },
+            methods:{//用于定义需要的方法
+                add:function(){
+                    this.counter++
+                    console.log("add")
+                },
+                sub:function(){
+                    // counter--
+                    // 这里读取不到data中的数据，直接调用会报错
+                    // 直接访问会去全局中寻找，即当前script标签内部寻找，是找不到的
+                    // 需要指定是当前Vue对象中的数据
+                    this.counter--
+                    // app.counter--
+
+                    alert("sub")
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

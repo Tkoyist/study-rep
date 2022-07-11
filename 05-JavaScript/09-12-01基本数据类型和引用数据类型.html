@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        基本数据类型
+            Number String Null Undefined Boolean
+        引用数据类型
+            Object
+
+            -js中基本数据类型的数据储都是储存在栈内存中的
+            
+            -对于引用数据类型的储存
+                以一句创建引用类型的语句举例
+
+                    var obj = new Object();
+
+                    浏览器读取到 var obj 时，会在栈内存中为obj创建一个值，变量名为 obj
+                    当浏览器读取到 = 时，准备给 obj 赋值
+                    而当浏览器读取到 new Object() 时，会在堆内存中开辟一个空间用于储存 obj 类的数据内容，然后将这个空间的引用（地址）传给栈内存中的 obj 
+                        此时， 栈内存中有一个变量名为 obj ， obj 的值为一个地址，而该地址指向了堆内存的一个空间，该空间中储存着obj的数据
+                    
+                我们再来看引用数据类型的数据间赋值
+                    
+                    var obj1 = obj;
+
+                    从浏览器的角度来看待这个语句
+                    浏览器读取到 var obj1 = 时在栈内存中创建了一个变量名为 obj1 并准备为其赋值
+                    浏览器读取到 obj 这个变量的内容（是一个引用（地址）），直接将该引用传给了 obj1 
+                    这时我们发现 obj1 和 obj 都储存着相同的地址，指向堆内存中的同一个空间，而这个空间里面便是它们共用的储存空间
+
+                    *因此当多个引用类型对象指向同一个类的时候，通过其中的任何一个引用去修改数据内让内容，都是直接修改堆内存中的数据内容，因此会导致所有指向该数据的引用都受到影响
+
+
+     -->
+</head>
+<body>
+    
+</body>
+</html>

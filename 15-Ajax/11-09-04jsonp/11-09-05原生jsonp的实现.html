@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    用户名:<input type='text' id='username'>
+
+    <script>
+        // querySelector 可以使用css 选择器方式获取到对应的DOM 元素
+        const ipt = document.querySelector('input')
+
+        // onblur 失去焦点事件
+        ipt.onblur = ()=>{
+            let username = this.value
+            // const xhr = new XMLHttpRequest()
+
+            // xhr.open()
+
+            // 使用jsonp原生操作
+            // 创建一个Sc 标签用于跨域请求
+            const script = document.createElement('script')
+            // 设置该标签的src 属性用于发送请求
+            script.src='http://127.0.0.1:8000/check'
+            // 插入document
+            document.body.appendChild(script)
+            
+
+
+        }   
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        我们发现通过以前的方式
+            我们只能一次为一个事件绑定一个事件响应函数
+     -->
+     <script>
+     window.onload=function(){
+         var btn01 = document.getElementById("btn01")
+        //  btn01.onclick = function(){
+        //      alert("1")
+        //  }
+        //  btn01.onclick = function(){
+        //      alert("2")
+        // 这种情况下只会触发最后一个响应函数，因为存在方法的覆盖
+
+        // 我们引入一个新的方法，时间绑定方法
+        // addEventListener() 方法
+        //      - 该方法由事件调用
+        //      - 参数
+        //          * 事件，但不需要 on 例如 onclick 直接写为 click
+        //          * 响应函数
+        //          * 是否在事件捕获阶段触发函数，一般选择fasle
+        //      - 使用该方法可以为一个事件绑定多个响应方法，绑定的方法会依次执行
+         }
+        
+     </script>
+</head>
+<body>
+    <button id="btn01">按钮</button>
+</body>
+</html>

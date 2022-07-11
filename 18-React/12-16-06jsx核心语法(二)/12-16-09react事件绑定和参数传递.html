@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <Script type='text/babel'>
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={
+                movies:['a','b','c']
+            }
+        }
+
+        render(){
+            return(
+                <div>
+                    <ul>
+                        {
+                            this.state.movies.map((item,index) => {
+                            // 由于我们为事件真正绑定的函数是一个箭头函数，所以事件对象也只能被该箭头函数接收到，但是我们可以将其传递给我们真正的事件响应函数
+                            return (
+                                <li onClick={(event)=>{this.func(index,item,event)}}>
+                                {item}
+                                </li>
+                            )
+                        })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+
+        func (index,item,e) {
+            console.log(index , item , e);
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('box'))
+    </Script>
+</body>
+</html>

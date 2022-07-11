@@ -1,0 +1,28 @@
+<!-- 
+    请求成功
+    请求失败
+    响应成功
+    响应失败
+
+    拦截实例的拦截器
+        实例名.interceptors
+    拦截请求
+        实例名.interceptors.request
+    拦截响应
+        实例名.interceptors.response
+
+    使用
+        实例名.interceptors.请求/响应.use()
+        需要传入两个函数作为参数，一个用于成功处理一个用于失败处理
+
+        我们拦截axios 之后，需要将原本数据返回。否则传输的数据会被截断
+        config =>{
+            console.log("成功拦截请求成功发送");
+            return config
+        },
+        例如这里，请求成功发送之后，我们不返回config 服务器就拿不到config 内部的url 是无法访问到相应数据的
+
+        而响应的拦截，截取下来的数据是result ，即服务器的返回，里面包含了各类信息，但是我们只需要用到result.data
+        注意也需要返回数据，但是一般只返回result.data
+    
+ -->

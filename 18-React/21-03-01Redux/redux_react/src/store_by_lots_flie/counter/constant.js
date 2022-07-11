@@ -1,0 +1,1 @@
+// counter 中action 需要用到的type常量

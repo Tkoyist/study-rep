@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        实现父子组件某数据的双向绑定
+     -->
+</head>
+<body>
+    <div id='box'>
+        <ccpn @ccpnvaluechange="datachange" :number1="number"></ccpn>
+
+        <!-- 父组件获取子组件通过 $emit 方法返回的数据的时候，在调用事件函数的时候不用写参数列表，（但是定义到时候需要写）$emit函数会逐一将参数传入 -->
+
+        data:{{number}}
+    </div>
+    <template id = 'ccpn'>
+    <div>
+        子组件
+        <!-- <input type="text"  v-model="number1" > -->
+        <!-- 直接使用v-model,可以，但不推荐，任意造成数据混乱 -->
+        <input type="text" :value="number1" @input="cvaluechange">
+        <!-- 通过两个指令完成v-model的操作，但子组件对父组件的数据改变使用事件响应函数间接完成 -->
+        {{number1}}
+    </div>
+    </template>
+
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    number:100,
+    
+    },
+    components:{
+        ccpn:{
+        template:"#ccpn",
+
+        // props的数据本可以双向绑定到元素，但是props数据最好只又父组件改变，所以子组件双向绑定会报错
+        // 所以我们通过子组件修改父组件的传入传入数据，先由输入框将数据传输给父元素，改变父元素传入给子元素的数据用于改变props
+        props:{
+            number1:{
+                default:100
+            }
+        },
+        data(){
+            return{
+                datanumber:this.number1
+            }
+        },
+        methods:{
+            // 使用 event.target.value获取当前输入框的value值
+            cvaluechange(event){
+                // this.number1 = event.taeget
+                // 系统报错，提示，不建议子组件修改props属性，建议使用一个data值代替props
+                // 正好我们需要一个值将input的现在值传输出去用于改变符组件的数据，都可以放在这里面一起执行
+                // 当input的数据发生改变，将组件data修改，并返回一个指令给父组件，告诉他子组件数据发生了改变，并将改变的值返回
+                this.datanumber = event.target.value
+                this.$emit('ccpnvaluechange',this.datanumber)
+            }
+        }
+    }
+    },
+    methods:{
+        datachange(datanumber){
+            this.number = datanumber
+        }
+    }
+    })
+    </script>
+</body>
+</html>

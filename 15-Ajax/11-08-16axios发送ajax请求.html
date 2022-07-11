@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios 发送ajax请求</title>
+</head>
+<body>
+    <button>get</button>
+    <button>post</button>
+    <button>ajax</button>
+
+    <!-- 安装axios 只是将axios 的文件引入了当前文件夹下的node_modules 文件夹中，但是对其使用我们还是要要先将其导入当前文件夹 -->
+    <script src='./node_modules/axios/dist/axios.js'></script>
+
+    <script>
+        
+
+        const btn0 = document.getElementsByTagName('button')[0]
+        const btn1 = document.getElementsByTagName('button')[1]
+        const btn2 = document.getElementsByTagName('button')[2]
+
+        // 设置axios baseurl
+        // 注意defaults 不是 default
+        axios.defaults.baseURL = 'http://127.0.0.1:8000'
+
+        // 使用axios 的get方法发送ajax get 请求
+        btn0.onclick =function(){
+            axios.get('/axios',{
+                // 设置传入参数
+                params:{
+                    id:100,
+                    name:'tkoyist'
+                },
+                // 设置请求头参数（也可以设置自定义头）
+                headers:{
+                    name:'aaaa',
+                    age:123131
+                }
+            }).then((res)=>{
+                console.log(res.data);
+            })
+        }
+
+        // 使用axios 的post方法发送ajax post 请求
+        btn1.onclick = ()=>{
+            // axios 的post 请求格式与get 是不同的，post 方法存在三个参数，第一个参数是url 第二个参数是 请求体 第三个参数才是各类设置参数
+            axios.post('/axios',{
+                    user:'tkoyist',
+                    password:123132132
+                },
+                {
+                params:{
+                    name:'tkoyist'
+                },
+                headers:{
+                    name:'tkoyist'
+                }
+            }).then((res)=>{
+                console.log(res.data);
+            })
+        }
+
+        // 使用axios 函数发送ajax 请求
+        btn2.onclick = ()=>{
+            // 其实就是通过我们最开始学到的axios 的使用方式去发送请求，将所有数据放入同一个参数之中
+            axios({
+                // 设置url
+                url:'/axios',
+                // 设置请求方法
+                method:'POST',
+                // 设置url参数
+                params:{
+                    page:1,
+                    item:30
+                },
+                // 设置请求头
+                headers:{
+                    name:'hp'
+                },
+                // 设置请求体
+                data:{
+                    username:'tkoyist'
+                }
+            }).then(res=>{
+                console.log(res);
+                // 响应状态码
+                console.log(res.status);
+                // 响应状态字符串
+                console.log(res.statusText);
+                // 响应头信息
+                console.log(res.headers);
+            })
+        }
+    </script>
+</body>
+</html>

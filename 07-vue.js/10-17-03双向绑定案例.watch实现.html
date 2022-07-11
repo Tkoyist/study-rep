@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='box'>
+        <input type="text" v-model="msg">
+    </div>
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello'
+    },
+    // watch 用于监听数据改变，我们需要监听一个数据的时候，以数据名作为参数名在watch中定义方法，当被监听数据发生改变的时候，watch会调用执行
+    // 每个watch方法存在两个变量，分别对于数据新的值和旧的值
+    watch:{
+        msg(newValue,oldValue){
+            alert(newValue)
+        }
+    
+    }})
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        假继承
+            用于获取“父对象”的构造函数，用于给“子对象”中的同名属性直接赋值
+            本质是对“父对象”的构造方法的借用
+     -->
+    <script>
+        function Per(name,age){
+            this.name = name
+            this.age = age
+        }
+        function Stu(name,age,price){
+            Per.call(this,name,age)
+            // 函数.call() 使用函数对象调用call函数，使调用call函数的this指向call中赋予的this
+            // 在这里相当于 this.Per(name,age)
+            // 借用Per的构造函数，为当前实例中相同的属性赋值，减少了代码量
+
+            // 也就相当于
+            // this.name = name
+            // this.age = age
+            
+
+            this.price = price
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

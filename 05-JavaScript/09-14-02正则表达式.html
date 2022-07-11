@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        正则表达式用于定义字符串规则，可以理解为字符串筛选表达式
+
+        在js中正则表达式是一个对象
+        创建正则表达式
+            var reg = new RegExp()
+            * 两个参数 
+                - 正则表达式
+                - 匹配模式      i(忽略大小写)  /  g 
+
+        正则表达式对象存在一个方法 Test() 
+        该方法可以检查字符串是否符合正则表达式对象的规则
+
+        规则：
+            * 区分大小写
+            - 直接写一个字符进正则表达式，会检查字符串中是否含有该字符，含有则返回true，否则返回false
+
+     -->
+     <script>
+         var str = "abcabcabc";
+
+         var reg = new RegExp("A","i");
+
+         console.log(reg.test(str));
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

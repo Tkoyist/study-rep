@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        继承模式：
+            在js中想要实现对象间的继承，需要将子对象的原型对象设置为父对象的实例
+            子对象原本的原型是一个object空对象，将其改变为一个父对象实例后，就是将父对象的整个原型链直接加在了子对象的原型链之前，或者说是将子对象添加在了父对象的原型链末尾
+     -->
+     <script>
+         function Father(){
+         }
+         Father.prototype.msgFather = "fathermsg"
+
+         function Son(){
+         }
+
+         Son.prototype = new Father();
+        //  令子对象的构造函数的原型对象变成父对象的实例，这样，当我们查询某个属性的时候，浏览器会在原型链中查找，而父对象已经在原型链之中
+
+        // 如果需要在子对象的原型中添加需要的方法，需要在继承语句之后进行，在继承语句之后，向其子对象中添加方法本质是对一父对象实例添加方法，而在其之前添加，实则是添加到了一个无意义的空object对象（因为子对象在继承之后与该对象已经没有联系，所以是无意义的空对象）
+         var father = new Father()
+         var son = new Son()
+
+         alert(son.msgFather)
+
+         alert(son.constructor)//查看实例的构造函数
+        //  会返回 function Father(){}
+        //  原本该属性是存在于实例的隐式原型当中，而在子对象完成继承操作之后，其隐式原型指向的是一个父对象实例，而该实例本身是不存在该属性的，我们去访问子对象的该属性，子对象本身不具有，会在它的原型链中寻找，第一次找到，是在子对象的原型的原型（父对象原型，一个空object对象中找到），而该对象的该属性指向的是父构造方法，所以会输出父构造方法
+        //  而这种指向是错误的，我们需要它指向正确的方式
+        //  原本指向正确的函数，是因为原本的实例的原型的该属性指向该实例的构造方法，我们只需要使得实例的新原型的该属性和之前一样指向该实例的构造方法即可
+        son.__proto__.constructor = Son
+        // 或者
+        Son.prototype.constructor = Son
+        alert(son.constructor)
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

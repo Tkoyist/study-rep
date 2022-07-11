@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        js中
+            表示十六进制数字，直接使用 0x 开头，在0x之后加上十六进制的数字即可
+            表示八进制数字，直接使用 0 开头
+            表示二进制数字，直接使用 0b 开头，但很多浏览器不支持
+ 
+            *注意对这些进制的数字的输出依然会输出十进制
+
+
+            类似于 070 这种字符使用parse转换为Number的情况，有的浏览器会直接忽略0当做十进制转换，有的浏览器会把 0 看做八进制的标志进行八进制转换
+            为了避免出现分歧，可以在函数中加入第二个参数来确认其进制
+            例如： 
+                parseInt("070",10)
+                parseInt("070",8)
+
+     -->
+     <script>
+         var a = 0xaaaaaa;
+
+         alert(a);
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

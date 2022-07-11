@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  -->
+    <div id='box'>
+        <!-- 这里需要加单引号，是因为值可以是具体的数值，也可以是一个变量，代指变量内部的值，为了避免vue解析出错，所以我们需要将这两种不同的情况区分开，所以用单引号区分，而他们的属性名，只会是字符串，不需要加引号 -->
+        <!-- 对象语法 -->
+        <h2 v-bind:style="{color:color}">{{msg}}</h2>
+        <!-- 数组语法 -->
+        <!-- 数组中当然是不存在键值对的，所以当然不可能使用数组去直接修改样式，但是我们可以在数组中放多个对象，这些对象中的属性会被读取 -->
+        <h2 v-bind:style="[objectStyle1,objectStyle2]">{{msg}}</h2>
+        
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    color: 'red',
+    objectStyle1:{
+        'font-size':"50px"
+    },
+    objectStyle2:{
+        color:'red'
+    }
+    
+    }
+    })
+    </script>
+</body>
+</html>

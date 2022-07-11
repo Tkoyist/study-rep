@@ -1,0 +1,50 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    生成器本质是一个函数
+    是一个es6 的异步编程解决方案
+ -->
+<body>
+    <script>
+        // 格式：在function关键字和方法名之间添加一个*，表示当前函数是一个生成器函数
+        function *generator(parm){
+            console.log(parm);
+            // yield 语句是存在返回值的
+            // 它的返回值即下次调用next()函数时传入的参数，我们可以使用变量获取yield 语句的返回值，即捕获到下次next() 迭代时传入的参数,注意是下一次迭代
+            // 而首次迭代的参数传入可以在生成生成器实例的时候，作为生成器函数的参数传入
+            let one = yield 1
+            console.log(one);
+            console.log(parm);
+            // yield 不会产生作用域
+            yield 2
+            console.log(('2'));
+        }
+        
+        let gen = generator('hello generator') // 直接执行没有返回值
+        console.log(gen); // 打印发现原型对象中实现了next() 方法，说明是一个迭代器对象，可以使用for of 遍历
+        // gen.next()
+        // gen.next()
+        // 调用生成器对象的next() 方法会遍历生成器
+        // 前面说过next() 方法会返回一个对象，对象包含value 属性和 done 属性，上面的用法并没有获取到next() 的返回值，仅仅只是执行了yeild 中的代码
+        // 我们试着获取next() 的返回值
+        console.log(gen.next());
+        console.log(gen.next('AAAA'));
+        console.log(gen.next());
+        // 获取到的是一个包含value 属性和done 属性的对象，果然生成器实例就是一个iterable 
+
+
+        // 生成器作为迭代器的分支，可以使用for of 进行遍历
+        let gen2 = generator()
+        for(let i of gen2){
+            console.log(i);
+            // 遍历返回的值是yield 关键字的返回值
+        }
+    </script>
+</body>
+</html>

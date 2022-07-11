@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{
+            background-color: #bfa;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            /* 决定元素是否换行和如何换行 */
+            flex-wrap: wrap;
+            /* nowrap 默认值，不换行,wrap-reverse 换行，第一行在下方 */
+
+            /* direction 方向，顾名思义，该属性决定了元素的排列方向可以选择从左到右，从右到左，从上到下，由下至上 */
+            /* flex-direction: column; */
+            /* 注意，当排列方式发生改变之后，相当于整个容器都进行了转动或者镜像，且 main axis 和 cross axis 在过程中也会发生相应的改变，因此jusify-content 和 align-items 的效果也会交换 */
+
+            /* 决定item 在容器中的排列方式，与item的大小无关，也不改变item的大小 */
+            /* justify-content: space-between; */
+            /* sapce-between 平均分配距离对齐，但最左和最右的item 与容器边框紧贴 */
+            /* justify-content:space-around; */
+            /* sapce-around  表现上类似于给元素加上了内边距，与容器边框存在间隔，间隔为元素间间隔的一半*/
+
+            /* align-items 设置了item在容器内的垂直方向排布方式，center即使得元素居中展示 */
+            align-items: center;
+            /* align-items: stretch; */
+            /* stretch 是该属性的默认值，当item未设置高度的时候，stretch 会使得元素自动拉长至与 cross axis 相等  */
+
+            /* align-content:stretch */
+            /* 关于 align-item 与 align-content 的问题，请翻阅goodNodes 的笔记 */
+        }
+        .item{
+            /* flex 是 flex-gorw flex-shrink flex-basis 的简写 */
+            flex: 1 0 auto;
+            /* 其实flex 的值并不是一定要进行设置，我们通常设置flex 只是为了使其能自动填充填满容器内部 */
+            background-color: white;
+            width: 100px;
+            height: 100px;
+        }
+        .item1{
+            /* flex-basis 设置item在进行分割前在main-axis 中占据的区域大小，默认情况下值为auto（与容器本身宽度一致，我们也可以自行设置为其他值） */
+            /* flex-basis: 100px; */
+            
+            /* order值可以跳过html 结构直接改变容器内部的元素排列，order 值越大越靠后，可以为负值，默认为0 */
+            order: 999;
+
+            height: 200px;
+            width: 200px;
+            /* item 被设置为需要填充至铺满容器时，不论每个item 的大小如何，我们都只根据他们各自的flex 值（本质上是flex-grow 和 flex-shrink）来分配变大或者变小的值，即总共需要改变的值平均分总份数，再根据每个item 的份数各自平分 */
+            flex: 0 0 auto;
+            /* 此时item1 不再变大，需要填充的空间由item2 item3 分担 */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item item1"></div>
+        <div class="item item2"></div>
+        <div class="item item3"></div>
+    </div>
+</body>
+</html>

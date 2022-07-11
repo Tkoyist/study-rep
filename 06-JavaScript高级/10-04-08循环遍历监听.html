@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        创建三个按钮，点击任一按钮会显示点击了哪一个
+     -->
+     <script>
+         window.onload = function(){
+            var allB = document.getElementsByTagName("button")
+
+        //  for(var i = 0;i<allB.length;i++){      //allB是一个类数组，它的length并非像数组一样直接写在数组对象中，而是每次使用到length都需要自行计算，所以这样写计算压力过大
+        //  for(var i = 0,Length = allB.length;i<Length;i++){//改进写法，减少计算量。提高代码效率
+
+        //     // 为了解决下面提到的问题，我们可以在for循环中(响应函数之外)为每一次取出的button对象（btnA[i]添加一个属性用于存储当时的 i ，方便后面调用）
+        //     allB[i].index = i
+
+        //     allB[i].onclick = function(){
+                
+        //         alert(this.index+1)//都会显示4，因为再给事件添加响应函数之前，for循环已经执行完毕（事件响应函数是在事件触发的时候才会调用，而在调用前，响应函数是处于声明但未读取函数体的状态）在调用执行函数的时候，i已经等于4了，所以不管怎么输出i都等于4
+        //     }
+        // // 这种情况下，i是一个全局变量，因为这个过程中并不存在函数的参与，不存在函数作用域，i就是直接存在于全局作用域中的
+        //  }
+        // }    
+        
+        // 使用匿名函数自调用方式实现
+        for(var i = 0 ,length = allB.length ; i<length ;i++){
+            (function(parm){
+                allB[parm].onclick = function(){
+                    alert(i+1)
+                }
+            })(i)
+        }
+        // 
+        }
+     </script>
+</head>
+<body>
+    <button id="btn01">01</button>  
+    <button id="btn02">02</button>  
+    <button id="btn03">03</button>  
+</body>
+</html>

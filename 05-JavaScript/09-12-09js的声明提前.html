@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        js的声明提前
+            在js中，浏览器运行代码之前会先将所有代码中的声明代码 var 语句代码全部先行实现
+            即会先将所有代码中用于声明的代码全部实现（但与 var 代码相邻的赋值代码不会实现）
+            这便是js的声明提前机制
+
+            该机制仅对var声明生效，不使用var声明不会触发该机制
+
+            函数的声明提前机制
+            使用函数声明创建的函数会在所有代码运行前创建，因此在何处创建不会影响其使用
+     -->
+     <script>
+        // console.log(a);
+
+        // var a = 123;//ouput 123
+        // a = 123;//undefind
+
+        fun();//正常运行
+        function fun(){
+            console.log("测试函数1调用");
+        }
+        // 使用函数声明创建的函数优先级很高，会在所有代码执行之前就创建
+
+        fun2();//报错 fun2 不是一个函数
+        var fun2 = function(){//本质是创建了一个匿名函数，并将该函数的引用传递给了变量，因此可以使用变量来访问到该函数
+            console.log("测试函数2调用");
+        }
+        // 在这个例子中，由于js的声明提前机制，var fun2 被提前实现了，因此提前调用 fun2 不会产生未定义的报错，但是由于对其仅仅是声明，并未给其赋值为一个函数，浏览器直接将其当做函数进行操作，会无法操作（因为它目前是个空变量，不存在任何内容），因此会报错 not a function 而
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

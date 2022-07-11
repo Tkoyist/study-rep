@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+
+     -->
+     <script>
+         var a = {age : 999}
+
+         function fun(obj){//这里 obj 收到了传入的数据（a中存储的地址值），并将 obj 的数据修改为了 a 中的数据
+            obj = {age : 1}  
+            // 理解这句话，创建了一个对象，并将该对象的地址值传给了 obj ,即 obj 的值从 a 中存储的地址值变为了一个新对象的地址值
+            // 本质上是对 obj 的数据的修改，此时已经与 a 没有任何关系了，也没有对 a 进行任何修改 
+            // 之后函数结束后，obj被清除，没有任何引用指向该对象，该对象被清除
+            // 在函数中通过地址值修改对象的数据，是依靠地址值先访问到数据再修改，这里根本没通过传入的地址值进行任何访问
+         }
+
+         fun(a)//这个过程中将 a 存储的值（一个地址值）传入了函数
+
+         alert(a.age)
+         
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

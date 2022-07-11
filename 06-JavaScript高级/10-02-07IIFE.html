@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        IIFE
+        匿名立即执行函数
+
+        优点：
+            - 隐藏实现（外部程序无法看见这个实现）
+            - 不会污染全局命名空间（函数执行完成后变量会被清除）
+            - 可以用于编写js模块
+            
+     -->
+     <script>
+         (function(){
+             var a = 3
+             alert(a)
+         })()//立即执行函数，又称之为匿名函数自调用
+
+
+         ;(//防御性分号，避免出现有时候前面的语句将该匿名立即执行函数当做一个之前语句的一部分
+             function(){
+                 var a = 0;
+                 function test(){
+                     alert(++a)
+                 }
+                 window.$ = function(){//在匿名立即执行函数中创建一个全局作用域函数，给外部代码一个访问匿名立即执行函数内部的接口  向外暴露一个全局函数
+                     return test
+                 }
+             }
+         )()
+         $()();
+     </script>
+</head>
+<body>
+    function
+</body>
+</html>

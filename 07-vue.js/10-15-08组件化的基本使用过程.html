@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        先引入一个语法: 
+            ` `
+            在ES6中可以使用 ` ` 定义字符串
+            使用这种方法定义字符串可以直接换行定义
+            如
+            `
+            <a>
+            `
+            这样是不会报错的
+
+
+            - 创建组件构造器，并将组件的信息放入一个对象中传入extend()方法，该方法会处理传入数据并返回一个方法，返回的方法就是组件构造器
+            - 祖册组件        组件构造器创建之后，通过componet() 方法，将组件的命名和组件的构造器依次传入，方法会将该构造器构造的组组件命名为传入的名字
+            - 使用组件        然后我们就可以在Vue实例的内部使用组件
+
+
+            真正过程：
+            
+     -->
+    <div id='box'>
+        <!-- 在Vue实例内部使用组件 -->
+        <my_cpn></my_cpn>
+
+    
+    </div>
+    <script src='vue.js'></script>
+    <script>
+        // 创建组件构造器
+        // extend 延伸，组件和模板并非一模一样，组件的使用会加上很多数据，但确实是在template之中，所以源自template，但发展延伸到了具体的组件
+        const cpnC = Vue.extend(
+            {
+                template:`
+        <div>
+            <h2>aaaaaaa</h2>
+            <h3>bbbbbbbbbbbb
+                <h4>cccccccccccccccccc</h4>
+            </h3>
+        </div>`
+            }
+        )
+
+        console.log(cpnC);
+        // 注册组件
+        Vue.component('my_cpn',cpnC)
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    }
+    })
+    </script>
+</body>
+</html>

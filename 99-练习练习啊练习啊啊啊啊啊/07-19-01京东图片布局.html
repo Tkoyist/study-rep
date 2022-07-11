@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        .img-list {
+            padding: 0px;
+            background-color: aliceblue;
+            list-style: none;
+            width: 190px;
+            height: 470px;
+            /* 设置溢出剪切，否则可能出现图片溢出了区域，但是无法直接看到，导致不知道溢出，设置剪切之后，可以看到出现的问题，方便改正 */
+            overflow: hidden;
+
+            /* 
+            设置元素使得其在页面中居中，
+            这里使用的是简写
+            实际内容是 margin：0px auto 0px auto
+            即上下外边距为0 左右外边距为auto 这便会使得元素居中
+             */
+            margin: 0px auto;
+            /* 
+            复习
+                页面水平布局，父元素的内容区是被里面的内容撑开的
+                如果里面的内容不足以撑开内容区，内容的外边距就会自动修改，直到能撑开，也可以通过对某个水平属性值设置为 auto 来使其改变达到以上目的
+                当一个元素的左右外边距均为 auto 时，该元素会在其父元素的内容区居中
+             */
+        }
+
+        /* 
+        选中列表中的图片标签，设置其宽度为100%（相对宽度，使得图片宽度满足我们为其设置的框）
+        不直接设置图片的绝对宽度 因为一般不设置行内元素的大小 而趋向于设置块元素的大小
+         */
+        .img-list img {
+            /* 使图片宽度为其父元素宽度的100% */
+
+            width: 100%;
+        }
+
+        /* 
+        设置图片间的间距，使用外边距设置
+        但是最后一个图片不应该存在边距，所以使用伪元素选择器选中除最后一个子元素外的所有子元素
+         */
+        .img-list li:not(:last-child) {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="img-list">
+        <li>
+            <a href="https://www.sina.com.cn/" target="_blank">
+                <img src="../source\jd1.jpg.webp" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.sina.com.cn/" target="_blank">
+                <img src="../source\jd1.jpg.webp" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.sina.com.cn/" target="_blank">
+                <img src="../source\jd1.jpg.webp" alt="">
+            </a>
+        </li>
+    </ul>
+</body>
+
+</html>

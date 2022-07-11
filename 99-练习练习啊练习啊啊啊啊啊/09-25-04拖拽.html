@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        实现拖拽功能
+        分为三步
+            - 按下鼠标开始拖拽
+                onmuosedown 事件：当鼠标被按下
+            - 移动鼠标实现拖拽
+                onmousemove 事件：鼠标移动
+            - 松开鼠标完成拖拽
+                onmouseup 事件：当鼠标被松开
+
+
+        *对这里事件响应方法的嵌套的理解
+            只有在最外层的时间触发，响应函数执行的时候，才会执行其中代码，为其他的事件绑定方法，而这种绑定不是一次性的，所以不清空该方法就会一直存在
+     -->
+     <script>
+         window.onload = function(){
+         var box1 = document.getElementById("box1")
+         
+        box1.onmousedown = function(event1){
+            // box1.onmousemove 不能给元素绑定鼠标移事件，否则当鼠标移出元素时，无法产生效果
+            
+            mouseXori = event1.clientX
+            mouseYori = event1.clientY
+            document.onmousemove=function(event){
+                // 通过事件对象获取此时的鼠标坐标
+                // 我们需要将该方法写在 onmousedown 内部，因为我们只有在（点击元素内部）这一事件发生之后进行的鼠标移动才是我们需要的效果，如果不写在内部，直接移动鼠标也会产生效果
+                mouseX = event.clientX
+                mouseY = event.clientY
+                
+                // box1.style.left = mouseX + 'px'
+                // box1.style.top = mouseY + 'px'
+                
+
+                box1.style.left = mouseX-mouseXori + 'px'
+                box1.style.top = mouseY-mouseYori + 'px'
+                // offsetleft offsettop 元素距离页面的左边和顶部的距离
+                
+
+
+            // box1.onmouseup=function(){ 我们将事件绑定给移动元素存在问题，通常情况下，是不存在使用问题的，但如果有其他的元素将目标元素盖住了，我们松开鼠标是在其他元素中进行的，就会触发其他元素的移开鼠标事件，将会没有效果
+            // 所以我们将该事件绑定给document
+            document.onmouseup = function(){
+
+                document.onmousemove = null;
+                
+                // 注意我们这里是取消了 document 的松开鼠标的时间响应函数，而
+                alert("up")
+                // 现在出现了新的问题，我们为该方法设置了一个提示，我们发现无论我们再页面中的什么位置松开鼠标都会触发该提示，即我们再document中的任何地方点击松开鼠标都会执行该事件响应方法
+                document.onmouseup = null;
+                // 所以我们在响应方法中将其注销，在这种情况下，每次执行完该响应方法都会将该响应方法撤销
+                // 即响应方法变为一次性方法
+        }
+            }
+        }
+        
+    }
+     </script>
+     <style>
+         #box1{
+             width: 100px;
+             height: 100px;
+             background-color: #bfa;
+             position: absolute;
+         }
+     </style>
+</head>
+<body>
+    <div id="box1"></div>
+</body>
+</html>

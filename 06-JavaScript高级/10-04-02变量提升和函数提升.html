@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        - 变量声明提升
+            在代码运行的最初，var 定义的代码便会运行，在内存中创建变量，但是赋值语句不会提前，所以虽然创建变量，但是不会运行
+
+        - 函数声明提升
+            在代码运行的最初，function 声明的代码便会运行(即不仅仅是在堆中开辟了区域，而且函数内部代码也是存在的)，在内存中创建
+            但是赋值语句此时没有运行，所以出现两种情况
+            var 函数名 = function(){}
+                虽然函数已经创建，但是由于赋值语句还未运行，所以孙然该函数已经创建，但是没有引用，也无法获取赋值语句赋予它的引用，此时的函数是一个匿名函数，无法执行
+            function 函数名(){}
+                函数直接创建且命名，可以直接使用    
+
+            函数与变量声明提升产生的原因：
+
+     -->
+     <script>
+         fn()
+         function fn(){
+             alert("R")
+         }
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

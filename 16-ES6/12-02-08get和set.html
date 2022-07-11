@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class P{
+            // 可以在类中对对应数据设置getter，setter
+            // 注意是对属性设置而不是对方法设置，在下面的例子中getter 和 setter 中，name 不是方法，只是一个属性
+
+            constructor(){
+                this._name='11111'
+            }
+
+            // 添加属性name 的getter，当获取name 属性的值的时候，就会执行该getter中的代码，并返回该getter 的返回值
+            // get 类似于计算属性，本身不具有值，需要获取其他的属性值计算包装后返回值
+            get name(){
+                console.log('输出数据');
+                return this._name
+            }
+            // name = 'lzl'
+            
+            // 添加属性name 的setter，当修改name属性时，就会执行setter 中的代码
+            set name(newval){
+                console.log('修改数据');
+               this._name = newval
+            }
+        }
+
+        let p = new P()
+        console.log(p.name);
+        p.name = 'lzl'
+        console.log(p.name);
+    </script>
+</body>
+</html>

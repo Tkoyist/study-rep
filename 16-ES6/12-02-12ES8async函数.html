@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    asnyc 和 await 也是异步代码解决方案
+    asnyc 函数的返回值为一个promise 对象，promise 对象的状态由asnyc 函数的返回值决定
+    返回一个非promise 对象的值，返回的promise 对象状态为resolve value为返回值
+    抛出一个错误，返回的promise 对象的状态为rejected ，reason 为抛出的错误
+    返回一个promise对象，axnyc 函数返回的promise 的状态与值由返回的promise对象决定，与asnyc 内部返回的promise 的状态与状态值一致
+ -->
+<body>
+    <script>
+        // 我们在一个函数前加上 asnyc 关键字 将其更改为 asnyc 函数
+        async function fun(){
+            return 'lzl'
+            // throw new Error('出错了')
+        }
+        // asnyc 函数的返回值是一个promise 对象，如果asnyc 函数内部的返回值是一个非promise 对象，那么它返回的promise 对象的状态一定为resolve 且value 为函数内部返回的值
+        // 但是在asnyc 函数中可以使用throw 关键字直接抛出错误，则返回的promise对象的状态为reject reason 为我们抛出的错误
+        console.log(fun());
+    </script>
+</body>
+</html>

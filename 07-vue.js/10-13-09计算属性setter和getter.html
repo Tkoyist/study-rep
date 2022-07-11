@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        - 计算属性的使用为什么不是通过函数方式而是属性方式
+            首先一个计算属性本质上是一个对象而非一个方法
+            这个对象中存在两个方法 set 和 get
+            当我们直接调用一个计算属性值的时候，本质上是获取了他的get方法的返回值
+            而set方法我们很少使用，因此计算属性大多是只读属性
+            因为get很少使用，所以很多时候我们都会忽略不写，而且忽略不写也不会报错
+            然后有了现在的简写式，看似是调用函数，但其实是获取了get方法的返回值
+            看似定义了一个函数，实则定义了一个对象
+
+            set函数不常用，但是可以定义使用，定义后计算属性就不再是只读属性了
+
+
+        - 
+     -->
+    <div id='box'></div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    }，
+    computed
+    })
+    </script>
+</body>
+</html>

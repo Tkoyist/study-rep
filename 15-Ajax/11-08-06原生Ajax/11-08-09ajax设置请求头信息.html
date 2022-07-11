@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script>
+        const box = document.getElementById('box')
+        box.addEventListener('mouseover',function(){
+            const xhr = new XMLHttpRequest()
+
+            xhr.open('POST','http://127.0.0.1:8000/server')
+
+            
+            // 设置请求头，使用xhr.setRequestHeader() 方法设置请求头，
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            // 第一个参数用于设置请求体内容类型，第二个参数用于设置参数查询字符串类型，值是固定的
+
+            xhr.setRequestHeader('name','tkoyst')
+            // 添加我们自定义的请求头，但是直接添加浏览器会报错，我们要先设置对应的响应头，我们在设置响应头时，最后一个单词origin 表示只接受原生的请求头，我们将其更改为Headers
+            // 因为当我们自定义请求头信息之后，xhr 还会自动发送一个OPTIONS 类型的请求，因为我们自定义头之后，xhr 需要确定请求头是否可用，需要发送一个OPTIONS请求用于确定
+            // 而我们修改之前，发送的OPTIONS 请求服务器无法识别，无法给出对应的响应，前端就无法确定该自定义头自否可用，所以请求失败
+            // 我们修改为all 之后，options 请求也能接受到，所以能够成功运行
+                     
+            xhr.send('a:100&b:200&c:30000')//在send 中填写参数，想想也是，参数应该可以自由设置，而不是固定写死的
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status<=300){
+                        box.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

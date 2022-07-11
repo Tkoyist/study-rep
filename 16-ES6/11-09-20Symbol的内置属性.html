@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // Symbol 的内置属性，
+        // Symbol.hasInstance 方法，我们在类中使用该方法作为方法名创建方法的之后，在外界使用insatnceof 关键字判断某个对象是否当前类的对象时，就会调用该方法，并将被判断对象传入
+        class Person{
+            static [Symbol.hasInstance](param){
+                console.log(param);
+                console.log('Symbol.hasInstance 调用');
+            }
+        }
+        const p = {}
+
+        console.log( p instanceof Person);
+    </script>
+</body>
+</html>

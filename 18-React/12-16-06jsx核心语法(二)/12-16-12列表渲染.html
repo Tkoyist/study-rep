@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type='text/babel'>
+        class App extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    nums:[123,321,46,4654,7,987,9846,54,131,4,654,6413,1]
+                }
+            }
+            render(){
+                return(
+                    <div>
+                        <ul>
+                            {/*
+                             将map和filter 混合使用能满足大部分的数据过滤
+                            */}
+                            {
+                                this.state.nums.filter(item=>item%2===0).map(item => <li>{item}</li>)
+                            }
+                        </ul>
+                        <ul>
+                        {/*
+                        使用slice 进行数组数据的截取
+                        */}
+                        {
+                            this.state.nums.slice(0,4).map(item => <li>{item}</li>)
+                        }    
+                        </ul>
+                        {/*
+                        slice():接受两个参数，决定要截取的数据的区间，区间是一个左闭右开区间，这样我们才能直接通过arr.length 直接截取到元素末尾
+                        splice():接受三个参数，前两个参数决定要截取的区间，最后一个参数决定用于替换的数据（通常是数组的结构或者空），前两个参数的区间方法也与slice() 不同，它是通过开始位置和取元素的个数来决定，例如 1,4 就表示 1234 即从1 开始往后的四个数据
+                        */}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>

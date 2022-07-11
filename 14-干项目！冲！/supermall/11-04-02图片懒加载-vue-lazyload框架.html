@@ -1,0 +1,19 @@
+<!-- 
+    - 图片懒加载
+        图片需要显示时才加载
+        - 安装Vue-lazyload
+            npm install vue-lazyload --save
+        - 导入
+            import VueLazyLoad from 'vue-lazyload';
+        - 安装到当前的vue 实例中，之前的安装只是给我们当前的项目文件中引入了插件文件，在这里的安装，在vue实例中安装，调用插件的install方法才真正的将插件安装到了当前的vue实例中，当前的vue 实例中才真正存在了该插件
+            Vue.use(VueLazyload)
+            
+        - 使用，将需要懒加载的img 标签的src 属性改为 v-lazy 即可
+            使用懒加载之后，会自动附加标签复用，在首页中的体现就是，由当前转换为精选，图片也不会刷新，解决方案当然是加上 key 属性
+
+            - 占位图：在图片记载完成之前，我们可以放一个占位图用于图片加载前的占位（可以避免bs 高度塌陷问题）
+                我们在按照进入实例时为use 传入第二个参数，该参数是一个对象，对象中包含了很多属性，比如error(图片加载失败时显示的图片)
+                而loading 属性即占位图
+                loading:require('@/assets/img/common/bb2.jpg')
+                该属性指向一个方法  require() 
+ -->

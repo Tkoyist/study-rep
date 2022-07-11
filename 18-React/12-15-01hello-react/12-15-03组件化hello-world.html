@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    react 开发依赖于三个库：
+        react:包含react 核心代码
+        react-dom：react渲染在不同平台需要的核心代码
+        babel：将jsx转换为jreact代码的工具
+
+        babel：是一个编译器，转移器，将一些低版本浏览器不支持的语法，如es6语法转换为支持的语法如es5语法
+        jsx： JavaScript XML 是一种书写规范，该规范支持在js中写xml代码，类似于vue中的template
+            猜测：jsx将语义化代码转义成为dom操作，vue的template也会转义为jsx再由jsx转义为dom操作
+
+
+        使用react框架必须安装这三个依赖，且依赖间是存在先后顺序的，核心库必须在渲染库之前安装
+ -->
+<body>
+
+    <div id="box"></div>
+    <div>13131332</div>
+
+    <!-- 安装react所需的依赖 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- 开始开发 -->
+    <!-- 注意事项：我们在开发中是使用jsx，但是常规的sc标签是无法识别jsx的，所以我们要为sc标签加上特殊的属性 type='text/babel' 使其可以识别jsx代码 -->
+    <!-- jsx本质上是一个语法糖,使得我们可以使用特殊的方式在js中进行html代码的编写,我们使用react编写代码之后,react的babel之后会将其通过dom接口转化为真正的dom -->
+    <script type='text/babel'>
+    // 我们之前的写法虽然满足功能，但是代码结构杂乱，显然是需要优化的，即将其组件化
+    
+    // 现在我们创建组件，react中的组件是一个类（想想也是，实际的组件也是对组件模板的一个具体化实现，正对应了对象对类的实现），要想使对象能被react作为组件解析，我们需要使得该类继承自React依赖文件中导出的Component(组件)类
+    class App extends React.Component{
+        // 为什么组件间要是一个类而不是对象，一个类可以创建多个相似的对象，但是又可以在构造函数中使其数据不同
+        constructor() {
+            // 在构造函数中调用super() 将父类的属性初始化
+            super()
+            // 在构造函数中初始化响应式数据
+            this.state = {
+                message:"hello vue"
+            }
+            // 在state之外也是可以定义数据给模板使用的，但是这样定义的数据是非响应式的
+            this.msg = 'hello js'
+        }
+
+        // 作为组件，肯定需要存储模板，在react中组件存储模板是通过在组件内部定义一个render() 方法，并使该方法返回jsx 代码，代码编写模板
+        render(){
+            // 模板最外层只能有一个html元素
+            // 和vue只能将数据放入data中一样，react也是有专门的位置存放数据的，即state 属性（一个对象），内部专门用于存放数据（准确的说是专门存放响应式数据，我们当然也可以把数据放到其他位置，但是那样无法实现响应式改变dom）
+            return (
+                <div>
+                    <div>{this.state.message}</div>
+                    <div>{this.msg}</div>
+                    {/* vue 中是使用''指定函数，而react中是使用{},但是都是需要特殊符号指定的 */}
+                    <button onClick={this.changeMsg}>改变文本</button>
+                    {/* 直接这样使用会报错，因为changeMsg 此时的this的值是undefined，暂时不清楚为什么，回头去查*/}
+
+                    {/*
+                        为什么事件响应函数需要我们自己绑定this，因为对事件响应函数的调用并不是通过一个对象去调用的（对象调用类的方式很常见）
+                        而是由react 在发现当前的dom 的时间触发之后，根据事件响应函数的函数名和组件所在的作用域去寻找，并由react 对象通过call 函数进行的调用，而react 调用函数时特地将其this 的值赋值为undefined
+                    */}
+
+                    <button onClick={this.changeMsg.bind(this)}>改变文本</button>
+                    {/*总之原因在于函数没有this，那我们就使用bind()函数为其绑定一个this*/} 
+                    {/*bind 函数可以为一个函数指定this，指定的this即传入的参数*/}
+                    
+                </div>
+            )
+        }
+
+        // 而各种函数的定义则是直接放到了组件类中（为什么不也放入构造函数中初始化？因为函数是所有由该模板衍生的组件都通用的，而不是像数据一样存在特殊性，每个组件都要重写）
+        changeMsg(){
+            // 修改state中的响应式数据
+            // this.state.message = 'hello react'
+            // 这种修改方式是错误的！！！！！
+            // state 对外暴露了修改接口！！！！
+            // this,setState 函数接受一个对象，会根据对象里的数据响应式的修改state和dom
+            this.setState({
+                message:'hello react'
+            })
+
+            // 修改非响应式数据
+            this.msg = 'hello react'
+
+            // 我们发现msg （我们认为的非响应式数据）也发生了改变，结合老师说的话，我们基本可以认定setState 方法是通过重新调用了render 函数重新渲染界面实现的页面更新
+
+            console.log(this.state.message,this.msg);// 'hello react' 'hello react'
+            // 我们可以看到没有在state中定义的非响应式数据即使改变了也不会修改dom
+        }
+    }
+
+    // 即使是组件化之后也是需要挂载到真实dom上的
+    ReactDOM.render(<App/>,document.getElementById('box')) //我们注意到App首字母大写了，这是因为在这里App的本质是一个类，而类的首字母约定大写
+    </script>
+</body>
+</html>

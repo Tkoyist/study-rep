@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            将所有的段落都设置为红色
+
+                -元素选择器
+                    ·作用：根据标签名选中指定的元素
+                    ·语法：标签名{}
+                    ·例子：p{} h1{} 
+        */
+        p{
+            color: brown;
+        }
+        h1{
+            color: cyan;
+        }
+        /* 
+            将第二个p设置为与第一个p不相同的颜色
+            显然只能将单个元素变成相同样式的元素选择器不能满足
+
+                -id选择器
+                    ·作用：根据元素的id属性值选中一个元素
+                    ·语法：#id属性值{}
+                    ·例子：#box{} #red{}
+         */
+         #p2{
+             color: red;
+         }
+
+         /* 
+            将第三个p和第四个p设置为与之前的p都不相同的样式
+            即批量设置，但不是所有选中设置
+                类选择器：
+                    ·作用：根据元素的class属性值选中一组元素
+                    ·语法：.class属性值{}
+
+         */
+         .type3{
+             color: chartreuse;
+         }
+         /*
+            -通配选择器
+                ·作用：选中页面中的所有元素
+                ·语法：* 
+          */
+    </style>
+</head>
+<body>
+    <h1>这是一个h1</h1>
+    <p>这是一个p</p>
+    <p id='p2'>这是第二个p,需要变成红色</p>
+    <!-- 
+        
+         -class 是一个标签的属性，它与id类似，但是它是可以重复的
+         -不仅仅多个元素可以有相同的class值，而且一个标签可以用多个class值
+            ·这种情况下，使用一个元素中的任何一个class值都可以选中该元素
+            ·多个class值要使用空格隔开
+     -->
+    <p class='type3'>第三个p</p>
+    <p class='type3'>第四个p</p>
+</body>
+</html>

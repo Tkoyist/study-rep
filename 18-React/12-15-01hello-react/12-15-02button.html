@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    react 开发依赖于三个库：
+        react:包含react 核心代码
+        react-dom：react渲染在不同平台需要的核心代码
+        babel：将jsx转换为jreact代码的工具
+
+        babel：是一个编译器，转移器，将一些低版本浏览器不支持的语法，如es6语法转换为支持的语法如es5语法
+        jsx： JavaScript XML 是一种书写规范，该规范支持在js中写xml代码，类似于vue中的template
+            猜测：jsx将语义化代码转义成为dom操作，vue的template也会转义为jsx再由jsx转义为dom操作
+
+
+        使用react框架必须安装这三个依赖，且依赖间是存在先后顺序的，核心库必须在渲染库之前安装
+ -->
+<body>
+
+    <div id="box"></div>
+    <div>13131332</div>
+
+    <!-- 安装react所需的依赖 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- 开始开发 -->
+    <!-- 注意事项：我们在开发中是使用jsx，但是常规的sc标签是无法识别jsx的，所以我们要为sc标签加上特殊的属性 type='text/babel' 使其可以识别jsx代码 -->
+    <!-- jsx本质上是一个语法糖,使得我们可以使用特殊的方式在js中进行html代码的编写,我们使用react编写代码之后,react的babel之后会将其通过dom接口转化为真正的dom -->
+    <script type='text/babel'>
+        // ReactDom 是react-dom 依赖中向外暴露的一个对象，对象中的render 函数传入两个参数，前一个参数是一段jsx代码，后一个参数是一个dom对象，render函数会将jsx中的模板编译并在dom中将后一个对象指向的dom替换
+
+        // react 肯定也要能进行数据展示的，react的数据展示是在jsx中直接使用一对大括号将需要展示的数据括起来
+        let message = 'hello world'
+        // ReactDOM.render(
+        //     <h2>{message}</h2>
+            // <button>button</button>
+            // jsx和vue的组件相同，最外层只能有一个元素，如果同时出现多个元素会报错，我们可以使用一个标签将其他标签包裹使用
+            // , document.getElementById("box1"))
+        
+        // 按钮事件响应函数，改变message
+
+        // 代码开始运行的时候渲染dom
+        render()
+
+        function fun(msg){
+            message = 'hello react'
+            // 修改数据之后调用render函数，重新渲染dom
+            render()
+        }
+        
+        function render(){
+            ReactDOM.render(
+            <div>
+                 <h2>{message}</h2>
+                 <button onClick={fun}>改变文本</button>
+            </div>
+            , document.getElementById("box"))
+        }
+        // 我们发现虽然我们点击了按钮，改变了message，但是dom 中的显示并没有发生改变，因为我们虽然改变了数据，但是现在数据局并不是响应式的，我们需要手动更新数据，即手动重新渲染dom
+
+
+        // 现在是未优化的代码
+    </script>
+</body>
+</html>

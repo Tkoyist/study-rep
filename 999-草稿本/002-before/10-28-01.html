@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // function Fun(name) {
+    //     this.name = name
+    //     console.log('000');
+    // }
+    // Fun.prototype.fun2=function(){
+    //     console.log('111');
+    //     console.log(this.name);
+    // }
+    // const f = new Fun('name').fun2()
+
+    // const p = new Promise((resolve,reject)=>{
+    //     resolve(1)
+    // }).then(res=>{
+    //     return res
+    // }).then(res => {
+    //     console.log(res);
+    // })
+
+    // const p = new Promise((resolve,reject)=>{
+    //     resolve()
+    // })
+
+    // console.log(p.then(value=>{
+    //     return value
+    // }));
+
+    // function* gen(){
+    //     let a = 'a'
+    //     let b = yield 2
+    //     console.log(a,b);
+    // }
+    // let g = gen()
+    // g.next()
+    // g.next(1000)
+
+
+    // var a = [1,2,3]
+    // var findTilt = function(root) {
+    //     let res = 0
+    //     for(let n=0,l=root.length;n<l;n++){
+    //         if(root[n]){
+    //             res += Math.abs(root[2n+1] - root[2n+2])
+    //         }
+    //     }
+    //     return res
+    // };
+
+    // console.log(findTilt(a));
+
+
+//     
+//     var search = function(nums, target) {
+//     let min=0 ,max=nums.length,half = (max+min)/2
+//     if(target > nums[max] || target < nums[min])
+//         returu -1
+//     for(let i =0;i<10;i++){
+//         if(nums[half] > target){
+//             max = half
+//         }else{
+//             min = half
+//         }
+//         half = Math.floor((max+min)/2)
+//         console.log(half +''+ nums[half]+''+target );
+//         if(target === nums[half])return half
+//         if(max <= min)return - 1
+//     }
+// };
+//     console.log(search(nums,9));
+// num=[-1,0]
+// function fun(nums,target){
+// let left = 0 , right=nums.length,mid
+// while(left<right){
+//     console.log(left,right,mid);
+//     mid = left +((right-left)>>1)
+//     if(target>nums[mid]){
+//         left = mid + 1
+//     }else{
+//         right = mid
+//     }
+// }
+// return left
+// }
+// console.log(fun(num,-1));
+let str = '12332313'
+str[2] = 'a'
+console.log(str);
+    </script>
+</body>
+</html>

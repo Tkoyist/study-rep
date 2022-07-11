@@ -1,0 +1,30 @@
+<!-- 
+  node 当中导出的exports 对象本质上就是 moudule.exports 这一对象，也就是module 的属性exports
+  我们能直接导出exports 对象是因为exports 内部使得module.exports 直接指向了 exports 
+  即本质上导出的是module.exports 而非 exports ，exports 是人工制造的中间对象
+  这也就意味着我们可以直接使用module.exports 修改导出的对象，使其与exports 对象不同，这样其他文件获取到的数据依然是与module.exports 保持一致，而不会与exports 相同
+
+  注意使得 module.exports 指向exports的操作（由node 完成的）只会进行一次
+  这也就意味着在指向操作完成之后，如果我们使得module.exports 指向其他的对象，那么module.exports 与exports 便会直接指向两个不同的堆内存对象，而其他模块导入对象使用的是module.exports 对象
+
+  所以我们可以直接使用module.exports 指向一个对象，指向该对象之后，node 会自动将该对象导出，以便其他模块使用 
+
+
+  ---- 使得module.exports 等于exports 对象的操作是在一个模块文件的最顶部完成的，代码执行的初始化阶段便已经完成了
+ -->
+
+ <!-- 
+   前面讲到了module.exports 本质是什么
+   这里我们需要注意一点，在node当中，我们真正进行导出的对象是module.exports 这个对象，而不是exports 这个对象
+   我们向exports 对象当中添加变量，本质上是向module.exports 指向的对象当中添加了变量，才导致我们在其他模块当中使用到的数据是我们修改的数据
+   虽然导出哪一个对象在我们通常使用当中没有区别，但是在一些特殊情况下（修改exports 或者 module.exports指向的对象的情况下，总之了解本质总是没错的）
+   例如我们直接使得module.exports 指向一个新的对象，那么exports 此时就没有任何意义了，它的值也是没有任何意义的
+
+   那么为什么要经过exports这样一个毫无意义的中间变量进行转接呢，因为cmj规范要求要有exports 这样一个对象，node可以没有这个对象，直接使用module.exports
+   是完全没有问题的，但是要是没有exports对象，表明node 对cmj的实现是不完整，不规范的，或者说有些人可能在不了解的情况下直接使用cmj都支持的exports可能会出错
+   所以出现了exports 这样一个看似毫无意义的中间对象
+
+   **** 我们都知道exports 先指向一个对象，然后当前文件当中的module.exports 属性再指向exports对象
+          但是这里存在一个问题，就是module.exports = exports 这行代码的执行是在什么位置，是在文件的顶层还是文件的底层，即是在当前模块代码执行之前，还是在当前模块代码执行之后
+          经过测试，是在当前模块代码执行之前，这也就意味着，在代码执行阶段，修改exports 的指向之后（即使得exports不再指向原本的对象之后，exports如何修改，都对模块的导出不会产生任何影响）
+  -->

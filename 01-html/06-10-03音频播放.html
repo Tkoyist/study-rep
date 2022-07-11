@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        audio 标签
+            -向页面中引入外部音频元素
+            -属性
+                · src 音频路径
+                · controls 是否允许用户控制播放，该属性是没有值的，写入该属性则表明允许用户控制播放
+                · autoplay 音频文件是否自动播放，属性无值，写入该属性则表示让音频自动播放
+                    ··如果设置了autoplay，则打卡页面音频会自动播放，但是目前大多数浏览器不会自动播放
+                · loop 是否循环播放，写入该属性则音乐会循环播放
+
+            -音频与视频文件引入后，默认是不允许用户自己控制播放与停止的
+     -->
+<audio src="video&music\Lenka - My Love.mp3" controls autoplay loop></audio>
+     <!-- 
+         除了通过src指定路径意外，还可以使用source
+            -好处：
+                -我们可以在audio标签中写入提示文档，对于支持audio标签的浏览器来说，它会直接跳过我们写的提示文档，直接显示网页播放器，而对不支持audio的浏览器
+                 它们会忽视点它们无法识别的内容，也就是audio标签的内容，但是对于我们的提示文档，它会直接显示
+                -可以通过source放入多个音频文件，这种情况，浏览器会优先使用可以使用的第一个文件，可以避免出现某些浏览器对某些音频文件不支持的情况
+            -可以在 audio 标签内部加入各种属性，包括 controls 其实也只是我们加入的选择播放属性
+     -->
+<audio controls autoplay>
+    支持audio标签的浏览器看不到这条提示，而不支持的浏览器看得到
+    <source src="video&music\Lenka - My Love.mp3">
+</audio>
+
+<!-- embed在很多老式浏览器也可以使用，但是使用及其不方便  -->
+<embed src="video&music\Lenka - My Love.mp3" type="audio/mp3">
+
+<!-- 但是可以将其用来替换提示文档，这样支持的浏览器不会读取这个标签 -->
+    <audio controls>
+        <source src="video&music\Lenka - My Love.mp3">
+        <embed src="video&music\Lenka - My Love.mp3" type="audio/mp3">
+    </audio>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        我们说函数本身也是一个对象，那说明函数当然也存在自己的原型对象，那有可能存在函数的共有方法，即函数的原型对象可能存在自己的方法
+
+        - call()
+        -apply()
+        - 这两个函数的作用，是修改调用这个函数的函数的 this ，修改为参数传入的对象，
+            即修改调用这个函数的对象，让调用这个函数的对象从原本的对象变成我们指定的对象
+        - 这两个方法的好处就是，可以使指定某个对象去调用本不属于它的方法，即Java里面的友元函数的实现
+
+        - 虽然我们使用
+
+        * 使用函数对象调用这两个方法效果是相同的，都是调用函数本身
+        * 
+
+        
+        解析器调用一个函数的时候会传入一个隐含的参数，该参数 this 是该函数的上下文对象，即是调用该函数的对象，当以函数方式调用（即不使用某个对象调用）一个函数的时候，会默认使用 window （窗口）去调用，而当我们使用这两个方法为函数指定一个对象之后，我们就把 this 的值修改为了我们传入的对象，这样就可以使用那些对象中的数据来调用该函数了
+
+        
+     -->
+     <script>
+         obj1 = {
+             name : "lzl",
+             year : 2000
+         }
+         obj2 = {
+             a : "yxy",
+             b : 1999
+         }
+
+         var show = function(a,b) {
+             alert("this.a = "+this.a);
+
+             alert("a = "+a)
+             alert("b = "+b)
+         }
+
+         show.call(obj2);// 结果是输出两个underfind
+        // 我们说，call()函数是修改的函数的this，也就是从 Window.show(); 变成了 obj1.show();
+        // 但是即便如此，我们使用函数寻找 a , b 的时候，函数会先在作用域中找，最先找到的是作为形参的 a , b 而不是this中的 a , b
+        // 所以我们输出的时候输出的也是形参 a , b 其值当然为underfind
+        // 而我们在函数中特意强调需要的是 this.a 时，浏览器便去找到了函数的 this（即我们传输给函数的对象参数），再根据需要找到了 this 对象中的 a
+        
+        // 然后我们发现一个情况，如果函数本身需要额外的参数来实现一些功能，而这些参数本身与对象没有任何关系，那我们要怎么样才能赋给他呢
+        show.call(obj2,100,100)
+        // 对于 call() 我们直接将参数依次写在后方即可
+
+        show.apply(obj2,[100,1000])
+        // apply 则需要将参数放入一个数组统一传入
+
+        // 尝试
+
+        var show1 = function() {
+            alert("new text a = "+a)
+            alert("new text b = "+b)        
+        }
+        // 这种情况下，虽然this中含有 a , b 两个元素，但是使用该方式去调用却不会自己去访问this中的数据，只能我们通过this.来调用 
+
+        show1.call(obj2);
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

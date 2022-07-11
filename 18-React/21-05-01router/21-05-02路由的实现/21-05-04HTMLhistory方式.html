@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- 
+  html5 的history新添加了几个API，在不刷新页面的前提下改变url
+
+  -- history 方式主要是提供了API 可以直接修改url ，即pushState 
+     有了这个基础，我们所做的所有操作都是围绕它的，先设置用于点击切换路由的元素，切换url 之后再使用相同的方式展示我们想要的页面
+ -->
+<body>
+  <div id='box'>
+    <a href="/home">首页</a>
+    <a href="/about">关于</a>
+    <div id="routerview">more</div>
+  </div>
+    <script>
+      const aels = document.getElementsByTagName('a')
+      // 获取到所有的a标签，在之后我们需要截取到它的默认行为，阻止其默认行为，再添加上我们预定义的一些行为
+
+      const routerview = document.getElementById('routerview')
+      
+      for(let el of aels){
+        el.addEventListener('click',e=>{
+          // 为a标签添加事件监听函数，在事件监听函数中取消a标签的默认行为
+          e.preventDefault()
+          // 删除其默认行为
+          // 注意，我们并不是一次性永久的将所有a标签的默认行为删除了，而是在某次事件发生的时候，取消了当前事件的默认行为，每次触发当即取消其默认行为，再执行我们希望其执行的代码
+          // 所以preventDefault()  取消事件默认行为的方法是针对当前的事件（事件对象）而非某个dom 元素
+          
+
+          // 现在执行我们想要的代码，使用history 的api 修改url但不刷新页面
+          // 并且在url 中添加了我们想要的字段
+          // 但是我们希望添加的字段是具有特异性的，是根据当前a 标签的url 来决定的，所以我们还要获取到当前a标签的href 属性值，并用于替换掉页面的url
+
+          // 获取当前a 标签的url
+          const herf = el.getAttribute('href')
+          history.pushState({},'',herf)
+          // 修改router-view 的显示
+          // 直接使用swtich 修改显示即可
+        })
+
+        // 我们不止可以修改pushState操作，还可以监听很多类型的操作，包括回退页面，转到页面等，其修改方法也是一样的
+        // 主要就是拦截跳转页面的事件，取消其默认行为，更改为使用pushState 修改url 但不跳转页面，再根据url 选择router-view 需要进行展示的内容进行展示
+      };
+    </script>
+</body>
+</html>

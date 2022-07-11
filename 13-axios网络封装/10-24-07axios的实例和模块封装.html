@@ -1,0 +1,19 @@
+<!-- 
+    - 我们之前在main 函数中写了很多关于axios 的代码，当时就在想应该将axios 单独分出来封装
+      果然，现在提到，我们之前使用的axios 都是全局对象，但是我们建议创建封装axios 实例
+
+    - 为什么要创建axios 实例
+        - 我们可以给不同的实例创建不同的设置，例如baseURL.headers,timeout 等
+
+
+        - 单独创建文件夹
+        - 在文件夹中导入axios 框架
+        - 创建一个导出函数request ，该函数需要一个参数，该参数是一个对象，用于存储 params 中的数据
+        - request 函数返回一个Promise 对象，它需要一个参数，该参数是一个需要两个函数做参数的函数
+        - 在Promise 的参数函数中创建axios 实例，此时可以在内部确定一些基本设置，如baseURL timeout等
+            使用axios.create() 函数创建，而不是new axios 
+        - 在request 函数内部，调用创建的实例instance并返回，该实例是一个函数，需要参数params ，我们将request 函数的参数config 直接放入即可
+        - 外部获取到的返回值就是 instance 函数的返回值，是一个Promise 对象，我们可以直接在调用处添加.then 和 .catch
+
+
+ -->

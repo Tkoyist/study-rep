@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+      setTimeout(function(){
+          console.log(this); // window
+      }, 0);
+      setTimeout(() => {
+         console.log(this); // window
+      }, 0);
+
+      const obj ={
+        aaa :function(){
+            setTimeout(function(){
+          console.log(this); // window
+      }, 0)
+        },
+        bbb:function(){
+            setTimeout(() => {
+         console.log(this);  // obj
+      }, 0);
+        }
+      }
+
+      obj.aaa()
+      obj.bbb()
+    </script>
+</head>
+<body>
+    <div id='box'>
+    <ptn></ptn>
+    </div>
+    <script src='vue.js'></script>
+    <script>
+    const ptnC = Vue.extend({
+        template:`
+         <div>
+            <h2>aaaaaaa</h2>
+            <h3>bbbbbbbbbbbb
+                <h4>cccccccccccccccccc</h4>
+            </h3>
+        </div>`
+    })
+    // Vue.component('ptn',ptnC)
+    // 全局组件声明方式
+
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    // 非全局组件声明方式
+    components:{
+        ptn:ptnC
+    }
+    })
+    </script>
+</body>
+</html>

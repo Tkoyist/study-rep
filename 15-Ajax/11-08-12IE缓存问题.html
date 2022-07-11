@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightskyblue;
+        }
+    </style>
+</head>
+<!-- 
+    IE 缓存问题
+    IE 浏览器在接受到服务器返回信息之后会将返回信息保存起来，如果我们再次请求数据，IE 浏览器会
+ -->
+<body>
+    <button>点击发送请求</button>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById('box')
+        const btn0 = document.getElementsByTagName('button')[0]
+        
+        btn0.addEventListener('click',function(){
+            const xhr = new XMLHttpRequest()
+
+            xhr.open('GET','http://127.0.0.1:8000/ie?now='+Date.now())// 使用Date 类的now 方法获取当前时间戳
+            // 我们发现，即使改变了服务器的返回，IE 浏览器由于其缓存机制也不会更新数据，因为相同的请求就是会调用IE 缓存机制
+            // 我们的解决方案是：
+            // 修改请求的URL 使其成为不同的请求，最好的方式就是添加参数，这样才能在不修改请求的前提下使原本的请求被识别为新请求，而要在多次刷新的页面中获取专属的索引，最好的值就是其时间戳，不论刷新再频繁也能保证每次的参数值不同
+            // 所以我们设置一个参数data 使其等于当前的时间戳，保证每次发出的都是不同的请求
+            
+            xhr.send()
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status === 200){
+                        box.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        (function (){
+            function outter(){
+            var msg = "AbC"
+            function inner1(){
+                alert("inner1 up" + msg.toUpperCase())
+            }
+            function inner2(){
+                alert("inner2 lower" + msg.toLowerCase())
+            }
+            window.outputMsg = {
+                inner1:inner1,
+                inner2:inner2
+                // 将向外暴露的对象添加为window的属性，使得其不用通过调用外部函数暴露而可以直接暴露
+            }
+            }  
+        })()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

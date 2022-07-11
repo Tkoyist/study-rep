@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/**
+ * @param {string} secret
+ * @param {string} guess
+ * @return {string}
+ */
+ var getHint = function(secret, guess) {
+    let a=0,b=0
+        let s = new Array(10).fill(0);
+        let g = new Array(10).fill(0);
+        // 使用这种方法填充数组速度会大大提升，但是似乎会占取更多内存
+        for(let i=0,l=secret.length;i<l;i++){
+            // 可以使用 [索引值] 的方式直接访问字符串中某个位置的字符
+            if(secret[i] == guess[i]){
+                a++
+            }else{
+                s[secret[i]]++
+                g[guess[i]]++
+            }
+        }
+        for(let i = 0;i<10;i++){
+            b+=Math.min(s[i],g[i])
+        }
+        return a+'A'+b+'B'
+
+};
+
+    </script>
+</body>
+</html>

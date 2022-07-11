@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        立即执行函数
+
+        回顾函数的调用
+            function();
+        我们来解析这一句代码发现，这段代码本质上是由一个 函数对象 function 加上 () 完成调用的
+        针对这个函数对象，我们可以现场创建函数，然后直接使用()对它进行调用
+            (function(){
+                函数内容
+            })();
+        这个语句依旧是通过一个函数对象 (function(){函数内容}) 和一个 () 来实现调用的
+        我们再加以修改希望能调用带参数的匿名函数
+            (function(参数1,参数2.....){
+                函数内容
+            })(实参1,实参2.....)
+        这便完成了一个带参数的立即执行函数的执行
+     -->
+     <script>
+         (function(){
+             alert("匿名函数执行");
+         })();
+
+
+         (function(a){
+             alert(a);
+         })("赋值匿名函数执行");
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

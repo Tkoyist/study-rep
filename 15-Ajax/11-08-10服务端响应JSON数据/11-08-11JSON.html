@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        const box = document.getElementById('box')
+        window.onkeydown = function(){
+            const xhr = new XMLHttpRequest()
+
+            // 通过修改xhr 的一个属性responseType 来修改响应体（response）的数据类型，将其修改为JSON xhr 就会自动将接受来的JSON 数据转化为普通数据
+            xhr.responseType='json'
+            // 注意这是一个属性而不是方法
+
+            xhr.open('GET','http://127.0.0.1:8000/json-server')
+
+            xhr.send()
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status === 200){
+                        // 在这里验证了一个事情，我们请求一次数据指之后，停止服务器行为，修改response 重新启动服务器，再次请求数据，会发现数据改变但页面未刷新
+                        
+                        // 经过我们的设置，返回值成为了一个JSON 字符串，但是JSON 字符串不利于数据的提取
+                        // 所以我们将其转化为普通数据
+                        // 1 手动转换
+                        // let data  =  JSON.parse(box.innerHTML)
+                        // console.log(data);
+                        
+                        // 2 自动转换 见22行
+                        console.log(xhr.response);
+                        
+                        box.innerHTML = xhr.response.name
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

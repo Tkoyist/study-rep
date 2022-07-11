@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        /* 
+        浮动的元素会覆盖普通元素，但是不会覆盖文字，文字会绕开浮动元素，因此可以通过浮动做出文字围绕图片的效果
+        */
+        .box1{
+            height: 100px;
+            width: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+        /* 
+        元素的特点在其浮动后会发生改变
+        -块元素
+            *浮动之后不在独占一行
+            *其高度和宽度都被默认内容撑开，但是也可以自行设置
+         */
+         
+         .box2{
+             background-color: #b1b;
+             height: 100px;
+             width: 100px;
+             float: left;
+         }
+         /* 
+         行内元素浮动之后特点
+         -行内元素浮动之前无法设置宽高，只由内容撑开，但浮动过之后可以和块元素一样直接进行设置
+         -默认情况下，其高度和宽度也是由内容区撑开
+         */
+
+         /* 
+         在浮动之后，其实已经无需区分块元素和行内元素，其性质已经一致
+         */
+    </style>
+</head>
+<body>
+    
+</body>
+
+<div class="box1">hello</div>
+<span class="box2">wrold</span>
+
+</html>

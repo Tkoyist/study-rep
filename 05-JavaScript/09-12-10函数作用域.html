@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        函数作用域
+            - 调用函数时会创建函数作用域，当函数执行完毕后，函数作用域销毁，里面的数据（包括形参个=和函数中声明的变量）也会销毁
+            - 每次调用函数都会创建新的函数作用域，同一个函数的函数作用域与函数作用域之间没有直接的联系
+            - 函数作用域中可以看到全局变量，但是函数作用域之外看不见函数作用域中的数据
+            - 函数作用域中也存在提前声明机制（变量和函数均可用）
+     -->
+
+     <script>
+        //  function fun() {
+        //      console.log(a);
+        //      var a = 123;
+        //  }
+        //  fun();
+        //  函数作用域中也存在提前声明机制
+
+        // 奇怪的例题
+        var a = 123;
+        function fun1() {
+            console.log(a);
+            a = 456;
+        }
+        fun1();
+        console.log(a);
+        //运行结果为 123 456
+        //不同于Java 和 c++ js中函数作用域中代码是可以对函数作用域外的数据产生影响的
+        // 在上面的代码中，当fun1 中的 a=456 被执行时，由于函数作用域中并不存在 a 这个变量，所以浏览器便到去哪聚作用域中去寻找，找到全局作用域中的 a 之后，对全局作用域中的 a 进行了赋值操作，因而改变了全局作用域中 a 的值
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

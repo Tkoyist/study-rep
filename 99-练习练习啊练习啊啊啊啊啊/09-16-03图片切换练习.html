@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        功能
+            点击上一张与下一张按钮将图片切换到上一张与下一张
+
+        实现1
+            点击上一张和下一张修改图片的src属性，而他们的src属性名，即图片的名字由我们一开始的设置，是存在关联的
+            
+
+     -->
+     <script>
+        //  window.onload() = function(){ 
+        //  这种写法是错误的，onload并不是一个方法而是一个事件，其格式当然也不是方法的格式
+         window.onload = function(){
+            //  选中按钮节点
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            var pic  = document.getElementById("pic")
+
+            // 为两个按钮设置单击响应函数,该响应函数可以提取出src中的数字（即图片名）然后加以修改
+            // 正则表达式用于提取src中的数字
+            var getName = /[^\/]\d*(?=\.jpg)/
+            // (?=子正则表达式) 表示以正则表达式结尾但是不包含正则表达式的字符串内容
+            
+
+            prev.onclick = function(){
+                // 通过正则表达式将元素中的我们需要的部分提取出来,即图片名
+                var picNameThis = pic.src.match(getName);
+                var name = Number(picNameThis)
+                name--
+                pic.src = "../source/picture/"+name+".jpg"
+
+            }
+            next.onclick = function(){
+                var picNameThis = pic.src.match(getName);
+                var name = Number(picNameThis)
+                name++
+
+                pic.src = "../source/picture/"+name+".jpg"
+
+            }
+         }
+     </script>
+
+     <style>
+         *{
+             margin: 0px;
+             padding: 0px;
+         }
+
+         #outter{
+             width: 500px;
+             margin: 50px auto;
+             /* 设置文本居中,但是为什么会对button生效？ */
+             text-align: center;
+         }
+     </style>
+</head>
+<body>
+    <div id="outter">
+        <img id="pic" src="../source/picture/3.jpg" alt="" width="500px">
+        <!-- 在读取目录的时候，使用 / \ 是相同的，都表示该文件的下级目录 -->
+    
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+</body>
+</html>

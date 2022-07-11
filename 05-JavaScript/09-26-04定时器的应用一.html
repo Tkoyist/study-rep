@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        功能
+            点击按钮以后，元素向右移动
+
+            元素需要移动，则需要开启定位，再通过 left 和 top 来调调整位置
+     -->
+     <script>
+         window.onload = function(){
+            // 使用定时器，使得元素每隔一段时间移动一次，移动固定的距离，实现控制速度的目的
+            var timer;
+            
+            var btn01 = document.getElementById("btn01");
+            var box1 = document.getElementById("box1")
+            
+            // leftAddress = offsetLeft;
+            // btn01.onclick = function(){ 
+            //     timer = setInterval(
+            //         function(){
+            //             leftAddress += 10
+            //             box1.style.left = leftAddress + 'px'
+            //         }
+            //     ,1000)
+            // }
+            // 解决方案一
+
+            //
+
+         }
+     </script>
+     <style>
+         #box1{
+             width: 100px;
+             height: 100px;
+             background-color: #bfa;
+             position:absolute;
+         }
+     </style>
+</head>
+<body>
+    <button id="btn01">点击向右移动</button>
+    <br>
+    <br>
+
+    <div id="box1"></div>
+</body>
+</html>

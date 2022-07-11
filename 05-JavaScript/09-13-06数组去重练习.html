@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        数组去重练习
+            将指定数组中的重复元素去除
+
+            创建一个新数组，遍历原数组，将里面的元素添加到新数组中
+            添加之前，将该元素与新数组中已经存在的元素依次进行遍历，如果遍历完成发现有重复，则进入下一个遍历，否则添加进入数组末尾
+
+            对数组进行遍历，每一次遍历都对当前遍历数据之前的数据进行遍历，如果发现和当前遍历对象一样的数据就将当前遍历数据删除
+     -->
+     <script>
+         var arr = [1,2,3,1,5,8,7,5,1,3,4,7,2]
+
+        //  var newArr = [];
+
+        //  newArr.push(arr[0]);
+        //  arr.forEach(
+        //      function (value,index) {
+        //          newArr.forEach(
+        //              function (newValue,newIndex) {
+        //                  if(newValue == value){
+        //                      console.log("删除数据"+value)
+        //                      console.log("当前index="+index+"当前new index="+newIndex)
+        //                      return 0;
+        //                     //  在这里return只会让当前的函数枚举结束，但不会影响方法继续枚举下去
+        //                  }
+        //                  if(newIndex == newArr.length-1){
+        //                     newArr.push(value);
+        //                     console.log("添加数据"+value);
+        //                  }
+                    //  }
+        //          )
+        //      }
+        //  )
+
+
+        // arr.forEach(
+        //     function (value,index) {
+        //         for(var i = 0;i<index;i++){
+        //             if(value == arr[i]){
+        //                 arr.splice(index,1);
+        //                 break;
+        //             }                
+        //         }
+        //     }
+        // )
+
+        // foreach 方法也只是单纯的通过数组的索引进行遍历，还是会出现连续重复数据出错的问题
+         alert(arr);
+         console.log(arr);
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

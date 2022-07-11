@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        数据类型
+            - 分类：
+                * 基本类型
+                    * Number
+                    * Boolean
+                    * String
+                    * Null
+                    * Undefined
+                * 引用类型
+                    * Object(一切对象)
+                    * Function（特别的对象，可以执行）
+                    * Array（特别的对象，数据存在顺序）
+            - 判断
+                * typeof
+                    一般用于 数值 字符串 布尔值 和 undefined 的判断  不能判断null
+                    还可以判断函数数据类型 （'function'）
+                    不能判断 null (object array)与object不属于同一构造函数，但是同一个类，所以typeof无法区别开 
+                        null一般用于一个即将被赋值给对象的变量，即一个变量，我们要将其赋值给一个对象之前，会先为其赋值为null表明我们要将其赋值为一个对象， null 使用typeof判断也会返回objet
+                * instanceof
+                    翻译 A instanceof B ，A是否是B的实例，所以 A 应当是一个对象而 B 应当是一个构造函数
+                    也可以用于判断一个对象是不是方法 是不是数组
+                    用于判断对象的具体类型（属于哪个构造函数）
+                * ===(全等，不会做数据转换)  ==（会做数据转换）
+                    一般只用于 null 和 undefined 的判断，因为这两个数据类型都只有一个值
+
+     -->
+     <script>
+        //  typeof返回数据类型的字符串表达 ，返回的是一个字符串，字符串中是判断的数据的数据类型
+        var a
+        a=null;
+        alert(typeof a)
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

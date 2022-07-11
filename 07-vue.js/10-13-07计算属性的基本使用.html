@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        计算属性：
+
+     -->
+    <div id='box'>
+        <h2>{{firstName}}</h2>
+        <!-- 调用计算属性内部的数据，虽然调用的是方法，但是无需使用()进行使用，本质是一个语法糖 -->
+        <h2>{{name}}</h2>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    firstName:'good',
+    lastName:'mooooooooooing'
+    
+    },
+    // 计算属性，虽然本质上存储了方法，但是一般将方法的引用设置为名词，方便阅读
+    computed:{
+        name:function(){
+            return this.firstName+' '+this.lastName
+        }
+    }
+    })
+    </script>
+</body>
+</html>

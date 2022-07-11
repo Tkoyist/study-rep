@@ -1,0 +1,4 @@
+vue 当中的组件模板的本质不是HTML
+本质是一个函数，函数会返回vnode ，vue 可以拿到返回的vnode patch 到dom当中
+
+react 当中的jsx 的本质也不是js

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 
+        改进方案 
+            将所有的图片的索引放入一个数组，每次切换换为打开数组的不同索引的元素
+            在图片上方显示文字，提示一共多少图片，当前第几张图片
+     -->
+
+<script>
+    window.onload = function(){
+        var prev = document.getElementById("prev")
+        var next = document.getElementById("next")
+        var pic  = document.getElementById("pic")
+        var tip  = document.getElementById("tip")
+        // 选中网页中的各个元素节点
+
+        var picName = ["1.jpg" , "2.jpg" , "3.jpg" ]
+        // 将所有图片的图片名放入一个数组中便于调用
+
+        var index = 1;
+        setTipAuto(index,picName.length);
+
+
+        prev.onclick = function(){
+            index--;
+            // 图片名字索引减一
+            if(index<0){
+                index = picName.length-1;
+            }
+            // 索引减一之后，若是小于数组的最小索引，则将索引改变为数组的最大索引，以实现循环  
+
+            pic.src = "../source/picture/"+picName[index]
+            // src 由图片路径和图片名组成，我们将图片路径和图片名分开，图片路径是不变的，所以可以直接写上不变，在路径之后按照格式添加图片名，便于读取图片
+            setTipAuto(index,picName.length)
+        }
+        
+        next.onclick = function(){
+            index++;
+            if(index>picName.length-1){
+                index = 0;
+            }
+
+            pic.src = "../source/picture/"+picName[index]
+
+            setTipAuto(index,picName.length)
+        }// next 按钮与 prev 按钮原理相同不做阐述
+
+
+        // tip 提示,将修改提示文字单独做成一个函数，每次点击按钮再调用该函数
+        // var setTipAuto = function(index,length) {
+        // 使用构造函数创造函数，在这里就行不通了，就无法在函数声明之前调用函数，所以我们之前也说刀，尽可能使用函数声明的方法创建函数，这样浏览器会在最开始就读取函数内容，我们就可以在任意处使用函数
+
+        function setTipAuto(index,length) {
+            tip.innerHTML = "共存在"+length+"张图片，目前是第"+(index+1)+"张。"
+        }
+        // 这也符合功能封装的思想，便于维护和更新
+
+        
+
+    }
+</script>
+
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #outter{
+        margin: 100px auto;
+        width: 500px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+</html>
+<div id="outter">
+    <p id="tip"></p>
+    <img id="pic" src="../source/picture/3.jpg" alt="" width="500px">
+    <!-- 在读取目录的时候，使用 / \ 是相同的，都表示该文件的下级目录 -->
+
+    <button id="prev">上一张</button>
+    <button id="next">下一张</button>
+</div>
+</body>
+</html>

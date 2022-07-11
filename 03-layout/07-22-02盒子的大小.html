@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            height: 100px;
+            width: 100px;
+            background-color: cyan;
+            border: 10px red solid;
+            padding: 10px;
+            /* 
+            通常情况下，height和width决定了内容区的大小，决定之后再加上border以及padding不会改变内容区大小，而会直接向外扩建
+            也就是说，盒子的大小也收到border和padding的影响
+
+            这也就是 content-box 内容区固定，边框border和内边距padding外扩，盒子的总大小也会改变
+             */
+
+            /* 而将 box-sizing 的值改变为 border-box 的情况下，盒子的总大小受到固定，也就是说内容区加上边框加上内边距的总和是不变的，设置边框以及内边距会向内缩小内容区，盒子的总大小固定不变 */
+             box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+</body>
+</html>

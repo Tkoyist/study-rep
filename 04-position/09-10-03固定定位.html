@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            height: 200px;
+            width: 200px;
+            background-color: #bfa;
+        }
+        .box2{
+            height: 200px;
+            width: 200px;
+            background-color:cyan;
+            /* 
+            固定定位
+                -将元素的position值设置为fixded则开启元素的固定定位
+                -固定定位也是一种绝对定位，所以很多性质与绝对定位相似
+
+                -与绝对定位的不同点
+                    固定定位的参照物我永远是浏览器的视口（浏览器的可视窗口）
+                    视口不同于 body 当相对于body定位时，调整浏览器窗口，并不会对元素造成任何影响，而相对于视口定位时，调整浏览器窗口，例如滑动滚动条，扩大缩小浏览器窗口，元素相对于页面的位置会发生改变，但是元素相对于浏览器窗口的位置不会发生改变，类似打开某网站时出现的弹窗广告
+                    
+             */
+             position: fixed;
+             top: 0;
+             right: 0;
+        }
+        .box3{
+            height: 200px;
+            width: 200px;
+            background-color: blue;
+        }
+        .box4{
+            width: 400px;
+            height: 400px;
+            background-color: tomato;
+        }
+        .box5{
+            width: 300px;
+            height: 300px;
+            background-color: cornsilk;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box4">
+        4
+        <div class="box5">
+            5
+            <div class="box2">2</div>
+        </div>
+    </div>
+    <div class="box3">3</div>
+</body>
+</html>

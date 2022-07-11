@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        :link 表示未访问过的连接（正常的连接）
+        :visited 表示访问过的连接
+            由于隐私的原因，无法通过visited更改字体等属性
+         */
+        a:link{
+            color: orangered;
+        }
+        a:visited{
+            color: orchid;
+        }
+        /* 
+        :hover 表示鼠标移入了的状态(不是超链接专属)
+         */
+         a:hover{
+             font-size: 50px;
+         }
+         /* 
+         :active 表示鼠标点击
+          */
+          a:active{
+              color: turquoise;
+          }
+    </style>
+</head>
+<body>
+<!-- 
+    超链接的伪类：
+    ·访问过的伪类
+    ·没访问过的伪类
+ -->
+
+    <a href="http://www.baidu.com">baidu</a>
+<br>
+    <a href="http://www.baidu.com">baidu</a> 
+    <a href="http://www.baidu.com">baidu</a> 
+
+</body>
+</html>

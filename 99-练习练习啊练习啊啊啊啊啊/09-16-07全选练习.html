@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        第三次功能更新，当其他元素全选的时候，全选/全不选勾选框应该处于勾选状态，反之则不应处于勾选状态
+     -->
+    <style>
+        input{
+            display: block;
+            margin-top: 10px;
+        }
+        button{
+            margin: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var all = document.getElementById("all");
+            all.onclick = function() {
+                var items = document.getElementsByName("items")
+                for(var i = 0;i<items.length;i++){
+                    items[i].checked = true;
+                }
+            }
+
+            document.getElementById("none").onclick = function() {
+                var items = document.getElementsByName("items")
+                for(var i = 0;i<items.length;i++){
+                    items[i].checked = false;
+                }
+            }
+
+            document.getElementById("reall").onclick = function() {
+                var items = document.getElementsByName("items")
+                for(var i = 0;i<items.length;i++){
+                    items[i].checked = items[i].checked==1?0:1;
+                }
+            }
+
+            document.getElementById("send").onclick = function() {
+                var items = document.getElementsByName("items")
+                for(var i = 0;i<items.length;i++){
+                    if(items[i].checked==true){
+                        alert(items[i].value)
+                    }
+                }
+            }
+
+            document.getElementById("allnone").onclick = function(){
+                var items = document.getElementsByName("items")
+                for(var i = 0;i<items.length;i++){
+                    // items[i].checked = allnone.checked;        
+                    items[i].checked = this.checked;
+                    // 在时间的响应函数中，由于函数是被元素节点对象调用的，所以该函数的 this 就是指向元素的所对应的标签 
+
+
+            }
+        }
+
+
+        // 分析：
+        //      要完成第三次的功能需求，首先不论是哪一个勾选框被改变都应该对所有勾选框进行一次遍历分析，在根据分析结果确定 全选全不选 勾选框的状态
+        //      因此我们应该对网页中所有的按钮发生事件的时候都做一个相同的响应函数用于响应
+        //      *应当将功能封装起来，每次某个按钮被点击之后都进行一次遍历检查
+        
+
+        // document.getElementsByName("items").onclick = function () {
+        //     alert("done")
+        //     document.getElementById("allnone").checked=checkBox.checked==0?0:checkBox.checked;        
+        // }
+
+
+        var items = document.getElementsByName("items");
+        for(var i = 0;i<items.length;i++){
+            items[i].onclick = function () {
+                alert(this.checked)
+                // if(items[i].checked){
+                // 这里这么写会报错，
+                // 我们知道响应函数只有在事件发生的时候才会运行，但是它肯定会在事件发生之前就加载好
+                // 在这里，我们使用了for循环创建了多个事件响应函数，加载了多个事件响应函数，但是此时并没有响应事件发生，所以响应函数并没有执行
+                // 在创建响应函数的过程中，i 已经完成了遍历，从0遍历到了3
+                // 而响应函数真正执行的时候，i已经等于3了，我们再使用 items[3] 去调用，结果当然是undefined
+                // 所以在目前,我们只能使用 this 来访问
+                
+                if(this.checked){
+                    document.getElementById("allnone").checked = 0;
+                }
+            }
+        }
+        // 这里使用for循环构建函数，对于解析器来说就是在这里写了四个函数，只是函数与函数之间存在细微的差别
+    }
+    
+    </script>
+</head>
+<body>
+    <input type="checkbox" name="allnone" id="allnone">全选/全不选
+    <input type="checkbox" name="items" id="" value="1">永劫无间
+    <input type="checkbox" name="items" id="" value="2">荣耀战魂
+    <input type="checkbox" name="items" id="" value="3">英雄联盟
+    <input type="checkbox" name="items" id="" value="4">黎明杀机
+    <input type="checkbox" name="items" id="" value="5">行尸走肉
+
+    <div class="btnBox">
+        <button id="all">全  选</button>
+        <button id="none">全不选</button>
+        <button id="reall">反  选</button>
+        <button id="send">提  交</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-if v-else-if v-else
+        作用懂得都懂，但是使用与其他语言不同
+        使得某些元素在满足条件才显示
+
+     -->
+    <div id='box'>
+        <h2 v-if='false'>{{msg}}</h2>
+        <h2 v-if='is'>{{msg}}</h2>
+        <h2 v-else>{{msg}}111</h2>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    is:false
+    
+    }
+    })
+    </script>
+</body>
+</html>

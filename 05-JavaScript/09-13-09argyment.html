@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        arguments (实参)
+        调用函数时，浏览器会传递给函数两个隐含的参数
+        - this 上下文联系对象
+        - arguments 封装了调用该函数时传给该函数的实参的类数组对象
+            * 类数组对象，本质上不是对象，但可以获取长度，也可以根据索引获取数据
+            * 即使没有形参也可以使用arguments 读取到实参
+            * 存在一个属性 callee 他指向了当前正在执行的函数对象
+     -->
+     <script>
+         var show = function(name,age) {
+             alert(arguments.length);
+             alert(arguments[0]+arguments[1]);
+         }
+        //  此时不存在arguments，因为不存在调用
+
+         show("lzl",21);
+        //  此时浏览器将arguments传给函数,函数运行，将arguments里面的数据调用了
+
+
+        var show1 = function() {
+            alert(arguments[0]+arguments[1]);
+        }
+        show1("yxy",21)
+        //  即使没有形参也可以使用arguments 读取到实参
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

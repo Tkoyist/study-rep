@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    静态成员
+    即static 成员，它属于一个类，而不属于类的某个实例
+ -->
+<body>
+    <script>
+        class P{
+            // 静态成员的定义方式也和c++ 很像
+            static name = 'lzl'
+            static change(){
+                console.log('11111');
+            };
+        }
+        let a = new P()
+        console.log(a.name);
+    </script>
+</body>
+</html>

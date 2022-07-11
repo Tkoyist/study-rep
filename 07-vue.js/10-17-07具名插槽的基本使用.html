@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        当子组件中存在多个插槽的时候，使用具名插槽具体访问
+        具体访问的时候，将slot 属性传入放到插槽中的模板中，会具体替换某个插槽
+     -->
+    <div id='box'>
+    <cpn><div slot="center">具体访问到中间的插槽啦</div></cpn>
+    </div>
+
+    <template id = 'cpn'>
+        <div>
+        <slot name="top">上</slot>
+        <slot name="center">中</slot>
+        <slot name="bottom">下</slot>
+        </div>
+        </template>
+
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    },
+    components:{
+        cpn:{
+            template:"#cpn"
+        }
+    }
+    
+    })
+    </script>
+</body>
+</html>

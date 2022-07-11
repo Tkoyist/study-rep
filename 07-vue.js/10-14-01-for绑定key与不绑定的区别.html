@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        不绑定key的情况下，如果我们想在一组v-for创建的元素中添加元素，内部的操作是将插入位置
+        的元素更改为我们插入的元素，并依次将原本的元素后移（也算是元素的复用），这种方式下，代码效率低
+        而在绑定key之后无法复用，则会直接在需要插入的位置插入一个元素
+        插入可以之后，vue会发现当前元素有可以，插入数据刷新页面的时候会去查看它的内容是否发生了改变，内容没有发生改变则不会对其进行改变，直接复用
+        切记不能使用index作为key
+     -->
+     <div id='box'>
+         <ul>
+             <!-- key的绑定都使用item而不使用index，index与数据内容并非一一绑定，在数据发生变化之后，item和index的之间的关系会被打乱 -->
+             <li v-for='item in letters' key='item'>{{item}}</li>
+         </ul>
+     </div>
+     
+     <script src='vue.js'></script>
+     <script>
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     letters:['a','b','c','d','e']
+     }
+     })
+     </script>
+</body>
+</html>

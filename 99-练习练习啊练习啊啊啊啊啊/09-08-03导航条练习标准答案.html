@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+1 将整个导航条放入一整个ul中
+2 每个单独的导航标签是一个单独的li
+    -li需要设置为浮动，使其能水平布局
+3 li中放入超链接
+    -超链接中文本居中
+    -鼠标移入超链接时导航标签的样式发生改变
+
+*每个导航标签的大小不同，但是文字之间间距相同
+*点击导航标签中的任何位置均可直接进入超链接
+ -->
+
+
+<style>
+.nav{
+    height: 48PX;
+    width: 1205px;
+    background-color: #E8E7E3;
+
+    margin: 100px auto;
+    padding: 0px;
+    /* 修改ul的样式 */
+
+    list-style-type: none;
+    /* 消除li前面的小点 */
+
+    line-height: 48px;
+    /* 使文本内容上下居中,使该值与所在父元素的高度值相同即可使文本居中 */
+    /* 设置文本居中，由于子元素会继承该属性，所以直接在此设置可以改变超链接中的该属性 */
+
+}
+
+.nav>li{
+    float: left;
+    height: 48px;
+    /* padding: 0 39px; */
+    /* 在这里设置内边距，内容区依旧是根据内容大小决定，而a只存在于内容区中，所以设置a的宽度为100%，依旧只有去父元素（li）的内容区的宽度，而li的内容区宽度又由a决定，所以这里的设置是没有意义的*/
+    
+
+}
+
+.nav>li>a{
+    display: block;
+    /* 将a设置显示为块元素，这样便可以直接设置它的宽和高 */
+    height: 100%;
+    /* 设置为百分比要求该元素的父元素必须有一个确定值的高度，否则设置高度为百分比是无效的 */
+    font-size: 18px;
+    color:#777777;
+
+    padding: 0px 39px;
+    /* 设置超链接的内边距，设置内边距之后，可以使整个盒模型的内部都是可点击的a的区域， */
+
+    text-decoration: none;
+    /* 清除超链接文本的下划线 */
+}
+
+.nav>li>a:hover{
+    background-color: #3f3f3f;
+    color: #E8E7E3;
+}
+
+</style>
+<body>
+    <ul class="nav">
+        <li><a href="#">HTML/CSS</a></li>
+        <li><a href="#">Browser Side</a></li>
+        <li><a href="#">Server Side</a></li>
+        <li><a href="#">Programming</a></li>
+        <li><a href="#">XMl</a></li>
+        <li><a href="#">Web Building</a></li>
+        <li><a href="#">Reference</a></li>
+    </ul>
+</body>
+</html>

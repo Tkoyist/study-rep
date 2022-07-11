@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            background-color:cyan;
+            width: 100px;
+            height: 100px;
+
+            /* 
+            外边距（margin）
+                -外边距不会影响盒子可见框的大小
+                -但会影响盒子的位置
+                -一共有四个方向的外边距：
+                    ·margin-top
+                                设置正值盒子向下移动
+                            right
+                                默认情况下设置不会产生效果
+                            left
+                                设置正值盒子向右移动
+                            bottom
+                                设置之后元素下方的盒子会向下移动
+
+                -可设置负值，设置为负值盒子向相反方向移动
+
+                -简写 
+                    magin：上 右 下 左
+                    直接简写设置
+
+                -元素在页面中自左向右排列
+                    ·所以在默认情况下，设置左或者上会移动盒子自身
+                    ·设置右或者下，则会移动其他的元素，将下方与右方的盒子挤开
+                
+                -margin会影响盒子实际占用的空间
+             */
+
+             margin-top: -10px;
+             margin-bottom:-50px;
+        }
+    .box2{
+        background-color:cyan;
+            width: 100px;
+            height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

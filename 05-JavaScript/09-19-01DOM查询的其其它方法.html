@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        获取body标签
+            document对象有一个属性值body,它保存的是body的引用
+                var body = ducument.body;
+            获取html根标签  
+                var html = document.documentElment;
+            获取页面中的所有元素（是一个类数组对象）
+                var all = document.all
+     -->
+     <script>
+            // document对象有一个属性值body,它保存的是body的引用
+                var body = ducument.body;
+                
+            // 获取html根标签  
+                var html = document.documentElment;
+
+            // 获取页面中的所有元素（是一个类数组对象）
+                var all = document.all
+                all = document.getElementsByTagName("*")
+
+            // 根据class属性值查询(不支持IE9以下浏览器)
+                var box =document.getElementsByClassName("box")
+
+             document.querySelector() 
+            //      - 将一个选择器作为参数传入，可以根据一个CSS选择器查询一个元素节点对象
+            //      - 支持ie8
+            //      - 使用该方法只会返回一个元素，如果满足条件的元素有多个则只返回第一个
+             document.querySelectorAll()
+            //  使用和上一个方法一样，不同之处在于他会返回满足条件的所有元素，返回值是一个数组，只有一个返回值也会返回数组
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

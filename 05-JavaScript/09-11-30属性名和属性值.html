@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        对对象的属性进行操作时
+        使用
+            对象["属性名"]
+        的方式更加的灵活
+        例1-
+
+        检查属性值
+            in 运算符
+            -通过该运算符可以检查一个对象中有没有指定的属性值，如果有则返回true，没有则返回false
+            -语法：
+                "属性值" in 对象
+
+        属性值
+        js的对象的属性值可以是任何数据类型
+        甚至也可以是另外一个对象
+     -->
+    <script>
+    // 例1
+        // 创建一个对象
+        var p = new Object();
+         p.name="tkoyist";
+
+        // 常规读取属性值方法
+         console.log(p.name);
+
+        //  使用[]读取，我们可以将属性名赋值给另外一个变量，而通过访问那个变量获取属性名，在通过该属性名读取对象中的属性
+        var n = "name";
+        alert(p[n]);
+        // 可以看到，我们读取成功了，因为 [ ] 的优先级非常高，甚至高于（），所以在上例中，浏览器先运行了 [ ] 中的代码取出了 n 的值之后再进行了之后的操作
+
+        alert("name" in p);
+        alert("age" in p);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

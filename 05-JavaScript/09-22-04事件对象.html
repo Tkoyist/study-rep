@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        功能需求，我们的鼠标在area中移动的时候，show中会显示其在area中的坐标
+            分析：
+                1.获取鼠标移动事件
+                    onmousemove
+                        会在鼠标在元素中移动的时候触发
+                2.获取鼠标位置坐标
+                    - 每次事件的响应函数触发的时候，浏览器都会将一个事件对象作为实参传入响应函数
+                      这个时间对象内封装了和当前事件有关的一切信息，
+                      比如：
+                        鼠标坐标，键盘输入
+                    - 我们可以在响应函数中设置一个形参，使用形参调取事件对象
+                    
+                    - clientX clientY 获取元素的水平和垂直坐标
+
+            
+        - 
+
+     -->
+     <style>
+         div{
+             height: 500px;
+             width: 200px;border: black 1px solid;
+         }
+     </style>
+    <script>
+        window.onload = function(){
+            var area = document.getElementById("area")
+            var show = document.getElementById("show")
+            
+            area.onmousemove = function(event){
+                show.innerHTML = "X="+event.clientX+"1Y="+event.clientY;
+
+            }
+        
+        }
+    </script>
+</head>
+<body>
+    <div id="area"></div>
+    <div id="show"></div>
+</body>
+</html>

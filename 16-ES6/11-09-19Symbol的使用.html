@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 可以用于避免对象中属性名的命名冲突问题
+        // 所以Symbol 主要用于对象的属性命名
+        
+        // 当我们需要向一个对象中添加很多属性，但害怕已经存在同名属性（或者害怕以后添加同名属性）
+        // 可以使用一个Symbol作为属性名,那么就肯定不会出现命名冲突的问题
+        // Symbol 的使用和匿名对象有点像，都需要在创建时给定一个名字（引用），之后只能通过那个名字（引用）访问到
+        // 所以我们在使用前最好将其封装，并且给他们指定引用
+
+        // 封装Symbol,并添加备注
+        const method = {
+            run:Symbol('run'),
+            eat:Symbol('eat'),
+        }
+
+        const data = {}
+
+        // 使用封装好的Symbol 为对象添加属性
+        data[method.run] = ()=>{
+            console.log('data run');
+        }
+
+        // 使用Symbol 内保存的字段只能通过预先确定好的变量名
+        data[method.run]()
+
+    </script>
+</body>
+</html>

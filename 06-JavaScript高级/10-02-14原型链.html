@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        原型链（别名：隐式原型链）
+            我们通过实例寻找一个属性时，它会现在自己的属性中寻找，找不到再去它的隐式对象中寻找（不会区去他的显示原型寻找，即便是函数对象，其原型链也是特指其隐式原型链，显示原型不参与）
+            它的隐式对象的隐式对象是Object原型对象，是最初的原型对象，它不在存在原型对象，且这个最初的原型对象也是一个 Object 对象
+            在实例的原型对象也找不到的时候，就会去实例的隐式原型的隐式原型（即Object原型对象中寻找）
+            再找不到就会返回undefined
+            我们发现在这个过程中用不到显示原型，因为没有构造函数的参与，所以这条原型链我们也叫做隐式原型链
+
+            作用： 查找对象的属性（方法）
+
+            每个方法本身也是一个实例，所以它也理所应当存在自己的隐式对象，这个隐式对象也是一个object空对象，且因为所有的函数本质上都是Function函数的对象，都是由Function对象所创建，所以函数的隐式对象和Function的显示对象应当是同一个对象
+            Function 是一切函数的构造方法，而Function本身就是一个方法，所以我们可以得出一个结论 Function应当是它本身的构造方法，即 var Function = new Function() ;
+            再来说Function的显式对象和隐式对象（是同一个对象），该对象是一个object对象，是由Object（）函数创建，而Object函数又是Function函数的实例，所以Object对象的显示对象是这个object对象，是自己的一个实例
+
+            - 所有函数的隐式原型都是同一个对象
+            - 
+     -->
+</head>
+<body>
+    
+</body>
+</html>

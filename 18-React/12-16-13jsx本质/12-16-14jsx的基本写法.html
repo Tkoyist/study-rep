@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type='text/babel'>
+        // jsx本质上是React.createElement()方法的语法糖，所有的jsx 代码都会通过babel解析为React.createElement()方法创建dReactElement 对象，注意React.createElement()方法不会直接生成dom 
+        // 注意babel 是在babel依赖包内部，但是React.createElement() 方法是来自于React 核心包，本身createElement() 方法就是React 对象的一个方法，而React对象就是来自于React 核心依赖包 
+
+        // 所有的jsx代码本质上都是React.createElement() 的各种嵌套使用，但是由于完全使用React.createElement() 写这些代码可读性太差
+        // 所以才产生了jsx 简化这些代码，并使用babel 进行转义成React.createElement() 的操作
+
+        // -- 注意React.createElement() 生成的是一个虚拟dom节点,而不是真正的dom 节点,而这个虚拟dom节点,懂得都懂
+
+        // 之后再将reactElement() 转换为真实dom（web开发）或者原生UI控件（react native app 开发）
+        ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>

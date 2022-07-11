@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        计算属性和methods属性去做同一件事的时候
+        methods内的函数被调用几次，内部的代码就会执行几次，而计算属性的函数代码只会执行一次，多次调用只是将之前的计算结果直接输出
+
+        所以这种场景下的使用（将一些数据做简单计算输出的情况），最好使用计算属性，而不要使用methods
+     -->
+    <div id='box'></div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    }
+    })
+    </script>
+</body>
+</html>

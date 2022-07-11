@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body> 
+    <!-- 
+        video 标签
+            -src
+            -controls
+            -autoplay
+    -->
+    <video src="video&music\dva.mov" width='500' autoplay controls></video>
+
+    <!-- 
+        低版本浏览器上的使用方法类比 audio
+     -->
+    <video width="500" autoplay>
+    <!-- 在这种方式下调整高度宽度自动播放等属性，需要在 video 标签中加入需要加入的属性 -->
+        <source src="video&music\dva.webm">
+        <source src="video&music\dva.mov">
+    </video>
+
+</body>
+</html>

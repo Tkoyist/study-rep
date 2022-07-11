@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        数组提供了一个自带方法用于遍历数组
+
+        
+        foreach() 方法
+
+        该方法需要一个函数作为参数来调用，由于调用的函数一般存在特殊性
+        所以我们推荐使用回调函数，现场编写一个函数作为参数
+
+        - 回调函数 由我们直接编写，但不由我们调用的函数（不同于立即执行函数）
+
+        foreach()方法会为内部的回调函数提供三个实参，这三个实参分别是 当前遍历到的元素的值和索引以及被遍历的数组本身
+
+        IE8以下浏览器不支持
+
+
+     -->
+     <script>
+         var arr = [1,2,3,4,5,6]
+
+         arr.forEach(function (value,index,obj) {
+             alert("value = "+value+"index="+index+"obj="+obj);
+         })
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

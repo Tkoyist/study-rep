@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        使用v-on调用函数可能会用到参数
+            - 不需要参数的情况
+                如果调用的方法不需要参数，可以省略()不写
+
+            - 当方法需要一个参数，但没有传入参数的时候
+                如果方法本身需要一个参数却没有写参数，则会默认将原生事件对象event（详见js）（由浏览器是生成）传入
+            
+            - 当方法需要多个参数，其中包含事件对象，而我们不传入参数的时候
+                会默认将方法的第一个形参赋值为事件对象，当然，之后的参数就会变成nudfined
+
+            - 当方法需要多个参数，其中包含event的时候，我们应该怎么获取到event
+                 $event 
+                vue获取到这个值的时候，就会将event作为实参传入方法
+     -->
+     <div id='box'>
+        <!-- 当方法需要一个参数，但没有传入参数的时候
+        如果方法本身需要一个参数却没有写参数，则会默认将原生事件对象event（详见js）（由浏览器是生成）传入 -->
+         <button @click='btnFun'>1311</button>
+         <!-- 函数需要两个参数，但我们仍不传入参数的情况，会默认给第一个形参赋值为event -->
+         <button @click='btnFun1'>1311</button>
+         <!-- 函数需要两个参数，其中包含event的情况下，将$event作为实参传入，vue会将相应的形参赋值为event -->
+         <button @click='btnFun1("123",$event)'>1311</button>
+         <button @click='btnFun'>1311</button>
+     </div>
+     
+     <script src='vue.js'></script>
+     <script>
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     
+     },
+     methods:{
+        btnFun(param){
+            alert(param)
+        },
+        btnFun1(a,b){
+            alert(a)
+            alert(b)
+        }
+     }
+     })
+     </script>
+</body>
+</html>

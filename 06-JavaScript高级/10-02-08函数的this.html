@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        this是什么
+            所有函数的内部都存在this
+            某函数执行的时候，this即是调用函数执行的对象
+            如果没有直接指定由谁调用，即是用window调用
+        
+     -->
+     <script>
+        function Person(name,age){ 
+            this.name = name;
+            this.age = age
+         }
+
+         var p = new Person("lzl",21)
+         //这种情况下看似构造函数是被window调用的，但事实并非如此，首先这里构造函数的this就是生成的实例
+         //這涉及到new的工作原理
+         //  new会先生成一个object对象
+         //  再将该对象赋值给构造函数（即将构造函数的this变成该对象）
+         //  通过该实例调用构造函数，并执行构造函数（注意此时该实例仍是匿名实例）
+         //  最后将该对象返回,即将其地址值返回给变量  
+         //这个过程中，先生成了一个对象，这个对象变成构造函数的this，然后将该对象返回，将变量值赋给他
+         //所以构造函数的this就是那个最开始生成的object对象（最后被赋值语句生成引用），或者说该引用指向的对象确实就是构造函数的this       
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

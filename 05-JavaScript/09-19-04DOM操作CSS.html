@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+
+
+     -->
+     <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+    </style>
+     <script>
+         window.onload = function(){
+            document.getElementById("btn").onclick = function(){
+                // 修改box1宽度
+                // 通过js修改元素样式：
+                //  语法：元素.style.属性值
+                
+                document.getElementsByClassName("box1")[0].style.width = "100px"
+
+                // 修改背景颜色
+                // document.getElementsByClassName("box1")[0].style.background - color = "red"
+                // 命名不合法，- 是关键字符 ，不能直接传入
+                // 使用js修改样式的过程中，如果遇到这种需要用到 - 的情况，应当使用驼峰命名法
+                document.getElementsByClassName("box1")[0].style.backgroundColor = "red"
+
+                // 通过 style 属性修改的样式都是修改元素的内联样式，特点：优先级高，会立即显示
+                // 但是如果样式中写了 !imprtant 则此时该样式优先级极高，无法使用js进行修改
+            }
+            document.getElementById("btn1").onclick = function(){
+                alert(document.getElementsByClassName("box1")[0].style.width)
+                // 该方式的读取也是读取元素的内联样式，无法读取 style 样式表中的元素样式 
+            }
+         }
+     </script>
+    
+</head>
+<body>
+    <div class="box1"></div>
+    <button id="btn">修改box1大小</button>
+    <button id="btn1">读取</button>
+</body>
+</html>

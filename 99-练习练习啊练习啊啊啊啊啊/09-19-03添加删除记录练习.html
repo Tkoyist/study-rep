@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            margin: 100px auto;
+        }
+        #boxSet{
+            margin: 100px auto;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var allA = document.getElementsByTagName("a")
+            for(var i = 0;i < allA.length ; i++){
+                allA[i].onclick = function () {
+                    var tr = this.parentNode.parentNode;
+                    tr.parentNode.removeChild(tr);
+
+
+                    return false
+                }
+            }
+
+
+        var submit = document.getElementById("submitB");
+        submit.onclick = function () {
+            var boxShow = document.getElementById("boxShow")
+            var newTr = document.createElement("tr")
+            var thName = document.createElement("th")
+            var thId = document.createElement("th")
+            var thSalary = document.createElement("th")
+  
+
+            var thNameValue = document.createTextNode(document.getElementById("inputName").value)
+            var thIdValue = document.createTextNode(document.getElementById("inputId").value)
+            var thSalaryValue = document.createTextNode(document.getElementById("inputSalary").value)
+
+            newTr.appendChild(thName)
+            newTr.appendChild(thId)
+            newTr.appendChild(thSalary)
+
+            thName.appendChild(thNameValue)
+            thId.appendChild(thIdValue)
+            thSalary.appendChild(thSalaryValue)
+
+            boxShow.appendChild(newTr)
+
+            // 添加 Del 标签
+            // 创建需要的节点
+            var thDelete = document.createElement("th")
+            var tha = document.createElement("a")
+            var text = document.createTextNode("Del")
+
+            thDelete.appendChild(tha)
+            newTr.appendChild(thDelete)
+            tha.appendChild(text)
+        }
+    }
+    </script>
+</head>
+<body>
+    <table id="boxShow"  >
+        <tr>
+            <th>name</th>
+            <th>id</th>
+            <th>salary</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>lzl</th>
+            <th>111</th>
+            <th>1000000</th>
+            <th><a href="javascript:;">Del</a></th>
+        </tr>
+    </table>
+    <div id="boxSet">
+        <div>添加新员工</div>
+        name : <input type="text" id="inputName">
+        <div></div>
+        email : <input type="text" id="inputId">
+        <div></div>
+        salary: <input type="text" id="inputSalary">
+        <div></div>
+        <button id = "submitB">提交</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        js中的函数调用参数本质是值传递，而非引用传递
+        传入的变量可能存储的是一个具体值，也可能是地址，但都是变量中存储的数据
+
+            局部变量：函数执行完成即刻释放
+            对象：成为垃圾对象之后，某一时刻被垃圾回收回收器回收
+
+        内存生命周期
+            分配内存空间，获取使用权（创建变量）
+            存储数据，可以反复操作（变量赋值并使用变量）
+            释放内存空间（即将变量中的数据清除，而不是让变量整个清除）
+        
+
+     -->
+     <script>
+         function fun(){
+             var b = {}
+         }
+         fun()
+        //  当函数执行完毕之后，b作为局部变量，它自己占有的内存会自动释放，而它内部创建的对象，失去b的应用后变成了垃圾对象，在之后的某个时刻被垃圾回收器回收（垃圾回收机定时运行，每次运行清理垃圾对象，而不是在出现垃圾对象的时候即刻运行）
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            /* 
+            em
+                -em是相对于字体的大小来计算的
+                -1em = 1font-size
+                -em会根据字体大小的改变而改变（在选择器中使用 fon-size 改变字体大小,将字体改为不同的像素大小)
+             */
+            font-size: 20px;
+            width: 10em;
+            height: 10em;
+            background-color:crimson;
+        }
+        html{
+            font-size: 50px;
+        }
+        .box1{
+            /*
+            rem
+                -根据根元素的字体大小来计算（可以改变根元素的字体大小来改变其大小） 
+             */
+            width: 10rem;
+            height: 10rem;
+        background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box"></div>
+</body>
+</html>

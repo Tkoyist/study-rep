@@ -1,0 +1,42 @@
+- vue cli 
+
+    - ESLint
+        * 检查代码规范性，有不规范的地方会报错
+
+    - runtimecompilar（以下简称C） runtime-only（以下简称O）
+        * 我们使用脚手架创建项目的过程中，会出现一个选择，让我们选择runtimecompilar或runtime-only
+
+        * 区别 ：
+            · 它们的区别只出现在main.js这一个文件中
+                C 使用子组件和我们之前的方式一样，创建注册使用
+                O 导入子组件文件之后，没有注册
+                    通过rander属性声明子组件
+                    render:function(h){
+                        return h(子组件名)
+                    }
+
+                    这里的参数h 实参是 createElement() 函数，用于创建网页元素   
+                    createElement() 函数可以直接传入一个组件，然后该函数会在页面中创建组件
+                    所以，render 函数本质是调用creatElement 函数并将组件作为参数传入直接创建
+
+
+        - vue 解析组件模板
+            c:
+            template -> ast(抽象语法树) -> render函数 -> v Dom(虚拟DOM) -> 放入真实DOM -> UI
+            O:(性能更高，底层代码量更少)
+            render -> vdom -> UI
+
+        - 我们在main 文件中导入组件文件的时候，导入的对象中是不存在template 的任何信息的，所有的template 都被转化为了render() 函数（由 vue-template-compiler 进行的打包转化）
+
+                    因为导入文件的时候接受到的是render 函数，所以在这种情况下
+                    我们使用O的是更加明智的选择
+
+                总结（不确定）：使用.js文件开发就使用C，在.vue文件中开发就使用O
+    -vue cli3
+
+- Vue-Router
+
+- Vuex
+
+- 网络请求封装（axios）
+

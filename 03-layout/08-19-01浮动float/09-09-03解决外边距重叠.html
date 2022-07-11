@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+        /* .box1::before{
+            content: '';
+            display: table; */
+            /* 只有table能解决外边距共享问题 */
+        /* } */
+        /* 按照这个格式写入一个选择器便可以解决外边距共享问题 */
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-top: 100px;
+        }
+
+        /* 
+        目前我们已经分别解决了高度塌陷问题和外边距共享问题
+        但是使用仍然存在不方便，每次使用都不得不重写一个选择器
+
+        所以产生一个简便方法  clearfix
+
+        clearfix 是将解决高度塌陷和外边距共享的问题通过一个类选择器进行解决，需要解决外边距共享和高度塌陷的元素直接写入该类便可以轻松解决
+
+         */
+         .clearfix::before,
+         .clearfix::after{
+             content: '';
+             display: table;
+             /* 只有table能解决外边距共享的问题，同时他也能解决高度塌陷的问题，所以我们直接设置为table  */
+             clear: both;
+         }
+
+
+    </style>
+</head>
+<body>
+    <div class="box1 clearfix">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

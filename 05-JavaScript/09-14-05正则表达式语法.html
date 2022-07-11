@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        正则表达式中的量词
+        -   { }     a{3} 表示aaa
+        -   {x,y}   a{1,3} 表示 a|aa|aaa
+                    a{3,}  表示3个以上的a
+        -   +       a+     表示至少一个a，即a{1，}
+        -   *       a*     a{0,} 表示0个1个或多个都可以，这种使用，单个字符是没有意义的，可以代入 abc* 要么不出现 abc , 若是出现了 abc 便只能完整的出现，当然可以同时出现多个
+        -   ?       a?     表示a{0,1} 只能是0个或者1个
+
+        *   ^   在[]中，^表示非，而在[]外，^表示的是开头，即字符串中所有字符之前的位置
+                ^a  所有字符串开头的位置的下一个位置的字符是不是a,即字符串是不是以a开头
+        *   ￥  表示字符串所有字符之后的位置
+                a$  字符串最后的结尾位置的前一个字符是不是a,即是否以a结尾
+     -->
+     <script>
+         var str = "aaaaaaaabcccsdsada"
+
+
+        //  创建一个正则表达式，检查字符串中是否存在"aaaa"
+        console.log(str.search(/a{3}/))
+        // console.log(/bc{3}s/.test(str));
+
+        //  在正则表达式中. {} 表示量词 a{3}表示 aaa
+
+
+
+        console.log(str.search(/b$/))
+
+        console.log(/b$/.test(str))
+        console.log(/^a/.test(str))
+        
+        console.log()
+        console.log()
+        console.log()
+        console.log()
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

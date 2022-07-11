@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 300px;
+            height: 300px;
+            background-color: #bfa;
+        }
+        #box2{
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+    <!-- 
+        事件的冒泡（bubble)
+            - 冒泡指的是事件的向上传导，当后代元素上的事件被触发时，其祖先元素的相同事件也会被触发
+            - 开发过程中，大部分情况下，冒泡的存在你都是有利的
+            - 如果需要取消冒泡，可以通过将事件对象中的cancelBubble属性设置为true来实现
+
+
+            - 当一个元素的父元素不存在相同的响应函数，但其祖先元素存在的时候
+            - 由于冒泡机制，会先去调用父元素的响应函数，但由于不存在这个函数，所以不会产生效果 
+            - 这不意味着冒泡的结束，冒泡会继续向上进行，在祖先中继续运行该机制
+            - 整个过程就是一次正常的冒泡，只是其中一环由于无响应函数而没有表现，但是对于解析器而言，该步骤是实现了的
+     -->
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById("box1")
+            var box2 = document.getElementById("box2")
+
+            box1.onclick = function(event){
+                event.cancelBubble=true;
+                alert("box1的响应函数")
+            }
+            box2.onclick = function(){
+                alert("box2的响应函数")
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box1">
+        我是box1
+        <span id="box2">
+            我是span
+        </span>
+    </div>
+</body>
+</html>

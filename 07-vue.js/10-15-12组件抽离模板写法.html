@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        需求产生：
+            将html代码放入字符串中代码观赏性不高，且无法使用快捷输入，效率低
+        方法：
+            所以我们尝试将内部模板与组件的构造器构造和注册分离
+
+            - 将模板写入 <sc type="text/x-template id="">标签中，使用id访问模板及注册组件
+            
+            - 推荐 <template id=""> 标签，直接将模板写入内部，通过id在注册时调用
+     -->
+    <div id='box'>
+        <ptn></ptn>
+    </div>
+    <template id="ptn">
+        <div>
+            <h2>aaaaaaa</h2>
+            <h3>bbbbbbbbbbbb
+                <h4>cccccccccccccccccc</h4>
+            </h3>
+        </div>
+    </template>
+    <script src='vue.js'></script>
+    <script>
+    // 组件的注册方式相同，但将组件的模板字符串换为了分离出去的template标签id
+    Vue.component('ptn',{// 这里使用了语法糖，省略了extend方法
+        // 使用 "#id" 的方式将注册模板
+        template:"#ptn"
+    })
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    
+    }
+    })
+    </script>
+</body>
+</html>

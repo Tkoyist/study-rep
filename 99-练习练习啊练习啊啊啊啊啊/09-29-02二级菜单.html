@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        二级菜单的实现
+        一级菜单是多个容器，容器中存在各自的二级菜单
+        平常状态下，一级菜单的高度限定，其他的部分被压缩，不显示（overflow : hidden）
+        展开状态下，容器高度变高，原本被隐藏的部分显现出来
+     -->
+     <script src="../05-JavaScript/09-27-03tools.js"></script>
+     <script>
+         window.onload = function(){
+             var allA = document.getElementsByTagName("a");
+            
+
+             for(var i = 0 ; i<allA.length ; i++){
+                 allA[i].onclick = function(){
+                    var oldH =  this.parentElement.style.height;
+                    var newH = this.parentElement.getElementsByTagName("li").length*21;
+                    this.parentElement.style.height = oldH;
+                    move(this.parentElement,"height",1,newH,function(){
+                        
+                    })
+
+
+             }
+         }
+        }
+     </script>
+
+     <style>
+         *{
+             margin: 0px;
+             padding: 0px;
+         }
+
+         ul{
+             list-style: none;
+             background-color: whitesmoke;
+             color:slategray ;
+         }
+
+         div{
+             width: 150px;
+             height: 20px;
+             margin: 0px auto;
+             /* padding-left: 10px; */
+             text-align: left;
+             background-color: lightslategrey;
+             color:white;
+             overflow: hidden;
+
+         }
+         
+         div a{
+             width: 5px;
+             height: 5px;
+             margin: 0px 5px;
+             background-color: white;
+             display: inline-block;
+             position: relative;
+             top: -3px;
+             left: -1px;
+         }
+         div li:hover{
+             background-color: powderblue;
+             color: white;
+         }
+         .box1open{
+             height: 100px;
+         }
+         .box2open{
+             height: 150px;
+         }
+     </style>
+</head>
+<body>
+    <!-- 一级菜单，同时是二级菜单的容器 -->
+    <div id="box1">
+        <a href="javascript:;"></a>
+        在线工具
+        <ul class="list">
+            <li>1111</li>
+            <li>1112</li>
+            <li>1113</li>
+            <li>1114</li>
+        </ul>
+    </div>
+    <div id="box2">
+        <a href="javascript:;"></a>
+        支持我们
+        <ul class="list">
+            <li>2221</li>
+            <li>2222</li>
+            <li>2223</li>
+            <li>2224</li>
+            <li>2224</li>
+            <li>2224</li>
+            <li>2224</li>
+        </ul>
+    </div>
+    <div id="box3">
+        <a href="javascript:;"></a>
+        合作伙伴
+        <ul class="list">
+            <li>3333</li>
+            <li>3333</li>
+            <li>3333</li>
+            <li>3333</li>
+            <li>3333</li>
+            <li>3333</li>
+            <li>3333</li>
+        </ul>
+    </div>
+    <div id="box4">
+        <a href="javascript:;"></a>
+        测试电流
+        <ul class="list">
+            <li>44444</li>
+            <li>44444</li>
+            <li>44444</li>
+            
+        </ul>
+    </div>
+</body>
+</html>

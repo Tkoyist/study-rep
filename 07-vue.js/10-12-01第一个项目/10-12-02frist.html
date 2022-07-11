@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="box1">{{msg}}</div>
+    <!-- 使用特殊语法，使元素中显示我们设置的数据 -->
+
+    <!-- vue的使用 -->
+    <script src="vue.js"></script>
+    <script>
+        // let 在ES6中定义变量
+        // const 在ES6中定义常量
+        const app = new Vue({
+            el:"#box1",//用于挂载需要管理的元素，即绑定一个HTML中的元素，方便后面进行操作
+            data:{//用于定义数据
+                msg:"shit bro"
+            }
+        })
+
+        // 这是一种声明式的编程范式，它不需要编程人员一步步命令工作
+        // 我们不用关心内部如何工作，只需要直接使用我们声明数据的声明，便可直接使用到数据
+        // 原生js使用的是命令式编程范式
+    </script>
+</body>
+</html>

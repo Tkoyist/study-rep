@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    快速排序，递归的在一个区间中寻找基准数（一般以该区间的第一个数作为基准），然后左右分别创建哨兵，在左侧的哨兵找到一个大于基准数同时右侧的哨兵找到一个小于基准数的情况下
+    将两个数交换，直到左右哨兵相遇，将相遇点的数与基准数交换位置，然后对基准数左右的区间再次使用该方法
+ -->
+<body>
+    <script>
+        function q_sort(arr,left,right){
+            let l = left
+            let r = right
+            // 由于left和right需要在下次递归时作为参数传入，而守卫遍历需要修改左右守卫，所以使用新的变量代替left和right作为左右守卫
+            if(left >= right)return
+            // left==right 说明排序区间内只有一个元素，那么无需排序，直接返回，如果left<right,说明排序区间内无元素，也直接返回
+            let key = arr[left]
+            while(l<r){
+                while(arr[r]>key && l<r)r--
+                while(arr[l]<=key && l<r)l++
+                // 这两行循环代码是不能改变位置的，在通常情况下，交换位置当然没有关系，但是在最后一次循环的时候（即已经无需再交换任何元素位置的情况下），我们需要l=r 并且让他们都指向比key 小的边界值，而不能指向比key 大的边界值
+                // 否则在后面交换left 与 l 的时候就会出错，会将l 指向的值（大于key 的值）放到key 的左边
+                if(l<r){
+                    let temp = arr[l]
+                    arr[l] = arr[r]
+                    arr[r] = temp
+                }
+            }
+            arr[left] = arr[l]
+            arr[l] = key
+            q_sort(arr,left,r-1)
+            q_sort(arr,r+1,right)
+        }
+
+        // 快速排序的根本思路就是每次指定一个值，找到该值在序列当中的位置，那么如何找到位置呢？
+        // 精巧之处就在于将小于key 的值全部放到key 的左边，大于key 的值全部放到key 的右边，这样小于key 的值和大于key 的值的中间就是key 应该处在的位置
+        // 这样也会将比key 大的值和逼key 小的值分开，让我们能更快的找到某个值的位置
+
+        function q_sort02(arr,left,right){
+          let l = left,r = right
+          if(left>=right)return
+          let key = arr[left]
+          while(l<r){
+            while(arr[r]>key && l<r)r--
+            while(arr[l]<=key && l<r)l++
+            // 这两个while 不断的循环，目的就是找到两个索引值l r 能满足  l<r && arr[l]>arr[r] ，找到满足该条件的两个索引值之后，便可以直接将两个索引值对应的数据更改位置，便将小于key 的值放到了key 的左边，大于key 的值放到了key 的右边
+            if(l<r){
+              let val = arr[r]
+              arr[r] = arr[l]
+              arr[l] = val
+            }
+          }
+          arr[left]=arr[l]
+          arr[l]=key
+          q_sort02(arr,left,l-1)
+          q_sort02(arr,l+1,right)
+        }
+
+
+
+
+
+        function q_rsort(arr,left,right){
+            if(left>=right)return
+            let l = left
+            let r = right
+            let key = arr[right]
+           while(l<r){
+             while(arr[l]<key && l<r)l++
+             while(arr[r]>=key && l<r)r--
+             if(l<r){
+              let val = arr[r]
+              arr[r] = arr[l]
+              arr[l] = val
+             }
+           }
+           arr[right] = arr[r]
+           arr[r] = key
+           q_rsort(arr,left,r-1)
+           q_rsort(arr,r+1,right)
+        }
+
+
+
+        let arr = [6,5,46,4,54,4,871,2,3,5,7,85,2,6,7,9,798,14,1]
+        q_sort(arr,0,arr.length-1)
+        console.log(arr);
+    </script>
+</body>
+</html>

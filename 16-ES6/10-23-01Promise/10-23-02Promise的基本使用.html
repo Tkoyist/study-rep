@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    - Promise 基本问题
+        - 用于异步编程的一种方案
+
+    - 阻塞：当我们对网页进行操作的时候，中间可能需要用到一些来自于网络的数据，而网络请求较慢，网页需要等到数据传输到位才能继续加载运行，这时的网页暂停就是阻塞
+
+    - 解决阻塞：我们为网络请求单独开启一个异步任务，由异步任务处理网络数据，而网页代码继续运行，当异步任务完成获取到数据，调用一个回调函数处理数据
+               通过这种方式可能出现多个回调的嵌套，导致逻辑混乱，维护麻烦
+               为了优化，我们使用Promise
+
+    - 什么情况下用到Promise？
+        一般情况下需要异步编程的时候，我们使用Promise 对操作进行异步封装
+    
+    - 当我们创建一个Promise 的时候，内部会保存一些状态信息，然后会执行作为参数传入的函数
+
+    - 主要作用，将嵌套的代码处理（容易出现嵌套地狱）转换成为了链式代码处理（优雅）
+               
+-->
+<body>
+    <!-- 模拟异步操作 -->
+    <script>
+        setTimeout(() => {
+            console.log("hello world");
+        }, 1000);
+
+        // 创建Promise对象，需要传入一个函数作为参数
+        // 传入的参数需要两个参数 resolve reject
+        // 这两个参数本身是函数
+        
+        new Promise((resolve,reject)=>{
+            // 现在我们使用链式操作完成了操作的嵌套，将嵌套编程变为了链式编程
+            setTimeout(() => {
+                resolve()
+                // 当解析器读取到resolve() 函数的时候，会去访问then() 函数并执行该函数
+                // 当解析器读取到reject() 的时候，相当于获取到了一个报错，会去找当前Promise 对象的失败处理函数
+            }, 1000);
+        }).then(()=>{
+            // then() 函数需要一个函数作为参数，当resolve() 执行的时候，会执行then() 中的参数函数
+            console.log("hello world");
+            return new Promise((resolve,reject)=>{
+                // 我们在一个Promise() 函数的then() 函数中返回一个新建的Promise 使得我们执行一个resolve() 之后创建一个新的异步操作，完成异步操作的嵌套
+                // 这里可以不用return ，因为我们目前只需要打印 
+                setTimeout(() => {
+                    resolve()
+                }, 1000);
+            }).then(()=>{
+                console.log("hello inner world");
+                return new Promise((resolve,reject)=>{// 这里获取到的是then 的返回值
+                    setTimeout(() => {
+                        resolve()
+                    }, 1000);
+                }).then(()=>{
+                    console.log("hello in inner world");
+                })
+            })
+        }).catch(()=>{})
+        // 我们可以在Promise 实例下面再挂载一个函数catch ,在rejected 函数运行的时候，调用Catch 执行传入的回调函数
+        // 我们也可以在then，中传入第二个参数函数，其作用与catch相同
+    </script>
+</body>
+</html>

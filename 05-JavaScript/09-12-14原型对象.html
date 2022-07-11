@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        js中所有函数都有自己的原型对象
+            他们存在一个由浏览器添加的属性 prototype ，这个属性会指向函数的原型对象
+
+            对于普通的函数而言，原型对象没有意义
+
+            但是对于构造函数而言，每个由构造函数构造的对象都会有一个隐含的属性值 __proto__ ,该属性值指向对象的构造函数的原型对象
+            也就是说原型对象是这些对象共有的，每个由构造函数构造的对象的原型对象都是同一个
+            借由这个性质，我们可以在多个对象的相同的原型对象中添加公用函数等共用的大小，节省空间
+
+            当我们访问一个对象的属性或者方法时，会先在本对象中寻找，如果找不到再去它的原型对象中寻找
+        -->
+
+     <script>
+         function person(name,age) {
+             this.name=name;
+             this.age=age;
+         }
+
+         var p1=new person("lzl",21);
+         var p2=new person("yxy",21);
+
+         person.prototype.yanzhi = "100%";
+        // 通过构造方法访问到原型对象，并向原型对象中添加一个属性
+
+         person.prototype.sayName = function(){
+             alert(this.name);
+         } 
+        //  通过构造方法访问原型对象并在原型对象中添加一个方法
+
+         console.log(p1.__proto__ == p2.__proto__);
+        //  证实：由相同构造方法构造的不同对象的原型对象相等
+
+         console.log(p1.__proto__.yanzhi)
+        //  证实：通过其他方式访问到原型对象并对里面的内容进行修改之后，通过该高中方发构造的对象访问的原型对象也是被修改之后的，即它们确实是统一的
+
+         console.log(p1.yanzhi);
+        //   直接通过普通对象访问原型对象中的数据是可行的，当通过普通对象访问数据时，浏览器会先在对象自己上寻找该属性，如果没有，则会去原型对象中寻找
+
+         p1.sayName();
+        //  成功通过对象访问到了原型对象中的方法并成功调用
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

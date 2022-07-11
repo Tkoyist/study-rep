@@ -1,0 +1,15 @@
+.item-enter, .item-appear{
+  opacity: 0;
+  transform: scale(.1);
+  font-size: 15px;
+}
+.item-enter-active,.item-appear-active{
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 1000ms,transform 1000ms;
+}
+.item-enter-done,.item-appear-done{
+  /* background-color: #bfa; */
+  /* transform: scale(.6); */
+  color: red;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var MapSum = function() {
+        //     this.index = {
+
+        //     }
+        // };
+
+        // /** 
+        //  * @param {string} key 
+        //  * @param {number} val
+        //  * @return {void}
+        //  */
+        // MapSum.prototype.insert = function(key, val) {
+        //     this.index[key] = val
+        // };
+
+        // /** 
+        //  * @param {string} prefix
+        //  * @return {number}
+        //  */
+        // MapSum.prototype.sum = function(prefix) {
+        //     for(item in this.index){
+                
+        //     }
+        // };
+
+        // let sum = new MapSum()
+        // sum.insert('apple',5)
+        // console.log(sum.index);
+        // sum.sum()
+        // let a = 'a'
+        // console.log(a.charCodeAt(0)-97);
+
+        var Trie = function(val){
+            this.val
+            this.child = new Array(26)
+        }
+
+        Trie.prototype.inset=function(key,val){
+            let self= this
+            for(let i=0,l=key.length;i<l;i++){
+                var tr = new Trie()
+                self.child[i.charCodeAt(0)-97].push(tr)
+                self = tr
+            }
+            tr.val = val
+        }
+
+        Trie.prototype.sub=function(){
+            let sum = 0
+            for(let i=0;i<26;i++){
+                if(this.child[i]){
+                   sum += this.child[i].sub()
+                //    dian
+                }
+            }
+            return sum
+        }
+
+        Trie.prototype.sum = function(prefix){
+            let self = this
+            for(let i=0,l=prefix.length ; i<l ; i++){
+                this.child[prefix[i].charCodeAt(0)-97]
+            }
+        }
+    </script>
+</body>
+</html>

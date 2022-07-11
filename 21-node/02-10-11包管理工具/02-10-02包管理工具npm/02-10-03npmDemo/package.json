@@ -1,0 +1,15 @@
+{
+  "name": "02-10-03npmDemo",
+  "version": "1.0.0",
+  "description": "这是描述信息，通常用于当前项目的基本描述",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "这是作者相关信息",
+  "license": "ISC 这是开源协议，发布时会用到",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}

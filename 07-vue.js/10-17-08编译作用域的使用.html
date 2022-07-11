@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        与其他语言的所有的作用域概念相同，决定了一个变量在哪个区域有效
+        但也存在区别：
+            在组件的变量作用域中，子组件作用域是无法访问到负作用域中的数据的
+            子组件与父组件的作用域之间各自独立
+     -->
+     <div id='box'>
+        <cpn></cpn>
+        </div>
+    
+        <template id = 'cpn'>
+        <div>
+        {{msg}}
+        </div>
+        </template>
+        
+    
+        <script src='vue.js'></script>
+        <script>
+        const app = new Vue({
+        el: '#box',
+        data: {
+        msg:'hello',
+        
+        },
+        components:{
+            cpn:{
+                template:"#cpn"
+            }
+        }
+        
+        })
+        </script>
+    </body>
+    </html>

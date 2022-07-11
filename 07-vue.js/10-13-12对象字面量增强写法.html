@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 定义一个Object对象
+        const obj = new Object()
+        // 使用对象的字面量写法(专业名词)
+        const obj = {
+            name:'tkoyist',
+            eat:function(){
+                alert("eating")
+            }
+        }
+        // 对象字面量增强写法
+        //      属性增强写法
+
+        const name = "lzl"
+        const age = 21
+        const obj = {
+            // ES5写法
+            name : name,
+            age:age
+        }
+        
+        const obj = {
+            // 增强写法，vue会将变量（常量）名作为key，将它们的值作为value写入对象中
+            name,
+            age
+        }
+
+        //      函数增强写法
+        const obj = {
+            // ES5写法
+            eat:function(){
+                alert("eating")
+            }
+        }
+
+        const obj = {
+            // ES6增强写法
+            eat(){
+                alert("eating")
+            }
+        }
+
+
+    </script>
+</body>
+</html>

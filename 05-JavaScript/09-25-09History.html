@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        History对象可以操作浏览器向前或向后翻页
+            同时可以获取一些与历史有关的属性
+            - length 属性，获取当前跳转访问过的页面的数量
+            - back() 方法，向前跳转一个页面，跳转到前一个页面
+            - forward() 方法，与back()方法相反，跳转到后一个页面
+            - go() 方法，跳转到指定的页面
+                将一个整数作为参数传入
+                    传入正数则表示向后跳转
+                    传入负数则表示向前跳转
+                    整数的绝对值表示跳转到哪一个页面
+     -->
+     <script>
+         window.onload=function(){
+             alert(history.length)
+             document.getElementById("btn01").onclick=function(){
+             history.back()
+         }
+         }
+         
+     </script>
+</head>
+<body>
+    <div>History</div>
+    <button id="btn01">history</button>
+</body>
+</html>

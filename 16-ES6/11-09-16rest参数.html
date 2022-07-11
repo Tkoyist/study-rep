@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // es6 提供了rest 参数
+
+        // 在原本的js 中就允许为一个函数传入数量多余形参的实参，也可以在函数中使用arguments 访问到所有实参
+        // 但是在Es5 中arguments 是一个类数组对象，很多时候我们都需要转化为数组进行操作，很麻烦
+        const fun  = function(a){
+            console.log(a);
+            console.log(arguments);
+            // arguments 中包含了所有实参，不论其是否有对应的形参
+        }
+        fun(1,23,21,3,132,13,23)
+
+        // 所以es6 更新了rest 参数，使用 ...rest参数名 的方式直接获取到没有对应形参的实参，并且将它们放到一个数组当中
+        // - rest 参数的参数名是可以自定义的
+        // - rest 参数只能放在最后一位，否则会报错
+        // - rest 参数只能获取到没有对应形参的实参
+        const fun2 = function(a,b,c,...arggs){
+            console.log(a,b,c);
+            console.log(arggs);
+        }
+        fun2(12,321,31,1,31,31,31,31,3,13,13)
+     </script>
+</body>
+</html>

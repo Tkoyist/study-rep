@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 0px;
+            width: 0px;
+            border-bottom: 70px solid red;
+            border-right: 50px solid transparent;
+            border-left: 50px solid transparent;
+            
+        }
+    </style>
+</head>
+<!-- 
+    css 实现三角形的原理是来自于元素边框与边框之间的斜角，将一个元素的四个方向的边框设置为不同的颜色即可看到斜线的出现，再将元素的其他边框设置为透明，并将元素宽高都设置为0，即呈现出了一个三角形样式
+    注意：
+        - 直接为一个高宽为0的元素设置一个方向的边框是没有意义的，因为此时该方向上的边框虽然有宽度，但是是没有长度的，所以依然是无法呈现出样式的，
+        所以当我们设置一个方向的边框作为三角形的底边时，还要同时为它相邻的两个方向上的边框也设置值，这两个边框的宽度大小会决定三角形的左右半底边的宽度
+        而底边对应的边框的高度则会决定三角形的高为多少，依据这两个规则我们可以修改三角形的样式
+        - transparent 属性用于设置颜色透明，在相邻的边框中设置该属性，使除我们需要的三角形之外的边框不显示
+ -->
+<body>
+    <div id="box"></div>
+</body>
+</html>

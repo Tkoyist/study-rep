@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        instanceof
+            A instanceof B
+            判断A对象（函数对象也是对象）是不是B函数的一个实例
+            原理：
+                浏览器会去获取A的隐式原型链，如果隐式原型链上存在一个对象，该对象是B函数的显式原型对象 则返回 true 否则返回 false
+     -->
+     <script>
+         function F(){}
+         Object.prototype.a = function(){
+             alert("a")
+         }
+        //  Object的显示原型，即为初始原型对象
+         Function.prototype.b = function(){
+             alert("b")
+         }
+        //  Function的显式原型，是一个空object对象，该对象的是一切函数的隐式对象，且该对象的隐式原型对象是初始原型对象
+         var f = F()
+
+        // f中不存在a属性，在它的隐式原型链中寻找，它的隐式原型链先指向一个空Obect对象，该对象是F的显示原型，然后再指向该对象的隐式原型，而因为该对象是一个Object对象，所以该对象的隐式原型是Object方法的显式原型对象，即初始object对象，往上没有更多的对象
+        // 所以它的隐式原型链只存在两个原型，一个是空object对象，另外一个是初始object对象
+         f.a()
+         f.b()
+        //  f的两个原型对象中包含了Object显式原型（初始原型），但未包含Function的显式原型（空object对象，一切函数的隐式原型）， 所以第一句正常运行，第二句报错
+
+        // F作为一个函数，是由Function构造而成，即Function是其构造函数，所以它的隐式对象即为Function的显示对象，是一个空object对象，而该对象的隐式原型即为初始原型对象，恰好分别是a和b的所在对象
+         F.a()
+         F.b()
+        
+
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

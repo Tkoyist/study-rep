@@ -1,0 +1,13 @@
+<!-- 
+  将不同类型的store 放到不同的位置，分别各自创建文件
+  每个redux 文件中包含自己的actionCreator reducer 和 constants
+  以及一个导出文件index.js
+  前三个文件比较好理解，就是顾名思义，但是index.js 文件和原本的index.js 是不同的
+  它的存在只是因为一个文件夹中需要一个默认的导出文件，所以在index.js 中主要是对当前文件的reducer 的导出
+  然后在store 文件夹中存在一个单独的reducer 文件，用于将多个不同类型的reducer 进行合并，在这个reducer 当中，我们要分别执行来自不同文件夹的reducer
+  store 文件夹也存在一个单独的index 文件，用于导出，添加中间件和创建store
+  创建store 时使用的也是单独的reducer 文件
+  这样当我们接受action 时，会将action 传入reducer 再由reducer 内部分别执行来自不同文件的reducer，即可使action 对所有不同action都进行了处理
+
+  而state 中的数据保存是分别保存在不同的redux 文件当中的，但是总的state 是区分
+ -->

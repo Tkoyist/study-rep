@@ -1,0 +1,28 @@
+<!-- 
+// 1 导入vue 和 vuex 
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+// 导入封装的各类vuex 数据文件
+// import state from'./state.js'
+
+// 2 安装vuex插件
+Vue.use(Vuex)
+
+// 3 创建store 对象,并赋值给一个对象，方便在其他文件中的导入，使用new Vuex.store 创建store 对象，该函数需要传入一个对象作为方法，该对象中包含了各类信息（我们可以对信息进行封装）
+// 这里数据并不多，就不做单独封装了
+const store = new Vuex.Store({
+  state:{
+    cartList:[]
+  },
+  mutations:{
+    addCart(state,goodItem){
+      state.cartList.push(goodItem)
+    }
+  }
+})
+
+// 4 导出store 对象
+
+// 5 在Vue 实例中挂载store （在main.js 中进行该操作）
+ -->

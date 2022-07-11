@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box1">
+        <ul>
+            <!-- v-for指令也是在vue文件中定义，只能在被绑定的元素中才能使用 -->
+            <li v-for='item in movies'>{{item}}</li>
+        </ul>
+    </div>
+
+    <!-- 先写模板 -->
+    <script src='vue.js'> </script>
+    <script>
+        const app = new Vue({
+            el: '#box1',
+            data : {
+                msg:'hello',
+                movies : ['01','02','03']
+            }
+        })
+    </script>
+</body>
+</html>

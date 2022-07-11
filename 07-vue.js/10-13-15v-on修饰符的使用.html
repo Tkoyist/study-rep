@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-on修饰符：
+            当我们使用v-on的时候，可能会给v-on绑定一些特殊符号来完成一些特定的功能，这写特殊符号就被称作修饰符
+            - .stop修饰符
+                阻止事件的冒泡
+
+     -->
+     <div id='box' @click='boxClick'>
+        <button @click.stop='btnClick'>btn</button>
+        <!-- .prevent修饰符,类似于将元素的事件响应函数返回值设置为false，即取消了事件原本的默认操作 -->
+        <input type="submit" @click.prevent.stop='btnClick'></button>
+
+        <!-- 我们也可以为v-on绑定别的事件 keyup当某个键被按下并松开的时候，单按下不会有反应，松开后才会有效果-->
+        <input type="text" @keyup.enter='btnClick'>btn</button>
+
+        <!-- .once修饰符，某事件只响应一次 -->
+     </div>
+     
+     <script src='vue.js'></script>
+     <script>
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     
+     },
+     methods:{
+         btnClick(){
+             console.log("btnclick");
+         },
+         boxClick(){
+             console.log("boxClick");
+         }
+     }
+     })
+     </script>
+</body>
+</html>

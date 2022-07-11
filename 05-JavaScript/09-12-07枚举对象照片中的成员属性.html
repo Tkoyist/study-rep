@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        for 变量名 in 对象名
+        语句用于枚举一个对象中的所有属性
+        它会依次枚举对象中的属性，每次枚举都会将一个新的属性放入变量中，直到枚举完所有的成员变量
+
+     -->
+     <script>
+         var obj = {
+            //  作为字符串的值一定要记得用""括起来
+             name : "lzl",
+             age : 21,
+             male : "man",
+            };
+        var n; 
+        for(n in obj){
+            // 先读取了n再取出了n的值
+            alert(obj.n);
+
+            // 这种方法访问中 . 的后面必须是明确的属性名，浏览器读取到这句话也只会将其当做属性名直接访问，而不会考虑它是变量的情况，当然是找不到这个属性的
+            // 究其原因，是因为 . 的优先级高于对 n 的读取，也就是说在 n 被读取之前，浏览器已经开始了访问，在 n 还没有返回其值之前，直接将变量名 n 拿去使用了
+            // 为了解决这个问题，可以使用 [] 的方式去访问，因为[]的内的内容优先级极高，高于浏览器对对象数据的读取，在读取之前便将 n 的值读取出来，这时传回去的值便不再是 n 而是浏览器通过 n 取得的值
+            // 通过以上方法可以枚举对象中每个属性的属性值
+            
+            // 先取出了n的值再读取n
+            alert(obj[n]);
+        }
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

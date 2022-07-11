@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            color: blueviolet;
+        }
+
+        .b{
+            color: brown;
+        }
+
+        div#a{
+            color:aquamarine;
+        }
+        /*
+        样式冲突：
+            当不同的选择器选中相同的元素修改了同一个样式，但是修改为了不同的值时，便出现了样式的冲突
+
+        发生样式冲突的时候，应用哪个样式由选择器的权重（优先级）决定
+
+        权重从高到低：
+            内联样式        10000  -内联样式是指HTML中将其他页面引入当前页面，被引入的页面应当保持原本的样式，所以优先级最高
+            id选择器        1000
+            类和伪类选择器   100
+            元素选择器       10  
+            通配选择器       0
+            继承的样式       无优先级
+
+            -范围越小，描述越精确优先级越高
+
+            -比较优先级时，会将并集选择器中的优先级相加，最后的优先级总和作为优先级
+             但是这种选择只能针对相同的选择器，例如元素选择器无论如何累加，其优先级都不会高于类选择器
+            
+            -如果优先级计算之后优先级相同，则优先使用靠下的样式
+            
+            -在某个样式之后加上！important 则使该样式获取到最高的优先级
+          */
+        *{
+            color: black;
+        }
+        /* span本继承了div的样式，但是由于继承选择器的优先级低于通配选择器，所以span被通配选择器选择，而不被继承选择器选择 */
+
+    </style>
+</head>
+<body>
+    <div id='a' class='b'>im a div<span>span in div</span></div>
+</body>
+</html>

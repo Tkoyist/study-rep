@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        字符串对象的属性和方法
+        * 字符串在js底层中本质也是以数组的形式存储的
+            属性：
+                - length 存储字符串长度
+
+            方法：
+                - charAt()      返回字符串中指定位置的字符
+                - charCodeAt()  返回元素的指定位置字符的Unicode编码
+                - 
+
+     -->
+     <script>
+         var str = "html css and javascript";
+
+         console.log(str.length);
+        //  - length 存储字符串长度
+
+         console.log(str.charAt(11));
+        //  - charAt() 返回字符串中指定位置的字符
+
+        console.log(str.charCodeAt(11));
+        // - charCodeAt() 返回元素的指定位置字符的Unicode编码
+
+        console.log(String.fromCharCode("l"));
+        // - String 构造函数的成员方法，给定一个字符，该函数会返回该字符的Unicode编码
+
+        console.log();
+        // - concat() 连接两个字符串，并将结果作为新字符串返回，与 + 作用相同
+
+        console.log(str.indexOf("s"));
+        // - indexOf() 传入一个字符，该函数返回字符串中第一次出现的位置，如果字符串中找不到该字符，则返回 -1 
+        console.log(str.indexOf("h",1))
+        // 给定第二个参数，该参数的值决定了函数从哪一个位置开始读取字符串，例如1就是从索引1的位置开始读取数据
+        console.log(str.lastIndexOf("s"));
+        // 使用方法和 indexOf 一模一样，不同之处在于它是从最后一个元素向前查找，且返回的值也是从最后一个数据往前的索引
+        
+        console.log(str.slice(1,6))
+        // slice() 方法，与数组的slice方法相同，设置开始的索引和结束的索引，方法会将这个索引中的内容截取并返回（左闭右开，包含了开始的索引而不包括结束的索引）
+        // 不影响字符串本身，可以使用负值作为参数，-1表示最后一个数据，以此类推
+
+        console.log(str.substring(1,6))
+        // 使用和效果基本和 slice() 相同，但它不接受负值作为参数
+
+        console.log(str.substr(5,1))
+        // 使用基本与 substring() 相同，不同之处在于，它第一个参数虽然也为截取数据的起始位置，但它的第二个参数代表的是截取数据的个数，不能为负数
+
+        console.log(str.split(" "))
+        console.log(str)
+        // 指定一个字符串，方法会将调用它的字符串分割，并将分割的结果放入一个数组，每个部分为数组的一个元素，分割的依据即为我们传入的字符串参数，即字符串参数所在的位置会被忽视并被分隔开，而被分隔开的部分字符串会作为元素放入一个数组中，并且该数组会作为函数的返回值
+        // 该方法不会影响原字符串，传入空串会直接将字符串中每个字符都拆分
+
+        console.log(str.toUpperCase())
+        // 将原字符串中所有的小写字母转换为大写字母并返回
+        console.log(str)
+        // 不会影响原字符串
+        console.log(str.toLowerCase())
+        // 大写转小写
+
+        // 注意以上方法均不会影响原字符串
+
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

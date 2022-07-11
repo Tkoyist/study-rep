@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+html, body {
+    min-height: 100%;
+}
+h1, h2, h3, h4, h5, h6{font-weight:normal;}
+ul,li{
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #232323;
+}
+body {
+    font-family: "Microsoft YaHei";
+    font-size:14px;
+    color:#333;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+input, textarea {
+    outline: none;
+    border: none;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:after {
+    content: ".";
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+    overflow:hidden;
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.tl {
+    text-align: left;
+}
+
+.tc {
+    text-align: center
+}
+
+.tr {
+    text-align: right;
+}
+
+.ellipse {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.inline{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+
+
+.news-box{
+    width: 300px;
+    height: 357px;
+    margin: 50px auto;
+    border-top:1px darkgrey solid;
+
+}
+.news-title{
+    
+    height:35px;
+    /* 
+    这里为标题单独设置上边框，但我们发现其上边框和总块宽度一样，这是因为h2是块元素，会独占一行，但我们只需要它的宽度与字宽相同
+    为了解决这个问题， 我们将标题的显示 display 更改为 inline-block（inline也可以，但设置为inline就无法更改其内容区的宽高了，不满足之后的设计需求）
+    */
+    display: inline-block;
+    border-top:1px red solid;
+
+    /* 
+    上述操作完成后，我们发现两个上边框并没有重叠，因为 title 是 box 的子元素，所以title整个都在box之中
+    理所当然的title的边框也在box内部，而不与box重叠，要想它们重叠只需要将title整个盒子向上移，
+    通过设置 margin-top 将其设置为负值之后，整个元素就会向上移动，达到我们想要的重叠
+    */
+    margin-top: -1px;   
+}
+.news-title a{
+    font-size: 16px;
+    color: #40406B;
+    font-weight: 700;
+    /* 设置超链接的上边距，发现没有效果，因为超链接是行内元素，垂直方向设置无用 */ 
+}
+
+.img-title{
+    color: white;
+    font-weight: bold;
+    margin-top: -30px;
+    margin-left: 25px;
+}
+.img{
+    height: 150px;  
+    /* 因为a是行内元素，所以设置它的高度是无法影响布局的，所以页面没有发生改变，这里就体现出了将图片中的所有元素全部放入了容器中的好处 */
+}
+.img-box{
+    /* 因为无法直接改变内部img标签和a标签的高度，所以转而改变它们的共同容器的高度，他们的共同容器就会将之后的内容排除在外 */
+    height: 150px;
+}
+
+.list{
+    font-size: 14px;
+    color: #666;
+}
+ul{
+    margin-top:20px;
+    padding-left: 7px;
+    color: cadetblue;
+    
+}
+li,li a{
+    /* 在这里设置字体颜色，大小等，只会对其中直接出现的文字进行修改，在没有子元素其他的样式的情况下，才会对子元素的样式进行修改 */
+    margin-top: 15px;
+    color: cadetblue;
+    /* list-style 的设置是对li的设置，而不是对 ul 的设置 */
+    /* list-style: square; */
+}
+
+/* 可以使用伪元素给li的每一个项加上一个前置符号 */
+/* ::before表示给选中的所有元素的开头 */
+li::before{
+    /* content表示加上内容 */
+    content: '◆';
+}
+
+a:hover{
+    color: red;
+}
+    </style>
+</head>
+
+
+
+
+
+<body>
+    
+    <!-- 将整个列表放入一个容器中 -->
+    <div class="news-box">
+
+        <!-- 区块大标题 -->
+        <h2 class="news-title">
+            <a href="https://war.163.com/">军事航空</a>
+        </h2>
+
+        <!-- 图片及图片标题，注意图片及其标题都是超链接 -->
+        <div class="img-box">
+        <a class="imga" href="https://war.163.com/photoview/4T8E0001/2311970.html#p=GFGHPUDK4T8E0001NOS">
+            <img class="img" src="https://cms-bucket.ws.126.net/2021/0722/b19e68f7p00qwmhoh0082c000s600e3c.png?imageView&thumbnail=300y150&type=webp" alt="">
+            <h3 class="img-title">俄S500导弹发射瞬间：场面暴力</h3>
+        </a>    
+        </div class="list">
+        <!-- 小标题，注意每个小标题都是超链接 -->
+        <ul>
+            <li>
+                <a href="https://war.163.com/photoview/4T8E0001/2311969.html#p=GFGGVJMT4T8E0001NOS">
+                翼龙无人机飞赴河南灾区为民众恢复移动网络
+                </a>
+            </li>
+            <li>
+                <a href="https://war.163.com/photoview/4T8E0001/2311969.html#p=GFGGVJMT4T8E0001NOS">
+                    翼龙无人机飞赴河南灾区为民众恢复移动网络
+            </li>
+            <li>
+                <a href="https://war.163.com/photoview/4T8E0001/2311969.html#p=GFGGVJMT4T8E0001NOS">
+                    翼龙无人机飞赴河南灾区为民众恢复移动网络
+            </li>
+            <li>
+                <a href="https://war.163.com/photoview/4T8E0001/2311969.html#p=GFGGVJMT4T8E0001NOS">
+                    翼龙无人机飞赴河南灾区为民众恢复移动网络
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

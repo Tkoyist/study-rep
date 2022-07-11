@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 使用定时器模拟异步任务，使用生成器解决回调地狱
+        // 以1s 的间隔依次打印 a b c  
+        // setTimeout(()=>{
+        //     console.log('a');
+        //     setTimeout(()=>{
+        //         console.log('b');
+        //         setTimeout(()=>{
+        //             console.log('c');
+        //         },1000)
+        //     },1000)
+        // },1000)
+        // 回调地狱写法
+
+        // 尝试使用生成器写法
+        
+        function a(){
+            setTimeout(()=>{
+                console.log('a');
+                gen1.next()
+            },1000)
+        }
+        function b(){
+            setTimeout(()=>{
+                console.log('b');
+                gen1.next()
+            },1000)
+        }
+        function c(){
+            setTimeout(()=>{
+                console.log('c');
+                gen1.next()
+            },1000)
+        }
+        
+        // 创建生成器
+        function *gen(){
+            // 将异步函数放在生成器中执行
+            a()
+            yield 1 // 也可以直接作为yield 的返回值，将其执行，
+            // ********* 记住yield 关键字之后的代码是属于上一次遍历，yield 之前的代码是属于下一次遍历的
+            yield b()
+            yield c()
+        }
+        let gen1 = gen()
+        gen1.next()
+        
+
+    </script>
+</body>
+</html>

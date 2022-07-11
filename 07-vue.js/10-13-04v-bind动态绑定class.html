@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            height: 200px;
+            width: 100px;
+            background-color: #bfa;
+        }
+        .box2{
+            height: 200px;
+            width: 100px;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id='box'>
+        <!-- 动态 v-bind 和静态class属性可以混用 -->
+        <h2 class="title" :class="{box1: isbox1, box2:isbox2}"></h2>
+        <!-- 
+            上面的方法是传入一个字符串作为属性，但除了传入字符串还可以传入一个数组作为属性
+            数组内部可以是字符串直接表示某个类，也可以是vue当中的变量
+        -->
+        <h2 class="title" :class="['box1',isbox2]"></h2>
+        
+        <!-- /* 设置一个按钮，每次点击都使得页面改变颜色 */ -->
+        <button @click="changebgc">click</button>
+    </div>
+    
+    <script src='vue.js'></script>
+    <script>
+    const app = new Vue({
+    el: '#box',
+    data: {
+    msg:'hello',
+    // boolean 值的设置不用使用字符串传入，对一个字符串判断其boolean值，只要字符串不为空均为true
+    isbox1:true,
+    isbox2:true
+    },
+    methods: {
+        changebgc:function(){
+            this.isbox2 = !this.isbox2
+        }
+    }
+    })
+    </script>
+</body>
+</html>

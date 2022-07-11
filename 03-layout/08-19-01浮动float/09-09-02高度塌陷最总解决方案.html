@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            border: 10px red solid;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+
+        /* 解决方案1  HTML方式 */
+        /* .box3{
+            clear: both;
+        } */
+
+
+
+        /* 解决方案2  css方式 */
+        .box1::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+
+        /* 
+        要解决高度塌陷的问题，我们经过上回知道了一个clear
+        但是，clear只能使得某个元素不受浮动影响，当父元素中存在一个浮动的子元素的情况，我们仍然无法使父元素根据子元素的内容进行改变，因为clear无法不适用于该场景，他只能使自己不受自己前面的浮动元素的影响，不能使自己不受自己子元素的浮动的影响
+        但是设置clear的元素是可以撑起父元素的，所以，我们可以将一个clear元素加在浮动元素的后方，clear元素会被浮动元素推开，而clear元素又会通过自己的外边距撑开父元素
+        
+        我们只要给子元素加一个无内容的clear兄弟元素便可以解决高度塌陷的问题
+
+        但是，高度塌陷是表现(CSS)的问题，而上面提到的解决方案是通过结构(html)来解决，这会造成一些问题
+
+        所以我们提出一个新方案 伪元素 ::after 
+            - 原理 ::after 会选中某个元素的最后一个子元素到本元素的末尾中间的位置
+            - 方案 通过::after 在元素内部最后加上一个区域，再将其设置为 clear 便可以直接通过它把父元素撑开
+            - 注意
+                *::after 本质是一个选择器，只选中了最后一块区域，默认情况下不会有任何操作，所以我们要通过它的 content:''; 为其添加内容，但内容为空，才能产生我们需要的效果
+                *伪元素::after content:''; 本质是添加一个行内元素，是不会独占一行，所以根本不会与上方的漂浮元素产生互动，所以我们要将其设置为块元素 
+            - 这种解决方案也是在出现高度塌陷的那个元素的本身上操作解决，有更好的封装性
+         */
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+        <!-- <div class="box3"></div> -->
+    </div>
+</body>
+</html>

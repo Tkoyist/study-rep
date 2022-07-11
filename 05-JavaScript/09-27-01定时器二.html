@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        写一个通用动画函数
+            可以让我们指定的元素通过我们想要的方式移动
+            - 参数：
+                obj 要移动的元素
+                speed 移动的速度
+                target 移动的目的地
+                    正数向右，负数向左
+                使用定时器完成移动
+
+     -->
+     <script>
+         window.onload = function(){
+             var timer;
+            //  需将定时器设置为全局变量，否则清除定时器操作永远找不到正确的定时器
+             function move(obj,speed,target){
+                // 需要使用定时器完成移动效果
+                // 每次函数运行前，将之前的定时器都清除掉
+                clearInterval(timer)
+                timer = setInterval(
+                    function(){
+                        //  获取元素的旧位置。第一次调用的时候，left没有被赋值，此时默认值 auto ,无法操作，所以我们要为其设置一个初值,我们获取到的值是一个字符串，字符串中包含了单位px，需要取出里面的数字进行操作
+                        var oldValue = parseInt(getComputedStyle(obj).left);
+                        // alert(oldValue)
+                        //  计算出元素的新位置
+                        var newValue = oldValue + speed;
+                        // alert(newValue)
+
+                        
+                        
+                        // 现在做一些错误情况处理
+                        // 错误情况：
+                        //      元素方向向右但目标在左边
+                        //      元素方向向左但目标在右边
+                        //      出现错误情况时，元素回到原位
+                        
+                        if((speed>0 && target<newValue) || (speed<0 && target>newValue)){
+                            newValue = target;
+                        }
+                        
+                        // 修改元素位置，实现移动
+                        
+                        obj.style.left = newValue + 'px'
+                        
+                        // 判断是否移动到了目的地
+                        if(newValue == target){
+                            clearInterval(timer)
+                        }
+                    }
+                ,3)
+             }
+
+             var box1 = document.getElementById("box1")
+             var btn01 = document.getElementById("btn01")
+             var btn02 = document.getElementById("btn02")
+
+             btn01.onclick = function(){
+                 move(box1,1,500)
+             }
+             btn02.onclick = function(){
+                 move(box1,-1,100)
+
+             }
+         }
+
+     </script>
+     <style>
+         #box1{
+             width: 100px;
+             height: 100px;
+             background-color: #bfa;
+             position:absolute;
+             left:0px;
+         }
+     </style>
+</head>
+<body>
+    <button id="btn01">点击向右移动</button>
+    <button id="btn02">点击向左移动</button>
+    <br>
+    <br>
+
+    <div id="box1"></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            /* border-collapse:collapse; 可以使得元素内部子元素的边框合并，注意是子元素，不包含当前元素 */
+            border-collapse:collapse;
+        }
+        td{
+            border: 1px solid black;
+            text-align: center;
+            padding:0px 20px 0px 20px;
+        }
+        .counter{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type='text/babel'>
+        class App extends React.Component{
+            constructor(props){
+                super(props)
+
+                this.state = {
+                    books:[
+                        {name:'算法导论',date:'2006-9',price:85,counter:1},
+                        {name:'图解算法',date:'2012-9',price:49.9,counter:1},
+                        {name:'图解tcp',date:'2007-7',price:39,counter:1},
+                        {name:'操作系统',date:'2077-6',price:128,counter:1},
+                        ]
+                    }
+            }
+
+            render(){
+                
+                return(
+                    <div>
+                        <table>
+                        {
+                            <tr>
+                                <td className='tr1'>{''}</td>
+                                <td className='tr2'>书籍名称</td>
+                                <td className='tr3'>出版日期</td>
+                                <td className='tr4'>价格</td>
+                                <td className=''>购买数量</td>
+                                <td className='tr6'>操作</td>
+                            </tr>
+                        }
+                        
+                        {
+                            this.state.books.map((item,index)=>{
+                                return(
+                                    <tr>
+                                        <td>{index+1}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.date}</td>
+                                        <td>{item.price.toFixed(2)}</td>
+                                        <td>
+                                            <button disabled={this.state.books[index].counter<=1} onClick={()=>{this.decCounter(index)}}>-</button>
+                                            <span className="counter">{item.counter}</span>
+                                            <button onClick={()=>{this.addCounter(index)}}>+</button>
+                                        </td>
+                                        <td>
+                                            <button onClick={()=>{this.remove(index)}}>移除</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }   
+                        </table>
+                        <div>{this.state.books.length===0?'购物车为空':'总价格:'+ this.getAll()}</div>
+                        {/*
+                            我们可以看到，虽然在事件响应函数的绑定中，会出现this 指向undefined 的问题，但是在这里却没有这个问题
+                            说一下我的猜测：
+                            - 在这里，函数只会在渲染中执行，而在渲染中是还可以访问到虚拟dom 的，而this 也是正常的
+                            - 而在事件响应函数中，由于我们并不清楚函数会在什么时候调用，所以只是通过this获取到了函数，获取到的时候当然我们是指向当前组件的this 的
+                              但是这个this 不能长时间保存在网页中啊，不然那么多组件占用内存也太多了，所以获取到函数之后直接就将函数放到了事件响应的位置，等待触发，而此时是没有正确的this的
+                              react知道它没有正确的this，与其让他访问不知道什么奇怪的this，不如直接给它的this赋值为undefined ，还能避免不少错误
+
+                            - 当然只是猜测
+                        */}
+                    </div>
+                )
+            }
+
+            getAll(){
+                return this.state.books.reduce((total,item)=>{return total+(item.price*item.counter)},0)
+            }
+
+            addCounter(index){
+                this.setState({
+                    books:this.state.books.map(
+                        (item,id)=>{
+                            if(index === id)item.counter++
+                            // map 函数中的箭头函数是需要有返回值的，返回值即当前函数的处理结果
+                            return item
+                        }
+                    )
+                })
+            }
+
+            decCounter(index){
+                this.setState({
+                    books:this.state.books.map((item,indey)=>{if(index === indey) {item.counter--}return item})
+                })
+            }
+
+            remove(index){
+                // react 有一个设计原则，不要主动修改books中的数据，我们之前的操作都是根据原数据获取到新数据，然后将新数据传入，那不算是修改原数据
+                // 例如 spilce 和 slice 前者就是修改原数组数据，而后者是将原数组数据进行一些处理，然后返回新数组，包括高阶函数，也是不会对原本数据进行修改的
+
+                // 在setState 中，我们不需要将state中的所有数据都重写，只需要写入我们修改的数据，react 会自己去匹配到相关数据，而不
+                this.setState({
+                    books:this.state.books.filter((item,indey)=>{return index!=indey})
+                })
+            }
+        }
+
+        ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>

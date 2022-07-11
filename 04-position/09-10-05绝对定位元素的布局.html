@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 500px;
+            height: 500px;
+            background-color: #bfa;
+            position: absolute;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            
+        }
+        /* 
+        通常情况下水平布局
+            元素的左右外边距，左右内边距，左右边框加上内容器的宽度的和应该与该元素的包含块的的内容区的宽度
+        绝对定位元素的水平布局
+            元素开启了绝对定位之后在通常布局的基础上，加上布局的left和right值，即为定位元素的水平布局等式
+                发生过渡约束时，如果九个值中没有 auto 则自动调整right值以使等式满足（总是默认调整最右边的值）
+                可以设置为auto的值 margin width left right
+
+                left right的值默认为auto，且优先级高于margin和width的auto，所以当不设置left和right的值，只将margin和width的值设置为auto是不会产生效果的，仍然时调整left和right的值
+                而当同时设置left与right的值期望实现居中时，会发现只有right的值会发生改变，所以这种方法是行不通的，只能通过将left right设置为0 将margin left/right 设置为auto来实现
+
+        垂直方向布局的等式也必须满足（通常情况下无需满足，但绝对定位元素必须满足）
+            top + margin-top/bottom + padding-top/bottom + broder-top/bottom + bottom = 包含块的高度
+            不满足会默认调整最下方的值，其性质与水平大致相同
+            当top与bottom的值都为auto时，会调整bottom的值使得等式满足，所以为了实现居中，不能通过top和bottom的auto
+         */
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

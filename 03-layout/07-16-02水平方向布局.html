@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer{
+            width: 800px;
+            height: 200px;
+            border: 10px red solid;
+        }
+        .inner{
+            width: auto;
+            height: 200px;
+            background-color: aqua;
+            margin-left: 100px;
+            /* 
+            元素水平方向布局：
+                元素在其父元素水平方向的位置由以下几个属性共同决定
+                    magrin-left
+                    border-left
+                    padding-left
+                    width
+                    magrin-right
+                    border-right
+                    padding-right
+
+                -一个元素在其父元素中（必须)满足
+                    以上7个值的和等于其父元素内容区的宽度
+                    即子元素的真正宽度应当等于其父元素内容区的宽度
+                    (之前提到内容区由内容撑开，应当被内容区决定，即上述等式需要成立)
+
+                -如果已设置的值不满足上述等式（过渡约束），如果这七个值没有为 auto 的情况，则浏览器会自动调整magrin-right值（即使自己设置了magrin-right的值也会被浏览器调整），使等式成立
+                    ·width magrin-right magrin-left 可以设置为auto值
+                        如果某个值被设置为auto，则当过渡约束情况出现时，会自动调整auto值来满足等式
+                        注意：width值默认值即为auto
+                              如果width与magrin-left同时设置为auto，那么width会用于调整，而magrin-left会变成0
+                              magrin-right与width的情况类似
+                              如果width值固定，左右外边距设置为 auto 则左右边距对半分
+                                    （我们可以使用这个特点来使得我们需要的元素在其父元素中居中）
+                                            示例：
+                                                width：100px;
+                                                magrin:0(上下为0) auto（左右为auto）;
+
+                -如果宽度超过了父元素的内容区的大小，浏览器会将magrin-right设置为负数，来保证等式成立，这种情况下，再写入新元素，不会在内容的右边，而是内容的右边加上外边框值（负数），即恰好与父元素的内容区等大小
+             */
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+
+</body>
+</html>

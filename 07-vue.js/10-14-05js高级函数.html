@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        高阶函数，某些函数，他们的参数也是一个函数，类似于python的三个函数 map() filter() reduce() 
+
+        使用可遍历数据去调用这些高阶函数，并传入相应的数据
+            - filter() 
+                传入两个参数：
+                    - 第一个参数是一个回调函数，要求这个回调函数的结果必须是boolean值
+                返回值是一个数组
+                filter函数会将传入的可遍历数据逐个放入回调函数中运行，当回调函数的返回值为true 数据会被保留到返回数组中，为false则屏蔽该数据。对下一个数据进行判断
+
+            - map()
+                传入一个参数：
+                    - 回调函数
+                返回值是一个数组
+                会将原数组的数据放入函数中逐一进行操作，并将回调函数返回值放入返回值数组中
+
+            - reduce()
+                传入两个参数
+                    - 回调函数
+                        两个参数
+                            - preValue 上一次执行该函数的返回值
+                            - 当前遍历的数据
+                    - 初始 preValue 值
+                函数第一次会获取被遍历数据中的第一个数据，与我们传入的初始 preValue 值进行操作，再将这次函数运行的结果赋值给 preValue 进行下一次操作
+                之后则是一直使用 preVlue值和遍历数据进行操作，并将最后的返回值返回
+     -->    
+    <script>
+        
+
+           
+    </script>
+
+</body>
+</html>

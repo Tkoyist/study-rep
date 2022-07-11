@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        值绑定，官方建议我们不将一些属性值写为固定值，而建议我们将其绑定给某个数据
+        这便是值绑定
+     -->
+     <div id='box'>
+         <label :for="item" v-for="item in datas">
+             <!-- for 属性绑定的是内部input的id属性 -->
+             <input type="checkbox" name="" :id="item" v-model="data" :value="item">{{item}}
+             <!-- 
+                 属性解析：
+                    type    是输入框的类型
+                    name    用于数据的返回提交
+                    id      是元素通用标识
+                    value   是元素的数据，由于进行各种操作，使用v-model进行绑定，绑定的就是value
+              -->
+         </label>
+         {{data}}
+     </div>
+     
+     <script src='vue.js'></script>
+     <script>
+     const app = new Vue({
+     el: '#box',
+     data: {
+     msg:'hello',
+     datas:[1,2,3,4,5,6,7,8,90,],
+     data:[]
+     
+     }
+     })
+     </script>
+</body>
+</html>

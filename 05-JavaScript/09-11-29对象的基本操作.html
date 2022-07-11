@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        创建对象
+            var 对象名 = new Object();
+
+        为对象添加属性值
+            对象.属性名 = 属性值;
+            *使用字符串作为名字创建对象的属性时，可以使用以下方式
+                对象名["属性名"] = 属性值;
+                读取时也要采用相同的格式
+
+        读取对象中的属性值
+            对象.属性名
+            *读取对象中没有的属性，不会报错，而是返回undefined
+            *
+        
+        修改对象的属性值
+            对象.属性名 = 新属性值
+
+        删除对象的属性值
+            delete 对象.属性名
+     -->
+     <script>
+         var p = new Object();
+         p.name="tkoyist";
+         p.age="21";
+         p.male="man";
+
+         p.name="tttttkoyist"
+         delete p.age;
+
+         console.log(p.name);
+         console.log(p);
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- 
+    通过该插件进行压缩的组件
+    空格会被删除，各类变量名也会被替代为简单的字符，因为压缩之后直接上传到服务器，我们不需要便于识别的变量名了
+    我们可以使用 Uglyify 插件进行压缩
+    
+    npm install uglifyjs-webpack-plugin@1.1.1 --save-dev
+
+    - 安装插件
+    - 在config文件中导入插件数据
+    - 在 config 文件中的 Plugin 属性中添加 new UlifyjsWebpackPlugin()
+
+    - 再进行打包之后进入 bundle.js文件中会发现文件已经被压缩
+
+    - 该操作只有在开发完成之后才会用到，开发中可以取消
+    
+ -->

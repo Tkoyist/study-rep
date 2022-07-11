@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        symbol 是es6引入的一个全新的数据类型，它具有唯一标识性
+        用于表示独一无二的值
+     -->
+     <script>
+        //  创建symbol 的方式
+        // 1 使用Symbol() 直接创建
+        const s1 = Symbol()
+        // 我们可以给Symbol 传入一段字符串，该字符串类似于注释，并不影响symbol数据，只是给它一个标识
+        const s2 = Symbol('注释')
+        const s3 = Symbol('注释')
+        console.log(s3); // Symbol(注释)
+        // 使用这种方式创建，两个symbol 即使传入值一样也不相等
+        console.log(s2 == s3);// false
+
+        // 2 使用Symbol.for() 创建
+        const s4 = Symbol.for('注释')
+        const s5 = Symbol.for('注释')
+        console.log(s4 == s5); //true
+        // 这种方式进行的创建，传入值一致创建出来的数据相等
+     </script>
+</body>
+</html>

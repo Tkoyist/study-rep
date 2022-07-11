@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        之前说道网页发展到第三个阶段，只用一个网页实现对所有网页的显示
+        这里我们需要一个关键操作，就是让页面url改变的时候，页面不刷新
+
+        - 改变hash
+            在页面控制台中
+            location.hash=''
+            这种方式会修改浏览器的URL，但是只会局部刷新页面，不会整个刷新
+            可以去网页中自行尝试一下
+            哈希表离散数学学过，就是key value 组成的集合，这里应该是修改了映射值，让浏览器去寻找新映射对应的网页数据
+
+        - history.pushState({},'','about')
+            push 压栈，这里是将一个新的url 压入了一个有关页面展示的栈中(页面栈)
+            而网页显示的url 永远是栈顶那个，当我们使用方法将当前栈顶url 移出之后，下一个url 就会上移替代当前url 
+            即  
+                history.back()
+
+        - history.replaceState({},'','home') 
+            这个是替换，是无法返回的，这就是将当前栈顶元素直接替换了
+
+        - history.go(-1) = history.back()
+            也可以 -2  -3  -4
+            负几表示当前的栈弹出几个元素
+            history.forward = history.go(1)
+
+     -->
+</body>
+</html>

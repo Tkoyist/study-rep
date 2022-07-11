@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,2,3,4,5,6,1,2,3,4]
+        // 数组去重-将数组转化为集合，再使用拓展运算符 ... 将集合的数据展开放到数组中
+        let res1 = [...new Set(arr)]
+        console.log(res1);
+        // 求交集
+        let arr1 = [4,5,6,4,5,6,7]
+        let res2 = [...new Set(arr)].filter((item)=>{
+            let s2 = new Set(arr1)
+            if(s2.has(item))return true
+            else return false
+        })
+        let res3 = [...new Set(arr)].filter((item)=>new Set(arr1).has(item))
+        console.log(res2);
+        console.log(res3);
+
+        // 求并集
+        let res = new Set([...arr,...arr1])
+        console.log(res);
+
+        // 求差集
+    </script>
+</body>
+</html>

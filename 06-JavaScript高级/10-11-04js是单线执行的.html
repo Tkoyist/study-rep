@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        js是单线程执行的
+        alert 会暂停当前主线程执行
+
+        代码分为
+            初始化代码
+            回调代码（回调函数中的代码）
+        js引擎执行代码的基本流程
+            先执行初始化代码：包含部分特殊代码
+                如
+                    -设置定时器（但不会执行内部的回调函数）{他们内部存在回调函数，这些函数的代码是异步执行的，是在所有的初始化代码执行之后才可能被执行}
+                    -绑定监听
+                    -发送ajax请求
+            再在之后的某个时刻执行回调代码
+
+        为什么js是单线程
+            网页操作不需要多线程操作，且多线程操作网页容易出错
+            一个元素通常只需要进行一个操作
+     -->
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    事件正确绑定this的三种方案
+    - 显示绑定
+    - 函数包装
+    - 箭头函数
+ -->
+<body>
+    <div id="box"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type='text/babel'>
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                msg:'right'
+            }
+            // 第二种方式，在构造函数中直接修改事件响应函数，将其直接改为bind() 通过正确this 调用的函数
+            // 我们这里是将函数的栈变量名指向了新的函数，所以不要带上() 那会直接运行函数
+            this.readMsg = this.readMsg.bind(this)
+            // 这样我们每次调用 this.readMsg() 本质上是在调用 this.readMsg.bind(this) ，即正确this的函数调用
+
+        }
+        render(){
+            return(
+                <div>
+                    {/*
+                        第一种方式，使用bind 函数保存当前元素的this 属性（显示绑定）
+                        每次绑定都要绑定，代码重复，且浪费性能
+                    */}
+                    <button onClick={this.readMsg.bind(this)}>显示绑定</button>    
+
+                    <button onClick={this.readMsg1()}>箭头函数</button>
+
+                    {/*
+                        第四种方式，也是常用方式，我们直接将事件响应函数绑定为一个立即执行的箭头函数，再在箭头函数中执行我们需要的事件响应函数
+                        react通过call 函数调用执行事件响应函数的时候确确实实调用了事件响应函数，也将其this赋值为了undefined，但是这次拿到调用的是外层的箭头函数
+                        而前面说过箭头函数是无法绑定this 的，它的this总是来自于其声明处，而其声明处的this 的值正是我们想要的
+                        执行箭头函数后，会执行箭头函数内部的事件响应函数，而事件响应函数的this 是来自于箭头函数的，是正确的this值
+                        - 主要原理就是通过箭头函数的特殊性质，将事件响应函数放入箭头函数的内部作用域，使其可以正确的访问this
+
+                        推荐使用，便于维护
+                    */}
+                    <button onClick={()=>{this.readMsg()}}>通过箭头函数包装事件响应函数</button>
+
+                </div>
+            )
+        }
+
+        readMsg(){
+            console.log(this.state.msg);
+        }
+
+        // 第三种方式是使用箭头函数的方式创建函数，由于箭头函数特殊的定义域，不论在哪里调用箭头函数this 都是指向它定义处的this
+        // 箭头函数中才不要绑定this，那是毫无意义的，但是可以访问this
+        readMsg1 = () => {
+            console.log('使用箭头函数正确的输出了数据');
+        }
+    }
+
+    ReactDOM.render(<App/>,document.getElementById('box'))
+    </script>
+</body>
+</html>
